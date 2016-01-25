@@ -10,8 +10,9 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- local stylesheet -->
+    <!-- local stylesheet and js-->
     <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/main.js"></script>
 </head>
 <body cz-shortcut-listen="true">
 <!-- header bar -->
@@ -28,7 +29,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="./register.html" class="register-link">Register</a></li>
+                <li><a href="./register.html" class="register-link l-disable">Register</a></li>
                 <li><a href="./login.html" class="login-link">Login</a></li>
                 <li><a href="./profile.html" class="profile-link">Username</a></li>
                 <li><a href="#" class="logout-link">Logout</a></li>
@@ -62,7 +63,7 @@
                 <div class="form-group">
                     <label for="reg-username" class="col-sm-2 control-label">Username</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="reg-username" placeholder="Username">
+                        <input type="text" class="form-control" id="reg-username" placeholder="Username">
                     </div>
                 </div>
                 <div class="form-group">
@@ -80,12 +81,12 @@
                 <div class="form-group">
                     <label for="reg-email" class="col-sm-2 control-label">Email</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" id="reg-email" placeholder="Email">
+                        <input type="email" class="form-control" id="reg-email" placeholder="Email">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default">Register</button>
+                        <button type="submit" class="btn btn-default btn-block">Register</button>
                     </div>
                 </div>
             </form>

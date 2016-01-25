@@ -77,3 +77,10 @@ body {
     margin-top: 0;
 }
 
+/*
+ * Links
+ */
+.navbar-fixed-top .container-fluid a.l-disable {
+    color: #ffffff;
+    cursor: default;
+}
