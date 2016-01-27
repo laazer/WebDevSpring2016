@@ -12,3 +12,11 @@
 tr .glyphicon {
     cursor: pointer;
 }
+
+/*
+ *
+ */
+.ffields-form input,
+.ffields-form select {
+    width: 33%;
+}
