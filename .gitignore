@@ -1,5 +1,6 @@
 # Jet Brains configs
 .idea
+.DS_Store
 
 # Logs
 logs
