@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/dashboard.css">
     <script src="./js/main.js"></script>
+    <script src="./js/form-fields.js"></script>
 </head>
 <body cz-shortcut-listen="true">
 <!-- header bar -->
@@ -68,31 +69,58 @@
             <form class="ffields-form">
                 <div class="form-group">
                     <label for="field-fname">First Name</label>
-                    <input type="text" class="form-control" id="field-fname" placeholder="First Name">
+                    <div class="inline-field">
+                        <input type="text" class="form-control" id="field-fname" placeholder="First Name">
+                        <span class="field-actions input-group-addon">
+                                <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-pencil"/></button>
+                                <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus"/></button>
+                                <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"/></button>
+                                <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-align-justify"/></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="field-lname">Last Name</label>
+                    <div class="inline-field">
+                    <input type="text" class="form-control" id="field-lname" placeholder="Last Name">
+                    <span class="field-actions input-group-addon">
+                            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-pencil"/></button>
+                            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus"/></button>
+                            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"/></button>
+                            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-align-justify"/></button>
+                    </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="field-dob">Date of Birth</label>
+                    <div class="inline-field">
+                    <input type="date" class="form-control" id="field-dob" placeholder="Select Date">
                     <span class="field-actions input-group-addon">
                         <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-pencil"/></button>
                         <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus"/></button>
                         <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"/></button>
                         <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-align-justify"/></button>
                     </span>
-                </div>
-                <div class="form-group">
-                    <label for="field-lname">Last Name</label>
-                    <input type="text" class="form-control" id="field-lname" placeholder="Last Name">
-                </div>
-                <div class="form-group">
-                    <label for="field-dob">Date of Birth</label>
-                    <input type="date" class="form-control" id="field-dob" placeholder="Select Date">
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>Gender</label>
+                    <div class="inline-field">
                     <select class="form-control">
                         <option>Male</option>
                         <option>Female</option>
                     </select>
+                    <span class="field-actions input-group-addon">
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-pencil"/></button>
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus"/></button>
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"/></button>
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-align-justify"/></button>
+                    </span>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>Roles</label>
+                    <div class="inline-field">
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" value="">
@@ -111,9 +139,17 @@
                             User
                         </label>
                     </div>
+                    <span class="field-actions input-group-addon">
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-pencil"/></button>
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus"/></button>
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"/></button>
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-align-justify"/></button>
+                    </span>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>License Agreement</label>
+                    <div class="inline-field">
                     <div class="radio">
                         <label>
                             <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
@@ -125,6 +161,32 @@
                             <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
                             No
                         </label>
+                    </div>
+                    <span class="field-actions input-group-addon">
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-pencil"/></button>
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus"/></button>
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"/></button>
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-align-justify"/></button>
+                    </span>
+                    </div>
+                </div>
+                <div class="form-group add-item-group">
+                    <label>Add New Fields</label>
+                    <div class="inline-field">
+                        <select class="form-control">
+                            <option>Single Line Text</option>
+                            <option>Date</option>
+                            <option>Dropdown</option>
+                            <option>Checkboxes</option>
+                            <option>Radio Buttons</option>
+                            <option>Paragraph Text Field</option>
+                        </select>
+                    <div class="field-actions input-group-addon">
+                        <button class="btn btn-default spoof-btn" type="button"><span class="glyphicon glyphicon-plus"/></button>
+                        <button class="btn btn-default btn-add-props" type="button"><span class="glyphicon glyphicon-plus"/></button>
+                        <button class="btn btn-default spoof-btn" type="button"><span class="glyphicon glyphicon-plus"/></button>
+                        <button class="btn btn-default spoof-btn" type="button"><span class="glyphicon glyphicon-plus"/></button>
+                    </div>
                     </div>
                 </div>
             </form>

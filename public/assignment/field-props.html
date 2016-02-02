@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <!-- jquery -->
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- local stylesheet and js-->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <script src="./js/main.js"></script>
+</head>
+<body cz-shortcut-listen="true">
+<div class="custom-popup">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="btn btn-default btn-circle btn-rem"><i class="glyphicon glyphicon-remove"></i></button>
+                <button type="button" class="btn btn-default btn-circle btn-min"><i class="glyphicon glyphicon-minus"></i></button>
+                <button type="button" class="btn btn-default btn-circle btn-max"><i class="glyphicon glyphicon-plus"></i></button>
+            </div>
+    </nav>
+    <div class="container">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="field-label">Label</label>
+                <input type="text" class="form-control" id="field-label" placeholder="Label">
+            </div>
+            <div class="form-group">
+                <label for="field-placeholder">Placeholder</label>
+                <input type="text" class="form-control" id="field-placeholder" placeholder="Placeholder">
+            </div>
+            <div class="form-group">
+                <label for="field-tooltip">Tooltip</label>
+                <input type="text" class="form-control" id="field-tooltip" placeholder="Tooltip">
+            </div>
+            <div class="form-group">
+                <label>Type</label>
+                <div class="inline-field">
+                    <select class="form-control">
+                        <option>Options</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Options</label>
+                <select multiple class="form-control">
+                    <option>Option 1</option>
+                    <option>Option 2</option>
+                    <option>Option 3</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default btn-ok" type="button">Ok</button>
+                <button class="btn btn-default btn-cancel" type="button">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

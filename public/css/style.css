@@ -1,0 +1,47 @@
+/**
+  * Nav Bar
+  */
+.navbar-default {
+    background: #2c3e50;
+}
+
+.navbar-default .navbar-brand {
+    color: #ffffff;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #d7d7d7;
+}
+
+/**
+  * Images
+  */
+.img-profile {
+    height: 275px;
+}
+
+.portfolio-item img{
+    height: 250px;
+    width: 275px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.portfolio-modal .modal-body img {
+    height: 350px;
+}
+
+/**
+ * Hidden for now
+ */
+#contact,
+.btn-contact {
+    display: none !important;
+}
+
+/**
+ * Disabled
+ */
+#portfolio .portfolio-item .portfolio-link .caption.disabled {
+    background: rgba(185, 180, 188, 0.9);
+}
