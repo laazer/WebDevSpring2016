@@ -11,15 +11,18 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--  angualr js cdn -->
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular-route.js"></script>
     <!-- local stylesheet -->
     <link rel="stylesheet" href="./css/dashboard.css">
     <link rel="stylesheet" href="./css/style.css">
     <script src="./app.js"></script>
+    <script scr="./config.js"></script>
+    <script src="./views/main/main.controller.js"></script>
 </head>
 <body ng-controller="MainController">
-    <div ng-include="./views/header/header.view.html"></div>
-    <div ng-include="./views/sidebar/sidebar.view.html"></div>
+    <div ng-include="'views/header/header.view.html'"></div>
+    <div ng-include="'views/sidebar/sidebar.view.html'"></div>
     <div ng-view></div>
 </body>
 </html>
