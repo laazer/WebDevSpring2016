@@ -8,5 +8,6 @@
         $scope.$location = $location;
         $scope.isLoggedIn = false;
         $scope.isAdmin = false;
+        console.log($location.url());
     }
 })();

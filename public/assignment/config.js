@@ -30,5 +30,10 @@
 					templateUrl: "views/admin/admmin.view.html",
 					controller: "AdminController"
 				})
+                .when("/forms", 
+                {
+                    templateUrl: "views/forms/form.view.html",
+					controller: "FormController"   
+                })
 		});
 })();
