@@ -27,13 +27,18 @@
 				})
                 .when("/admin", 
 				{
-					templateUrl: "views/admin/admmin.view.html",
+					templateUrl: "views/admin/admin.view.html",
 					controller: "AdminController"
 				})
                 .when("/forms", 
                 {
                     templateUrl: "views/forms/form.view.html",
 					controller: "FormController"   
+                })
+                .when("/form-fields", 
+                {
+                    templateUrl: "views/forms/form-fields.view.html",
+					controller: "FormFieldsController"   
                 })
 		});
 })();
