@@ -2,9 +2,9 @@
 {
 	angular
 		.module("FormBuilderApp")
-		.controller("MainController", MainController);
+		.controller("MainController", mainController);
 		
-    function MainController ($scope, $location) {
+    function mainController ($scope, $location) {
         $scope.$location = $location;
         $scope.isLoggedIn = false;
         $scope.isAdmin = false;

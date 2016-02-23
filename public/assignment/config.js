@@ -8,12 +8,13 @@
 				.when("/", 
 				{
 					templateUrl: "views/home/home.view.html",
-					controller: "HomeController"
+					controller: "HomeController",
+                    title: "Froms Home"
 				})
 				.when("/register", 
 				{
 					templateUrl: "views/users/register.view.html",
-					controller: "RegisterContoller"
+					controller: "RegisterController"
 				})
                 .when("/login", 
 				{
