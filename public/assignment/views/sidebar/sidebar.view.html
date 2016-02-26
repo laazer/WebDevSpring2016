@@ -4,13 +4,13 @@
             <li ng-class="{'active': $location.url() == '/'}">
                 <a href="#/"><i class="home-link"></i>Home</a>
             </li>
-            <li ng-class="{'active': $location.url() == '/profile', 'e-d-none': !isLoggedIn}">
+            <li ng-show="isLoggedIn" ng-class="{'active': $location.url() == '/profile'}">
                 <a href="#/profile"><i class="profile-link"></i>Profile</a>
             </li>
-            <li ng-class="{'active': $location.url() == '/admin', 'e-d-none': !isAdmin}">
+            <li ng-show="isAdmin" ng-class="{'active': $location.url() == '/admin'}">
                 <a href="#/admin"><i class="admin-link"></i>Admin</a>
             </li>
-            <li ng-class="{'active': $location.url() == '/forms', 'e-d-none': !isLoggedIn}">
+            <li ng-show="isLoggedIn" ng-class="{'active': $location.url() == '/forms'}">
                 <a href="#/forms"><i class="forms-link"></i>Forms</a>
             </li>
         </ul>

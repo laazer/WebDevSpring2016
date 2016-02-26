@@ -7,13 +7,6 @@
 }
 
 /*
- * No Display Element
- */
- .e-d-none {
-     display: none !important;
- }
-
-/*
  * Glyphicons
  */
 tr .glyphicon {

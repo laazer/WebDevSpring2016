@@ -4,10 +4,10 @@
 		.module("FormBuilderApp")
 		.controller("MainController", mainController);
 		
-    function mainController ($scope, $location) {
-        $scope.$location = $location;
-        $scope.isLoggedIn = false;
-        $scope.isAdmin = false;
-        console.log($location.url());
+    function mainController ($rootScope, $location) {
+        $rootScope.$location = $location;
+        $rootScope.isLoggedIn = false;
+        $rootScope.isAdmin = false;
+        $location.url();
     }
 })();
