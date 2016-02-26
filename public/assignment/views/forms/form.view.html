@@ -1,6 +1,7 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3 main">
     <!-- All main content goes here -->
     <h1 class="page-header">Forms</h1>
+    <div ng-show="error" class="alert alert-danger" role="alert">{{error}}</div>
     <!-- Tabs -->
     <ul class="nav nav-tabs">
         <li class="active"><a href="#">Forms</a></li>
@@ -17,31 +18,17 @@
             </thead>
             <tbody>
             <tr class="input-row">
-                <td><input class="form-control" type="text" placeholder="name"></td>
+                <td><input class="form-control" type="text" placeholder="name" ng-model="form.title"></td>
                 <td class="actions">
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus"/></button>
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-ok"/></button>
+                    <button class="btn btn-default" type="button" ng-click="addForm(form); form = null"><span class="glyphicon glyphicon-plus"/></button>
+                    <button class="btn btn-default" type="button" ng-click="updateForm(form)"><span class="glyphicon glyphicon-ok"/></button>
                 </td>
             </tr>
-            <tr>
-                <td>Registration Form</td>
+            <tr ng-repeat="f in forms">
+                <td>{{f.title}}</td>
                 <td class="actions">
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"/></button>
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-pencil"/></button>
-                </td>
-            </tr>
-            <tr>
-                <td>Contact List</td>
-                <td class="actions">
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"/></button>
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-pencil"/></button>
-                </td>
-            </tr>
-            <tr>
-                <td>To Do List</td>
-                <td class="actions">
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"/></button>
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-pencil"/></button>
+                    <button class="btn btn-default" type="button" ng-click="deleteForm($index)"><span class="glyphicon glyphicon-remove"/></button>
+                    <button class="btn btn-default" type="button" ng-click="selectForm($index)"><span class="glyphicon glyphicon-pencil"/></button>
                 </td>
             </tr>
             </tbody>

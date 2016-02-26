@@ -1,0 +1,70 @@
+(function()
+{
+	angular
+		.module("FormBuilderApp")
+		.controller("FormController", formController);
+		
+    function formController ($rootScope, $scope, $location, FormService) {
+	   var fc = this;
+       var selectedForm = null;
+       $scope.error =  null;
+       $scope.addForm = addForm;
+       $scope.updateForm = updateForm;
+       $scope.deleteForm = deleteForm;
+       $scope.selectForm = selectForm;
+       
+       if (!$rootScope.currentUser) {
+            $location.url("/");
+       } 
+       else $scope.userId = $rootScope.currentUser._id;
+        
+       FormService.findAllFormsForUser($scope.userId, function(forms) {
+           $scope.forms = forms;
+       });
+       
+       function addForm(form) {
+            if(!form) {
+               $scope.error = "Missing form title.";
+               return;
+           }
+           if(fc.selectedForm) {
+               $scope.error = "Form curretnly being updated.";
+               return;
+           }
+           var cform = angular.copy(form);
+           FormService.createFormForUser($scope.userId, cform, function(form) {
+               reloadForms();
+           });
+       }
+       
+       function updateForm(form) {
+           if(!fc.selectedForm) {
+               $scope.error = "No form seleced for editting.";
+               return;
+           }
+           FormService.updateFormById(form._id, form, function(form) {
+               reloadForms();
+           });
+           fc.selectedForm = null;
+           $scope.form = null;
+       }
+       
+       function deleteForm(index) {
+           var formId = $scope.forms[index]._id;
+            FormService.deleteFormById(formId, function(form) {
+               reloadForms();
+           });
+       }
+       
+       function selectForm(index) {
+           $scope.form = $scope.forms[index];
+           fc.selectedForm = $scope.form;
+       }
+       
+       function reloadForms() {
+            FormService.findAllFormsForUser($scope.userId, function(forms) {
+                $scope.forms = forms;
+            });
+       }
+    }
+})();
