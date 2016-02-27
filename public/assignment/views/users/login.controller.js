@@ -9,6 +9,18 @@
         $scope.error = null;
 
         function login (user) {
+            if (!user) {
+                $scope.error = "Missing username or password";
+                return;
+            }
+            if (!user.username) {
+                $scope.error = "Missing username";
+                return;
+            }
+            if (!user.password) {
+                $scope.error = "Missing password";
+                return;
+            }
             UserService.findUserByUsernameAndPassword(user.username, user.password, function(user) {
                 lc.user = user;
             });

@@ -43,7 +43,7 @@
                      break;
                 }
             }
-            return callback(user);
+            callback(null);
         }
         
         function findAllUsers(callback) {

@@ -28,7 +28,7 @@
                return;
            }
            if(fc.selectedForm) {
-               $scope.error = "Form curretnly being updated.";
+               $scope.error = "Form is curretnly being updated.";
                return;
            }
            var cform = angular.copy(form);
@@ -50,6 +50,10 @@
        }
        
        function deleteForm(index) {
+           if (fc.selectedForm) {
+               $scope.error = "Form is currently being updated.";
+               return;
+           }
            var formId = $scope.forms[index]._id;
             FormService.deleteFormById(formId, function(form) {
                reloadForms();
