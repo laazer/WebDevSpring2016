@@ -8,6 +8,7 @@
 	   var fc = this;
        var selectedForm = null;
        $scope.error =  null;
+       $scope.message = null;
        $scope.addForm = addForm;
        $scope.updateForm = updateForm;
        $scope.deleteForm = deleteForm;
@@ -47,6 +48,7 @@
            });
            fc.selectedForm = null;
            $scope.form = null;
+           $scope.message = "Form updated successfully."
        }
        
        function deleteForm(index) {
