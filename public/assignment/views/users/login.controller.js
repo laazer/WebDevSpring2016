@@ -8,6 +8,10 @@
         $scope.login = login;
         $scope.error = null;
 
+        if ($rootScope.currentUser) {
+            $location.url("/");
+        } 
+
         function login (user) {
             if (!user) {
                 $scope.error = "Missing username or password";
@@ -21,16 +25,16 @@
                 $scope.error = "Missing password";
                 return;
             }
-            UserService.findUserByUsernameAndPassword(user.username, user.password, function(user) {
-                lc.user = user;
+            UserService.findUserByUsernameAndPassword(user.username, user.password, function(fuser) {
+                lc.user = fuser;
+                if (lc.user) {
+                    UserService.setCurrentUser(lc.user);
+                    $location.url("/profile");
+                }
+                else {
+                    $scope.error = "Incorrect username and passowrd cobmination";
+                }
             });
-            if (lc.user) {
-                UserService.setCurrentUser(lc.user);
-                $location.url("/profile");
-            }
-            else {
-                $scope.error = "Incorrect username and passowrd cobmination";
-            }
         }
     }
 })();

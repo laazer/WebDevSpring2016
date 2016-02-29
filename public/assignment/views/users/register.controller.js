@@ -8,7 +8,12 @@
             var rc = this;
             $scope.message = null;
             $scope.register = register;
-
+            
+            $scope.currentUser = UserService.getCurrentUser();
+            if ($scope.currentUser) {
+                $location.url("/");
+            } 
+            
             function register(user) {
                 $scope.message = null;
                 if (user == null) {
@@ -30,15 +35,15 @@
                 UserService.findUserByUsername(user.username, function(user) {
                     rc.user = user
                 });
-                if (rc.user != null) {
+                if (rc.user) {
                     $scope.message = "User already exists";
                     return;
                 }
                 UserService.createUser($scope.user, function(user) {
                     rc.user = user;
+                    UserService.setCurrentUser(rc.user);
+                    $location.url("/profile");
                 });
-                UserService.setCurrentUser(rc.user);
-                $location.url("/profile");
             };
         }
 })();

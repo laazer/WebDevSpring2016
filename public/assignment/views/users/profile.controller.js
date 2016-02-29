@@ -23,15 +23,14 @@
             $scope.message = null;
 
             UserService.updateUser($rootScope.currentUser._id, user, function(user) {
-                pc.user = user;
+                pc.user = angular.copy(user);
+                if (pc.user) {
+                    $scope.message = "User updated successfully";
+                    UserService.setCurrentUser(pc.user);
+                } else {
+                    $scope.message = "Unable to update the user";
+                }
             });
-
-            if (pc.user) {
-                $scope.message = "User updated successfully";
-                UserService.setCurrentUser(pc.user);
-            } else {
-                $scope.message = "Unable to update the user";
-            }
         }
     }
 })();
