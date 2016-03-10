@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-sm-3 col-md-3 sidebar" id="main-sidebar">
+        <ul class="nav nav-sidebar">
+            <li ng-class="{'active': $location.url() == '/'}">
+                <a href="#/"><i class="home-link"></i>Home</a>
+            </li>
+            <li ng-show="isLoggedIn" ng-class="{'active': $location.url() == '/profile'}">
+                <a href="#/profile"><i class="profile-link"></i>Profile</a>
+            </li>
+            <li ng-show="isAdmin" ng-class="{'active': $location.url() == '/admin'}">
+                <a href="#/admin"><i class="admin-link"></i>Admin</a>
+            </li>
+            <li ng-show="isLoggedIn" ng-class="{'active': $location.url() == '/forms'}">
+                <a href="#/forms"><i class="forms-link"></i>Forms</a>
+            </li>
+        </ul>
+    </div>
+</div>

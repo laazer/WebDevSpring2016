@@ -1,0 +1,33 @@
+<div class="col-sm-3 col-md-3"></div>
+<div class="col-xs-sm-12 col-sm-6 col-md-6 main">
+    <!-- All main content goes here -->
+    <h1 class="page-header">Register</h1>
+    <div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
+    <form class="form-horizontal">
+        <div class="form-group">
+                <input type="text" class="form-control" id="reg-username" placeholder="First Name" ng-model="user.username">
+        </div>
+        <div class="form-group">
+                <input type="text" class="form-control" id="reg-username" placeholder="Last Name" ng-model="user.username">
+        </div>
+        <div class="form-group">
+                <input type="text" class="form-control" id="reg-username" placeholder="Username" ng-model="user.username">
+        </div>
+        <div class="form-group">
+                <input type="password" class="form-control" id="reg-password" placeholder="Password" ng-model="user.password">
+        </div>
+        <div class="form-group">
+                <input type="password" class="form-control" id="reg-ver-password" placeholder="Verify Password" ng-model="user.password2">
+        </div>
+        <div class="form-group">
+                <input type="email" class="form-control" id="reg-email" placeholder="Email" ng-model="user.email">
+        </div>
+        <div class="form-group">
+            <input type="{{this.value==null ? 'text' : 'date'}}" onfocus="this.type='date'" class="form-control" id="field-dob" placeholder="Date of Birth">
+        </div>
+        <div class="form-group">
+           <a type="submit" ng-click="register(user)" class="btn btn-default btn-block">Register</a>
+        </div>
+    </form>
+</div>
+<div class="col-sm-3 col-md-3"></div>

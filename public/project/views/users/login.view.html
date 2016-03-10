@@ -1,0 +1,20 @@
+<div class="col-sm-3 col-md-3"></div>
+<div class="col-xs-sm-12 col-sm-6 col-md-6 main">
+    <!-- All main content goes here -->
+    <h1 class="page-header">Login</h1>
+
+    <div ng-show="error" class="alert alert-danger" role="alert">{{error}}</div>
+
+    <form class="form-horizontal">
+        <div class="form-group">
+                <input type="text" class="form-control" id="log-username" placeholder="Username" ng-model="user.username">
+        </div>
+        <div class="form-group">
+                <input type="password" class="form-control" id="log-password" placeholder="Password" ng-model="user.password">
+        </div>
+        <div class="form-group btn-login">
+                <button type="submit" class="btn btn-default btn-block login" ng-click="login(user)">Login</button>
+        </div>
+    </form>
+</div>
+<div class="col-sm-3 col-md-3"></div>
