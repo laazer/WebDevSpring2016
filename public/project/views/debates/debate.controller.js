@@ -64,7 +64,6 @@
        function reloadDebates() {
             DebateService.findAllDebatesForUser($scope.userId, function(debates) {
                 $scope.debates = debates;
-                console.log($scope.debates);
             });
        }
        
@@ -74,11 +73,13 @@
            for(i = 0; i < max; i++) {
                var pair = [];
                if(debate.pros[i]) {
-                   pair[0] = debate.pros[i];
+                   pair[0] = angular.copy(debate.pros[i]);
                }
+               else pair[0] = false;
                if(debate.cons[i]) {
-                   pair[1] = debate.cons[i];
+                   pair[1] = angular.copy(debate.cons[i]);
                }
+               else pair[1] = false;
                pcList.push(pair);
            }
            return pcList;

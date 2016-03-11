@@ -106,6 +106,25 @@ tr .glyphicon {
     margin-top: 10px;
 }
 
+/*
+ * Header
+ */
 .header-search {
     padding-right: 0px;
+}
+
+/*
+ * Debates
+ */
+.debate-wrapper {
+    margin: 13px;
+    padding: 10px;
+    border: 0.5px solid #ccc;   
+    border-radius: 10px;
+}
+
+.debate-text-wrapper {
+    padding: 5px;
+    margin-bottom: 10px;
+    border-bottom: 0.5px solid #ccc;   
 }
