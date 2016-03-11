@@ -1,7 +1,7 @@
 (function()
 {
 	angular
-		.module("FormBuilderApp")
+		.module("DebateApp")
 		.controller("RegisterController", registerController);
 		
         function registerController($location, $scope, UserService) {

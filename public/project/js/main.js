@@ -1,5 +1,3 @@
-$(document).ready(function(){
-    $(".l-disable").click(function(e) {
-        e.preventDefault();
-    });
-});
+String.prototype.capitalizeFirstLetter = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}

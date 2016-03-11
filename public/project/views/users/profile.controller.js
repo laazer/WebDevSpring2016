@@ -1,7 +1,7 @@
 (function()
 {
 	angular
-		.module("FormBuilderApp")
+		.module("DebateApp")
 		.controller("ProfileController", profileController);
 		
     function profileController($scope, $rootScope, $location, UserService) {

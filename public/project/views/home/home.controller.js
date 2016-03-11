@@ -1,7 +1,7 @@
 (function()
 {
 	angular
-		.module("FormBuilderApp")
+		.module("DebateApp")
 		.controller("HomeController", HomeController);
 		
     function HomeController ($rootScope, $location) {

@@ -1,0 +1,54 @@
+<div ng-include="'views/sidebar/sidebar.view.html'"></div>
+<div class="container-fluid">
+<div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3 main">
+    <div class="debates-wrapper">
+        <div class="debate-wrapper ng-scope" ng-repeat="ldebate in debates|limitTo:10">
+            <div class="debate-text-wrapper alert-warning">
+                <div class="ng-binding">Web Dev is the best class!</div>
+                <span class="glyphicon glyphicon-plus-sign"></span>
+                <span class="glyphicon glyphicon-minus-sign"></span>
+                <span class="debate-merrit">{{ldabte.merrit}}</span>
+            </div>
+            <div ng-repeat="item in getPCList(ldebate)|limitTo:3" class="ng-scope"> 
+                <span class="actions col-sm-4 col-md-4" ng-show="{item[0]}">
+                        <div class="alert alert-info item-0">
+                            <div class="body-wrapper">
+                                <div class="text-wrapper">{{item[0].text}}</div>
+                                <div>
+                                    <span class="glyphicon glyphicon-plus-sign"></span>
+                                    <span class="glyphicon glyphicon-minus-sign"></span>
+                                    <span class="merrit">{{item[0].merrit}}</span>
+                                </div>
+                            </div>
+                            <div class="source-wrapper">
+                                <span class="glyphicon glyphicon-plus-sign"></span>
+                                <span class="glyphicon glyphicon-minus-sign"></span>
+                                <span class="item-0 merrit">{{item[0].source.merrit}}</span>
+                                <a href="{item[0].source.link}">Source</a>
+                            </div>
+                        </div>
+                    </span>
+                    <span class="actions col-sm-4 col-md-4" ng-show="{item[1]}">
+                        <div class="alert alert-danger item-1">
+                            <div class="body-wrapper">
+                                <div class="text-wrapper">{{item[1].text}}</div>
+                                <div>
+                                    <span class="glyphicon glyphicon-plus-sign"></span>
+                                    <span class="glyphicon glyphicon-minus-sign"></span>
+                                    <span class="merrit">{{item[1].merrit}}</span>
+                                </div>
+                            </div>
+                            <div class="source-wrapper">
+                                <span class="glyphicon glyphicon-plus-sign"></span>
+                                <span class="glyphicon glyphicon-minus-sign"></span>
+                                <span class="merrit">{{item[1].source.merrit}}</span>
+                                <a href="{item[1].source.link}">Source</a>
+                            </div>
+                        </div>
+                    </span>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+                    

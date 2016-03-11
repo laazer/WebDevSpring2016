@@ -1,7 +1,7 @@
 (function()
 {
 	angular
-		.module("FormBuilderApp")
+		.module("DebateApp")
 		.factory("UserService", UserService);
 		
     function UserService ($rootScope) {

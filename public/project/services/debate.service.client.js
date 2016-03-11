@@ -1,66 +1,86 @@
 (function()
 {
 	angular
-		.module("FormBuilderApp")
-		.factory("FormService", FormService);
+		.module("DebateApp")
+		.factory("DebateService", DebateService);
 		
-    function FormService () {
+    function DebateService () {
         var model = {
-            forms : [
-                    {"_id": "000", "title": "Contacts", "userId": 123},
-                    {"_id": "010", "title": "ToDo",     "userId": 123},
-                    {"_id": "020", "title": "CDs",      "userId": 234},
-             ],
+            debates : [
+                    {"_id": 100, "ownerId": 123, "text": "Web Dev is the best class!", "merrit": 5,
+                        "pros": [ {"text": "The proffesor is awesome", "merrit": 100, "source": {"link": "www.foo.com", "merrit": 21}, "ownerId": 456},
+                            {"text": "So many reasons", "merrit": 36, "source":{"link": "www.stackoverflow.com", "merrit": 99}, "ownerId": 345},
+                            {"text": "DAT MEAN STACK", "merrit": 7, "source": {"link": "www.bar.com", "merrit": 99}, "ownerId": 234}
+                        ],
+                        "cons": [{"text": "It's a lot of work", "merrit": 100, "source": {"link": "www.baz.com", "merrit": 99}, "ownerId": 234}],
+                    },
+                    {"_id": 101, "ownerId": 345, "text": "Web Dev is the best class!", "merrit": 5,
+                        "pros": [ {"text": "The proffesor is awesome", "merrit": 100, "source": {"link": "www.foo.com", "merrit": 21}, "ownerId": 456},
+                            {"text": "So many reasons", "merrit": 36, "source":{"link": "www.stackoverflow.com", "merrit": 99}, "ownerId": 345},
+                            {"text": "DAT MEAN STACK", "merrit": 7, "source": {"link": "www.bar.com", "merrit": 99}, "ownerId": 234}
+                        ],
+                        "cons": [{"text": "It's a lot of work", "merrit": 100, "source": {"link": "www.baz.com", "merrit": 99}, "ownerId": 234}],
+                    },
+                    {"_id": 102, "ownerId": 456, "text": "Web Dev is the best class!", "merrit": 5,
+                        "pros": [ {"text": "The proffesor is awesome", "merrit": 100, "source": {"link": "www.foo.com", "merrit": 21}, "ownerId": 456},
+                            {"text": "So many reasons", "merrit": 36, "source":{"link": "www.stackoverflow.com", "merrit": 99}, "ownerId": 345},
+                            {"text": "DAT MEAN STACK", "merrit": 7, "source": {"link": "www.bar.com", "merrit": 99}, "ownerId": 123}
+                        ],
+                        "cons": [{"text": "It's a lot of work", "merrit": 100, "source": {"link": "www.baz.com", "merrit": 99}, "ownerId": 234}],
+                    }
+                    ],
 
-            createFormForUser: createFormForUser,
-            findAllFormsForUser: findAllFormsForUser,
-            deleteFormById: deleteFormById,
-            updateFormById: updateFormById
+            createDebateForUser: createDebateForUser,
+            findAllDebatesForUser: findAllDebatesForUser,
+            deleteDebateById: deleteDebateById,
+            updateDebateyId: updateDebateById
             
         };
         return model;
         
-        function createFormForUser(userId, form, callback) {
-            var lform = form;
-            lform.userId = userId;
-            lform.title = form.title;
-            lform._id = (new Date).getTime();
-            model.forms.push(lform);
-            callback(lform);
+        function createDebateForUser(userId, debate, callback) {
+            var ldebate = debate;
+            debate.ownerId = userId;
+            debate.merrit = 0;
+            debate.pros = [];
+            debate.cons = [];
+            ldebate._id = (new Date).getTime();
+            model.debates.push(ldebate);
+            callback(ldebate);
         }
        
-       function findAllFormsForUser(userId, callback) {
-           var result = model.forms.filter(function(value) {
-                return value.userId == userId;    
+       function findAllDebatesForUser(userId, callback) {
+           var result = model.debates.filter(function(value) {
+                return value.ownerId == userId || 
+                value.pros.filter(function(pval) {
+                    return pval.ownerId == userId;
+                }).length > 0 || value.cons.filter(function(cval) {
+                    return cval.ownerId == userId;
+                }).length > 0;    
            });
            callback(result);
        }
        
-       function deleteFormById(formId, callback) {
-            for(var f in model.forms) {
-                if(model.forms[f]._id == formId) {
-                    model.forms.splice(f, 1);
+       function deleteDebateById(debateId, callback) {
+            for(var f in model.debates) {
+                if(model.debates[f]._id == debateId) {
+                    model.debates.splice(f, 1);
                     break;
                 }
             }
-            callback(model.forms);    
+            callback(model.debates);    
        }
        
-       function updateFormById(formId, newForm, callback) {
-           var form = null;
-           for(var f in model.forms) {
-                if(model.forms[f]._id == formId) {
-                    cuser = model.forms[f];
-                    model.forms[f] = {
-                        "_id" : formId,
-                        "title" : newForm.title ? newForm.title : form.title,
-                        "userId" : newForm.userId ? newForm.userId : form.userId,
-                    }
-                    form = model.forms[f];
+       function updateDebateById(debateId, newdebate, callback) {
+           var debate = null;
+           for(var f in model.debates) {
+                if(model.debates[f]._id == debateId) {
+                    model.debates[f] = newdebate;
+                    debate = model.debates[f];
                     break;
                 }
             }
-            callback(form);   
+            callback(debate);   
         }
     }
     

@@ -13,7 +13,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li ng-hide="isLoggedIn"><a href="#/register" class="register-link">Register</a></li>
                 <li ng-hide="isLoggedIn"><a href="#/login" class="login-link">Login</a></li>
-                <li ng-show="isLoggedIn"><a href="#/profile" class="profile-link">{{currentUser.username}}</a></li>
+                <li ng-show="isLoggedIn"><a href="#/profile" class="profile-link">{{currentUser.username.capitalizeFirstLetter()}}</a></li>
                 <li ng-show="isLoggedIn">
                     <a href="" class="logout-link" ng-click="logout()">Logout</a>
                 </li>

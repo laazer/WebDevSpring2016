@@ -1,7 +1,7 @@
 (function()
 {
 	angular
-		.module("FormBuilderApp")
+		.module("DebateApp")
 		.config(function($routeProvider)
 		{
 			$routeProvider
@@ -9,7 +9,7 @@
 				{
 					templateUrl: "views/home/home.view.html",
 					controller: "HomeController",
-                    title: "Froms Home"
+                    title: "Debate Home"
 				})
 				.when("/register", 
 				{
@@ -31,15 +31,10 @@
 					templateUrl: "views/admin/admin.view.html",
 					controller: "AdminController"
 				})
-                .when("/forms", 
+                .when("/debates", 
                 {
-                    templateUrl: "views/forms/form.view.html",
-					controller: "FormController"   
-                })
-                .when("/form-fields", 
-                {
-                    templateUrl: "views/forms/form-fields.view.html",
-					controller: "FormFieldsController"   
+                    templateUrl: "views/debates/debate_item.view.html",
+					controller: "DebateController"   
                 })
 		});
 })();
