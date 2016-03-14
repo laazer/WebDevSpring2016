@@ -12,12 +12,20 @@
        $scope.updateDebate = updateDebate;
        $scope.deleteDebate = deleteDebate;
        $scope.selectDebate = selectDebate;
-       $scope.getPCList = getPCList;
        
        if (!$rootScope.currentUser) {
             $location.url("/");
        } 
        else $scope.userId = $rootScope.currentUser._id;
+        
+       function reloadDebates() {
+           if($location.url() == "/all_debates") {
+               reloadAllDebates();
+           }
+           if($location.url() == "/user_debates") {
+               reloadUserDebates();
+           }
+       }
         
        reloadDebates();
        
@@ -61,8 +69,14 @@
            dc.selectedDebate = $scope.debate;
        }
        
-       function reloadDebates() {
+       function reloadUserDebates() {
             DebateService.findAllDebatesForUser($scope.userId, function(debates) {
+                $scope.debates = debates;
+            });
+       }
+       
+       function reloadAllDebates() {
+            DebateService.getAllDebates(function(debates) {
                 $scope.debates = debates;
             });
        }

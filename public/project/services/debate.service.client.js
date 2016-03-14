@@ -41,6 +41,7 @@
 
             createDebateForUser: createDebateForUser,
             findAllDebatesForUser: findAllDebatesForUser,
+            getAllDebates: getAllDebates,
             deleteDebateById: deleteDebateById,
             updateDebateyId: updateDebateById
             

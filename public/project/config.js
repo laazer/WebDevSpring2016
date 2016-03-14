@@ -31,9 +31,14 @@
 					templateUrl: "views/admin/admin.view.html",
 					controller: "AdminController"
 				})
-                .when("/debates", 
+                .when("/user_debates", 
                 {
-                    templateUrl: "views/debates/debate_item.view.html",
+                    templateUrl: "views/debates/debates.view.html",
+					controller: "DebateController"   
+                })
+                .when("/all_debates", 
+                {
+                    templateUrl: "views/debates/debates.view.html",
 					controller: "DebateController"   
                 })
 		});

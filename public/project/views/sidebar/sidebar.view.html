@@ -10,8 +10,11 @@
             <li ng-show="isAdmin" ng-class="{'active': $location.url() == '/admin'}">
                 <a href="#/admin"><i class="admin-link"></i>Admin</a>
             </li>
-            <li ng-show="isLoggedIn" ng-class="{'active': $location.url() == '/debates'}">
-                <a href="#/debates"><i class="debates-link"></i>Debates</a>
+            <li ng-show="isLoggedIn" ng-class="{'active': $location.url() == '/all_debates'}">
+                <a href="#/all_debates"><i class="debates-link"></i>All Debates</a>
+            </li>
+            <li ng-show="isLoggedIn" ng-class="{'active': $location.url() == '/user_debates'}">
+                <a href="#/user_debates"><i class="debates-link"></i>My Debates</a>
             </li>
         </ul>
     </div>
