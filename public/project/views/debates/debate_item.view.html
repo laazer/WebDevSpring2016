@@ -1,16 +1,23 @@
 <div ng-include="'views/sidebar/sidebar.view.html'"></div>
 <div class="container-fluid">
 <div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3 main">
+    <div class="new-debate-item">
+        <textarea class="new-debate-input col-md-12" rows="3" placeholder="What's grinding your gears?'" ng-model="debate.text">
+        </textarea>
+        <div class="form-group btn-new-debate">
+            <button type="submit" class="btn btn-default btn-block" ng-click="addDebate(debate)">Create Debate</button>
+        </div>
+    </div>
     <div class="debates-wrapper">
-        <div class="debate-wrapper" ng-repeat="ldebate in debates|limitTo:1">
+        <div class="debate-wrapper" ng-repeat="ldebate in debates|limitTo:10">
             <div class="debate-text-wrapper">
                 <div class="ng-binding">Web Dev is the best class!</div>
                 <span class="glyphicon glyphicon-plus-sign"></span>
                 <span class="glyphicon glyphicon-minus-sign"></span>
                 <span class="debate-merrit">{{ldabte.merrit}}</span>
             </div>
-            <div class="row"> 
-                <div class="actions col-xs-sm-6 col-sm-6 col-md-6" ng-repeat="pro in ldebate.pros|limitTo:3" ng-show="pro">
+            <div class="row" ng-repeat="i in [0, 1, 2]"> 
+                <div class="actions col-xs-sm-6 col-sm-6 col-md-6" ng-init="pro = ldebate.pros[i]" ng-show="pro">
                     <div class="alert alert-info pro">
                         <div class="body-wrapper">
                             <div class="text-wrapper">{{pro.text}}</div>
@@ -28,8 +35,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="actions col-xs-sm-6 col-sm-6 col-md-6" ng-repeat="con in ldebate.cons|limitTo:3" ng-show="con">
-                    <div class="alert alert-danger con" ng-show="con">
+                <div class="actions col-xs-sm-6 col-sm-6 col-md-6" ng-init="con = ldebate.cons[i]" ng-show="con">
+                    <div class="alert alert-danger con" ng-style="{'visibility': con ? 'visible':'hidden'}">
                         <div class="body-wrapper">
                             <div class="text-wrapper">{{con.text}}</div>
                             <div>

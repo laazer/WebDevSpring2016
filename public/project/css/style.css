@@ -116,8 +116,9 @@ tr .glyphicon {
 /*
  * Debates
  */
+
 .debate-wrapper {
-    margin: 13px;
+    margin-bottom: 15px;
     padding: 10px;
     border: 0.5px solid #ccc;   
     border-radius: 10px;
@@ -127,4 +128,9 @@ tr .glyphicon {
     padding: 5px;
     margin-bottom: 10px;
     border-bottom: 0.5px solid #ccc;   
+}
+
+.new-debate-input {
+    border: 0.5px solid #ccc;   
+    border-radius: 5px;
 }

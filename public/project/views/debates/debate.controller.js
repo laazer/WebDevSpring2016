@@ -27,7 +27,7 @@
                return;
            }
            var cdebate = angular.copy(debate);
-           DebateService.createdebateForUser($scope.userId, cdebate, function(debate) {
+           DebateService.createDebateForUser($scope.userId, cdebate, function(debate) {
                reloadDebates();
            });
        }
@@ -67,22 +67,5 @@
             });
        }
        
-       function getPCList(debate) {
-           var pcList = [];
-           var max = Math.max(debate.pros.length, debate.cons.length);
-           for(i = 0; i < max; i++) {
-               var pair = [];
-               if(debate.pros[i]) {
-                   pair[0] = angular.copy(debate.pros[i]);
-               }
-               else pair[0] = false;
-               if(debate.cons[i]) {
-                   pair[1] = angular.copy(debate.cons[i]);
-               }
-               else pair[1] = false;
-               pcList.push(pair);
-           }
-           return pcList;
-       }
     }
 })();

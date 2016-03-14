@@ -69,6 +69,10 @@
            });
            callback(result);
        }
+        
+       function getAllDebates(callback) {
+           callback(model.debates);
+       }
        
        function deleteDebateById(debateId, callback) {
             for(var f in model.debates) {

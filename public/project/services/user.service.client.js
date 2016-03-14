@@ -13,6 +13,7 @@
                 {"_id":456, "firstName":"Dan",    "lastName":"Craig",     "username":"dan",    "password":"dan", "email":"dan@bar.com"},
                 {"_id":567, "firstName":"Edward", "lastName":"Norton",    "username":"ed",     "password":"ed", "email":"ed@baz.com"}
             ],
+            
             findUserByUsernameAndPassword: findUserByUsernameAndPassword,
             findUserByUsername: findUserByUsername,
             findAllUsers: findAllUsers,
