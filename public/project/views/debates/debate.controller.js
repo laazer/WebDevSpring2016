@@ -12,6 +12,7 @@
        $scope.updateDebate = updateDebate;
        $scope.deleteDebate = deleteDebate;
        $scope.selectedDebate = null;
+       $scope.selectDebate = selectDebate;
        setSelectedDebate($routeParams.debateId);
        $scope.range = $rootScope.range;
        $scope.Math = window.Math;
@@ -39,9 +40,9 @@
            }
            var cdebate = angular.copy(nDebate);
            DebateService.createDebateForUser($scope.userId, cdebate, function(debate) {
-               console.log(debate);
                reloadDebates();
            });
+           $scope.in_debate.text = "";
        }
        
        function updateDebate(debate) {
@@ -75,7 +76,7 @@
        }
         
        function selectDebate(nDebate) {
-           $location.url("/debate_item/" + nDebate._id)
+           $location.url("/debate_item/" + nDebate._id);
        }
        
        function reloadUserDebates() {

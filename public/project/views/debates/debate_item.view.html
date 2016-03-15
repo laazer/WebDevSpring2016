@@ -10,7 +10,7 @@
                 <span class="debate-merrit">{{ldebate.merrit}}</span>
             </div>
             <div class="row" ng-repeat="i in range(Math.max(ldebate.pros.length, ldebate.cons.length))"> 
-                <div class="actions col-xs-sm-6 col-sm-6 col-md-6" ng-init="pro = ldebate.pros[i]" ng-show="pro">
+                <div class="actions col-xs-sm-6 col-sm-6 col-md-6" ng-init="pro = ldebate.pros[i]">
                     <div class="alert alert-info pro" ng-style="{'visibility': pro ? 'visible':'hidden'}">
                         <div class="body-wrapper">
                             <div class="text-wrapper">{{pro.text}}</div>

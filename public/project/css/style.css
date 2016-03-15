@@ -127,7 +127,8 @@ tr .glyphicon {
 .debate-text-wrapper {
     padding: 5px;
     margin-bottom: 10px;
-    border-bottom: 0.5px solid #ccc;   
+    border-bottom: 0.5px solid #ccc;
+    cursor: pointer;
 }
 
 .new-debate-input {
