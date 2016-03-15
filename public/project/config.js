@@ -41,5 +41,10 @@
                     templateUrl: "views/debates/debates.view.html",
 					controller: "DebateController"   
                 })
+                .when("/debate_item/:debateId*", 
+                {
+                    templateUrl: "views/debates/debate_item.view.html",
+					controller: "DebateController"   
+                })
 		});
 })();

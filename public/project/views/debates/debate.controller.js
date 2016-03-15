@@ -4,14 +4,17 @@
 		.module("DebateApp")
 		.controller("DebateController", debateController);
 		
-    function debateController ($rootScope, $scope, $location, DebateService) {
+    function debateController ($rootScope, $routeParams, $scope, $location, DebateService) {
 	   var dc = this;
        $scope.error =  null;
        $scope.message = null;
        $scope.addDebate = addDebate;
        $scope.updateDebate = updateDebate;
        $scope.deleteDebate = deleteDebate;
-       $scope.selectDebate = selectDebate;
+       $scope.selectedDebate = null;
+       setSelectedDebate($routeParams.debateId);
+       $scope.range = $rootScope.range;
+       $scope.Math = window.Math;
        
        if (!$rootScope.currentUser) {
             $location.url("/");
@@ -29,13 +32,14 @@
         
        reloadDebates();
        
-       function addDebate(debate) {
-            if(!debate) {
+       function addDebate(nDebate) {
+           if(!nDebate) {
                $scope.error = "Missing debate title.";
                return;
            }
-           var cdebate = angular.copy(debate);
+           var cdebate = angular.copy(nDebate);
            DebateService.createDebateForUser($scope.userId, cdebate, function(debate) {
+               console.log(debate);
                reloadDebates();
            });
        }
@@ -64,9 +68,14 @@
            });
        }
        
-       function selectDebate(index) {
-           $scope.debate = $scope.debates[index];
-           dc.selectedDebate = $scope.debate;
+       function setSelectedDebate(dId) {
+           DebateService.getDebateById(dId, function(d) {
+              $scope.selectedDebate = d; 
+           });
+       }
+        
+       function selectDebate(nDebate) {
+           $location.url("/debate_item/" + nDebate._id)
        }
        
        function reloadUserDebates() {

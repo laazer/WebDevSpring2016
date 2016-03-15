@@ -17,24 +17,24 @@
                             {"text": "It's a lot of work", "merrit": 100, "source": {"link": "www.baz.com", "merrit": 99}, "ownerId": 234}
                         ],
                     },
-                    {"_id": 101, "ownerId": 345, "text": "Web Dev is the best class!", "merrit": 12,
+                    {"_id": 101, "ownerId": 345, "text": "Beer is good...", "merrit": 12,
                         "pros": [ 
-                            {"text": "The proffesor is awesome", "merrit": 100, "source": {"link": "www.foo.com", "merrit": 21}, "ownerId": 456},
-                            {"text": "So many reasons", "merrit": 36, "source":{"link": "www.stackoverflow.com", "merrit": 99}, "ownerId": 345},
-                            {"text": "DAT MEAN STACK", "merrit": 7, "source": {"link": "www.bar.com", "merrit": 99}, "ownerId": 234}
+                            {"text": "College students are smart and they drink beer", "merrit": 100, "source": {"link": "www.foo.com", "merrit": 21}, "ownerId": 456},
+                            {"text": "Its basic logic", "merrit": 36, "source":{"link": "www.stackoverflow.com", "merrit": 99}, "ownerId": 345}
                         ],
                         "cons": [
-                            {"text": "It's a lot of work", "merrit": 100, "source": {"link": "www.baz.com", "merrit": 99}, "ownerId": 234}
+                            {"text": "My liver disagrees", "merrit": 100, "source": {"link": "www.baz.com", "merrit": 99}, "ownerId": 234},
+                           {"text": "My phone disagrees", "merrit": 7, "source": {"link": "www.bar.com", "merrit": 99}, "ownerId": 234}
                         ],
                     },
-                    {"_id": 102, "ownerId": 456, "text": "Web Dev is the best class!", "merrit": 5,
+                    {"_id": 102, "ownerId": 456, "text": "Shrek is love", "merrit": 42,
                         "pros": [ 
-                            {"text": "The proffesor is awesome", "merrit": 100, "source": {"link": "www.foo.com", "merrit": 21}, "ownerId": 456},
-                            {"text": "So many reasons", "merrit": 36, "source":{"link": "www.stackoverflow.com", "merrit": 99}, "ownerId": 345},
-                            {"text": "DAT MEAN STACK", "merrit": 7, "source": {"link": "www.bar.com", "merrit": 99}, "ownerId": 123}
+                            {"text": "Shrek is life", "merrit": 100, "source": {"link": "www.foo.com", "merrit": 21}, "ownerId": 456}
                         ],
                         "cons": [
-                            {"text": "It's a lot of work", "merrit": 100, "source": {"link": "www.baz.com", "merrit": 99}, "ownerId": 234}
+                            {"text": "Shrek is a social construct", "merrit": 68, "source": {"link": "www.baz.com", "merrit": 99}, "ownerId": 234},
+                            {"text": "So many reasons", "merrit": 36, "source":{"link": "www.stackoverflow.com", "merrit": 99}, "ownerId": 345},
+                            {"text": "Who is this stupid?", "merrit": 7, "source": {"link": "www.bar.com", "merrit": 99}, "ownerId": 123}
                         ],
                     }
                     ],
@@ -43,21 +43,29 @@
             findAllDebatesForUser: findAllDebatesForUser,
             getAllDebates: getAllDebates,
             deleteDebateById: deleteDebateById,
-            updateDebateyId: updateDebateById
+            updateDebateyId: updateDebateById,
+            getDebateById: getDebateById
             
         };
         return model;
         
         function createDebateForUser(userId, debate, callback) {
             var ldebate = debate;
-            debate.ownerId = userId;
-            debate.merrit = 0;
-            debate.pros = [];
-            debate.cons = [];
+            ldebate.ownerId = userId;
+            ldebate.merrit = 0;
+            ldebate.pros = [];
+            ldebate.cons = [];
             ldebate._id = (new Date).getTime();
             model.debates.push(ldebate);
             callback(ldebate);
         }
+    
+       function getDebateById(debateId, callback) {
+           var d = model.debates.find(function(item) {
+               return item._id == debateId;
+           });
+           callback(d);
+       }
        
        function findAllDebatesForUser(userId, callback) {
            var result = model.debates.filter(function(value) {
