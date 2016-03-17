@@ -135,3 +135,10 @@ tr .glyphicon {
     border: 0.5px solid #ccc;   
     border-radius: 5px;
 }
+
+.pro .body-wrapper,
+.con .body-wrapper {
+    border-bottom: 0.5px solid;
+    padding-bottom: 3px;
+    margin-bottom: 3px;
+}
