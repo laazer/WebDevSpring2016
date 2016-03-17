@@ -1,18 +1,17 @@
-var model = require('user.mock.js');
+var model = require('./user.mock.json');
 
-module.exports = function(app) {
-    app.post('/user', createUser);
-    app.get('/user/:username' findUserByUsername);
-    app.get('/user/:userId' findUserByUserId);
-    app.get('/user/:username/:password', findUserByUsernameAndPassword)
-    app.get('/user', findAllUsers);
-    app.delete('/user/:userId', deleteUserById);
-    app.put('/updateUser/:userId', updateUser);
+module.exports = function() {
     
-    //generic 404 response
-    function notFound(res) {
-        res.status(404).send("Not Found");
-    }
+    var api {
+        createUser: createUser,
+        findUserByUsername: findUserByUsername,
+        findUserByUserId: findUserByUserId,
+        findUserByCredentials: findUserByCredentials,
+        findAllUsers: findAllUsers,
+        deleteUserById: deleteUserById,
+        updateUser: updateUser
+    };
+    return api;
     
     function createUser(req, res) {
         var user = req.body;
@@ -28,8 +27,7 @@ module.exports = function(app) {
        res.json(u);
     }
     
-    function findUserByUsername(req, res) {
-        var username = req.params.username;
+    function findUserByUsername(username) {
         for (var u in model.users) {
                if(model.users[u].username == username) {
                    res.json(model.users[u]);
@@ -39,7 +37,7 @@ module.exports = function(app) {
         notFound(res);
     }
     
-    function findUserByUsername(req, res) {
+    function findUserByUserId(req, res) {
         var userId = req.params.userId;
         for (var u in model.users) {
                if(model.users[u]._id == userId) {
@@ -50,18 +48,17 @@ module.exports = function(app) {
         notFound(res);
     }
     
-    function findUserByUsernameAndPassword(req, res) {
+    function findUserByCredentials(credentials) {
         var user = null;
-        var username = req.params.username;
-        var password = req.params.password;
+        var username = credentials.username;
+        var password = credentials.password;
         for (var u in model.users) {
             user = model.users[u];
             if (user.username === username && user.password == password) {
-                 res.json(user);
-                 return;
+                 return user;
             }
         }
-        notFound(res);
+        return null;
     }
     
     function findAllUsers(req, res) {
