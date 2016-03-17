@@ -1,20 +1,35 @@
 var model = require('../models/user.model.js')();
 
 module.exports = function(app) {
-    app.post('/api/assignment/user', createUser);
+    app.post('/api/assignment/user', function(req, res) {
+        var result = model.createUser(req.body);
+        defaultJsonResponse(result, res);
+    });
     app.get('/api/assignment/user', function(req, res) {
-        var result = findUserByUsername(req.query.username);
+        var result = model.findUserByUsername(req.query.username);
+        defaultJsonResponse(result, res);
+    });
+    app.get('/api/assignment/user/:userId', function(req, res) {
+        var result = model.findUserByUserId(req.params.userId);
         defaultJsonResponse(result);
     });
-    app.get('/api/assignment/user/:userId', findUserByUserId);
     app.get('/api/assignment/user', function(req, res) {
-        var result = findUserByCredentials({'username': req.query.username, 
+        var result = model.findUserByCredentials({'username': req.query.username, 
                                             'password': req.query.pasword});
-        defaultJsonResponse(result);
+        defaultJsonResponse(result, res);
     });
-    app.get('/api/assignment/user', findAllUsers);
-    app.delete('/api/assignment/user/:userId', deleteUserById);
-    app.put('/api/assignment/user/:userId', updateUser);
+    app.get('/api/assignment/user', function(req, res) {
+        var result = model.findAllUsers();
+        defaultJsonResponse(result, res);
+    });
+    app.delete('/api/assignment/user/:userId', function(req, res) {
+        var result = model.deleteUserById(req.params.userId);
+        defaultResponse(result);
+    });
+    app.put('/api/assignment/user/:userId', function(req, res) {
+        var result = model.updateUser(req.params.userId, req.body);
+        defaultResponse(result);
+    });
     
     //generic 404 response
     function notFound(res) {
@@ -34,3 +49,4 @@ module.exports = function(app) {
         if(njson) success(res);
         else notFound(res);
     }
+}

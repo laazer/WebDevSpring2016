@@ -13,8 +13,7 @@ module.exports = function() {
     };
     return api;
     
-    function createUser(req, res) {
-        var user = req.body;
+    function createUser(user) {
         var u = {
            "_id" : (new Date).getTime(),
            "firstName" : user.firstname,
@@ -24,28 +23,25 @@ module.exports = function() {
            "email" : user.email,
         };
        model.users.push(u);
-       res.json(u);
+       return u;
     }
     
     function findUserByUsername(username) {
         for (var u in model.users) {
                if(model.users[u].username == username) {
-                   res.json(model.users[u]);
-                   return;
+                   return model.users[u];
                }
         }
-        notFound(res);
+        return null;
     }
     
-    function findUserByUserId(req, res) {
-        var userId = req.params.userId;
+    function findUserByUserId(userId) {
         for (var u in model.users) {
                if(model.users[u]._id == userId) {
-                   res.json(model.users[u]);
-                   return;
+                   return model.users[u];
                }
         }
-        notFound(res);
+        return null;
     }
     
     function findUserByCredentials(credentials) {
@@ -61,24 +57,21 @@ module.exports = function() {
         return null;
     }
     
-    function findAllUsers(req, res) {
-        res.json(model.users)
+    function findAllUsers() {
+        return model.users;
     }
     
-    function deleteUserById(req, res) {
-        var userId = req.params.userId;
+    function deleteUserById(userId) {
         for(var u in model.users) {
             if(model.user[u]._id == userId) {
                 model.users.splice(u, 1);
-                break;
+                return true;
             }
         }
-        res.json(model.users);    
+        return false;    
     }
     
-    function updateUser(req, res) {
-       var userId = req.params.userId;
-       var user = req.body;
+    function updateUser(userId, user) {
        var cuser = null;
        for(var u in model.users) {
             if(model.users[u]._id == userId) {
@@ -92,10 +85,10 @@ module.exports = function() {
                     "email" : user.email ? user.email : cuser.email,
                 }
                 cuser = model.users[u];
-                break;
+                return true;
             }
         }
-        res.json(cuser);   
+        return false;   
     }
     
 }
