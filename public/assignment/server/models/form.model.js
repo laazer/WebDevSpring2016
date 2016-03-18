@@ -2,11 +2,11 @@ var model = require('../models/form.model.js')();
 
 module.exports = function(app) {
     
-    app.post('/api/assignment/:userId/form', function(req, res) {
+    app.post('/api/assignment/user/:userId/form', function(req, res) {
         var result = model.createFormForUser(req.param.userId, req.body);
         defaultResponse(result, res);
     });
-    app.get('/api/assignment/:userId/form', function(req, res) {
+    app.get('/api/assignment/user/:userId/form', function(req, res) {
         var result = model.findAllFormsForUser(req.param.userId);
         defaultJsonResponse(result, res);
     });

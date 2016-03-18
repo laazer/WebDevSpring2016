@@ -14,48 +14,47 @@
         };
         return model;
         
-        function createFormForUser(userId, form, callback) {
-            var lform = form;
-            lform.userId = userId;
-            lform.title = form.title;
-            lform._id = (new Date).getTime();
-            model.forms.push(lform);
-            callback(lform);
+        var userUrl = "/api/assignment/user/{0}/form";
+        var formUrl = "/api/assignment/form/{0}";
+        
+        function createFormForUser(userId, form) {
+            var deferred = $q.defer();
+            $http.post(userUrl.format(userId), form)
+                .success(function(response){
+                    deferred.resolve(response);
+                });
+
+            return deferred.promise;
         }
        
        function findAllFormsForUser(userId, callback) {
-           var result = model.forms.filter(function(value) {
-                return value.userId == userId;    
-           });
-           callback(result);
+            var deferred = $q.defer();
+            $http.get(userUrl.format(userId), form)
+                .success(function(response){
+                    deferred.resolve(response);
+                });
+
+            return deferred.promise;
        }
        
        function deleteFormById(formId, callback) {
-            for(var f in model.forms) {
-                if(model.forms[f]._id == formId) {
-                    model.forms.splice(f, 1);
-                    break;
-                }
-            }
-            callback(model.forms);    
+            var deferred = $q.defer();
+            $http.delete(formUrl.format(userId), form)
+                .success(function(response){
+                    deferred.resolve(response);
+                });
+
+            return deferred.promise;
        }
        
        function updateFormById(formId, newForm, callback) {
-           var form = null;
-           for(var f in model.forms) {
-                if(model.forms[f]._id == formId) {
-                    cuser = model.forms[f];
-                    model.forms[f] = {
-                        "_id" : formId,
-                        "title" : newForm.title ? newForm.title : form.title,
-                        "userId" : newForm.userId ? newForm.userId : form.userId,
-                    }
-                    form = model.forms[f];
-                    break;
-                }
-            }
-            callback(form);   
-        }
+            var deferred = $q.defer();
+            $http.put(formUrl.format(formId), newForm)
+                .success(function(response){
+                    deferred.resolve(response);
+                });
+
+            return deferred.promise;
     }
     
 })();
