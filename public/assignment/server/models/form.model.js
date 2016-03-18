@@ -1,4 +1,5 @@
 var model = require('./form.mock.json');
+var uuid = require('node-uuid');
 
 module.exports = function() {
     
@@ -7,16 +8,28 @@ module.exports = function() {
         findFormById: findFormById,
         findAllFormsForUser: findAllFormsForUser,
         deleteFormById: deleteFormById,
-        updateFormById: updateFormById
+        updateFormById: updateFormById,
+        deleteFieldById: deleteFieldById,
+        createFieldForForm: createFieldForForm,
+        updateFieldById: updateFieldById
     };
     return api;
     
     function createFormForUser(userId, lform) {
         lform.userId = userId;
         lform.title = form.title;
-        lform._id = app.uuid.v1();
+        lform._id = uuid.v1();
         model.forms.push(lform);
         return lform;
+    }
+    
+    function createFieldForForm(formId, field) {
+        var form = findFormById(formId);
+        var lfield = field;
+        lfield._id = uuid.v1();
+        form.fields.push(lfield);
+        updateFormById(formId, form);
+        return lfield;
     }
        
    function findFormById(formId) {
@@ -44,6 +57,16 @@ module.exports = function() {
         }
         return false;    
    }
+    
+   function deleteFieldById(formId, fieldId) {
+       var form = findFormById(fieldId);
+       form(f in form.fields) {
+          if(form.fields[f]._id == fieldId) {
+                form.fields.splice(f, 1);
+          }
+       }
+       return updateFormById(formId, form);
+   }
 
    function updateFormById(formId, newForm) {
        var form = null;
@@ -61,4 +84,13 @@ module.exports = function() {
         }
         return null;
     }
+    
+    function updateFieldById(formId, fieldId, field) {
+        deleteFieldById(formId, fieldId);
+        var form = findFormById(formId);
+        form.fields.push(field);
+        return updateFormById(formId, form);
+    }
+    
+    
 }
