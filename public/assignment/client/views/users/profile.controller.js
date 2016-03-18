@@ -22,7 +22,7 @@
             $scope.error = null;
             $scope.message = null;
 
-            UserService.updateUser($rootScope.currentUser._id, user, function(user) {
+            UserService.updateUser($rootScope.currentUser._id, user).then(function(user) {
                 pc.user = angular.copy(user);
                 if (pc.user) {
                     $scope.message = "User updated successfully";

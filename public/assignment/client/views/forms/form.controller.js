@@ -19,7 +19,7 @@
        } 
        else $scope.userId = $rootScope.currentUser._id;
         
-       FormService.findAllFormsForUser($scope.userId, function(forms) {
+       FormService.findAllFormsForUser($scope.userId).then(function(forms) {
            $scope.forms = forms;
        });
        
@@ -33,7 +33,7 @@
                return;
            }
            var cform = angular.copy(form);
-           FormService.createFormForUser($scope.userId, cform, function(form) {
+           FormService.createFormForUser($scope.userId, cform).then(function(form) {
                reloadForms();
            });
        }
@@ -43,7 +43,7 @@
                $scope.error = "No form seleced for editting.";
                return;
            }
-           FormService.updateFormById(form._id, form, function(form) {
+           FormService.updateFormById(form._id, form).then(function(form) {
                reloadForms();
            });
            fc.selectedForm = null;
@@ -57,7 +57,7 @@
                return;
            }
            var formId = $scope.forms[index]._id;
-            FormService.deleteFormById(formId, function(form) {
+            FormService.deleteFormById(formId).then(function(form) {
                reloadForms();
            });
        }
@@ -68,7 +68,7 @@
        }
        
        function reloadForms() {
-            FormService.findAllFormsForUser($scope.userId, function(forms) {
+            FormService.findAllFormsForUser($scope.userId).then(function(forms) {
                 $scope.forms = forms;
             });
        }

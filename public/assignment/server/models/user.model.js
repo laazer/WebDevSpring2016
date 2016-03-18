@@ -1,8 +1,8 @@
 var model = require('./user.mock.json');
 
 module.exports = function() {
-    
-    var api {
+
+    var api = {
         createUser: createUser,
         findUserByUsername: findUserByUsername,
         findUserByUserId: findUserByUserId,
@@ -12,7 +12,7 @@ module.exports = function() {
         updateUser: updateUser
     };
     return api;
-    
+
     function createUser(user) {
         var u = {
            "_id" : (new Date).getTime(),
@@ -25,7 +25,7 @@ module.exports = function() {
        model.users.push(u);
        return u;
     }
-    
+
     function findUserByUsername(username) {
         for (var u in model.users) {
                if(model.users[u].username == username) {
@@ -34,7 +34,7 @@ module.exports = function() {
         }
         return null;
     }
-    
+
     function findUserByUserId(userId) {
         for (var u in model.users) {
                if(model.users[u]._id == userId) {
@@ -43,7 +43,7 @@ module.exports = function() {
         }
         return null;
     }
-    
+
     function findUserByCredentials(credentials) {
         var user = null;
         var username = credentials.username;
@@ -56,11 +56,11 @@ module.exports = function() {
         }
         return null;
     }
-    
+
     function findAllUsers() {
         return model.users;
     }
-    
+
     function deleteUserById(userId) {
         for(var u in model.users) {
             if(model.user[u]._id == userId) {
@@ -68,9 +68,9 @@ module.exports = function() {
                 return true;
             }
         }
-        return false;    
+        return false;
     }
-    
+
     function updateUser(userId, user) {
        var cuser = null;
        for(var u in model.users) {
@@ -88,7 +88,7 @@ module.exports = function() {
                 return true;
             }
         }
-        return false;   
+        return false;
     }
-    
+
 }

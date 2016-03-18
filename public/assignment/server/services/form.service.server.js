@@ -1,7 +1,7 @@
 var model = require('../models/form.model.js')();
 
 module.exports = function(app) {
-    
+
     app.post('/api/assignment/:userId/form', function(req, res) {
         var result = model.createFormForUser(req.param.userId, req.body);
         defaultResponse(result, res);
@@ -22,21 +22,21 @@ module.exports = function(app) {
         var result = model.updateFormById(req.param.formId, req.body);
         defaultResponse(result, res);
     });
-    
+
     //generic 404 response
     function notFound(res) {
-        res.status(404).send("Not Found");
+        res.status(200).send(null);
     }
-    
+
     function success(res) {
         res.status(200).send("success");
     }
-        
+
     function defaultJsonResponse(njson, res) {
         if(njson) res.json(njson);
         else notFound(res);
     }
-        
+
     function defaultResponse(nobj, res) {
         if(njson) success(res);
         else notFound(res);

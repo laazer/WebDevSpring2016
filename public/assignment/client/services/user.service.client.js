@@ -3,9 +3,10 @@
 	angular
 		.module("FormBuilderApp")
 		.factory("UserService", UserService);
-		
-    function UserService ($rootScope, $q) {
-        var model = {
+
+    function UserService ($rootScope, $q, $http) {
+        var baseUrl = "/api/assignment/user";
+				var model = {
             findUserByUsernameAndPassword: findUserByUsernameAndPassword,
             findUserByUsername: findUserByUsername,
             findAllUsers: findAllUsers,
@@ -16,30 +17,30 @@
             getCurrentUser: getCurrentUser
         };
         return model;
-        
-        var baseUrl = "/api/assignment/user";
-        
-        function findUserByUsername(username, callback) {
+
+        function findUserByUsername(username) {
             var deferred = $q.defer();
-            $http.jsonp(baseUrl, {'params': {'username' : username}})
+						var url = baseUrl + '?username=' + username;
+            $http.jsonp(url)
                 .success(function(response){
                     deferred.resolve(response);
                 });
 
             return deferred.promise;
         }
-        
+
         function findUserByUsernameAndPassword(username, password) {
             var deferred = $q.defer();
-            $http.jsonp(baseUrl, {'params': {'username' : username, 'password': password}})
+						var url = baseUrl + '?username=' + username + '&password=' + password;
+            $http.get(url)
                 .success(function(response){
                     deferred.resolve(response);
                 });
 
             return deferred.promise;
         }
-        
-        function findAllUsers(callback) {
+
+        function findAllUsers() {
             var deferred = $q.defer();
             $http.jsonp(baseUrl)
                 .success(function(response){
@@ -48,8 +49,8 @@
 
             return deferred.promise;
         }
-        
-        function createUser(user, callback) {
+
+        function createUser(user) {
             var deferred = $q.defer();
             $http.post(baseUrl, user)
                 .success(function(response){
@@ -58,18 +59,18 @@
 
             return deferred.promise;
         }
-        
-        function deleteUserById(userId, callback) {
+
+        function deleteUserById(userId) {
             var deferred = $q.defer();
             $http.delete(baseUrl + '/' + userId)
                 .success(function(response){
                     deferred.resolve(response);
                 });
 
-            return deferred.promise;   
+            return deferred.promise;
         }
-        
-        function updateUser(userId, user, callback) {
+
+        function updateUser(userId, user) {
             var deferred = $q.defer();
             $http.put(baseUrl + '/' + userId, user)
                 .success(function(response){
@@ -78,7 +79,7 @@
 
             return deferred.promise;
         }
-        
+
         function setCurrentUser(user) {
             $rootScope.isLoggedIn = true;
             $rootScope.currentUser = user;
@@ -88,6 +89,6 @@
             return $rootScope.currentUser;
         }
     }
-    
-    
+
+
 })();

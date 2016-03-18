@@ -32,14 +32,14 @@
                     $scope.message = "Passwords must match";
                     return;
                 }
-                UserService.findUserByUsername(user.username, function(user) {
+                UserService.findUserByUsername(user.username).then(function(user) {
                     rc.user = user
                 });
                 if (rc.user) {
                     $scope.message = "User already exists";
                     return;
                 }
-                UserService.createUser($scope.user, function(user) {
+                UserService.createUser($scope.user).then(function(user) {
                     rc.user = user;
                     UserService.setCurrentUser(rc.user);
                     $location.url("/profile");

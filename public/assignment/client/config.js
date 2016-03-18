@@ -5,41 +5,41 @@
 		.config(function($routeProvider)
 		{
 			$routeProvider
-				.when("/", 
+				.when("/",
 				{
 					templateUrl: "views/home/home.view.html",
 					controller: "HomeController",
                     title: "Froms Home"
 				})
-				.when("/register", 
+				.when("/register",
 				{
 					templateUrl: "views/users/register.view.html",
 					controller: "RegisterController"
 				})
-                .when("/login", 
+                .when("/login",
 				{
 					templateUrl: "views/users/login.view.html",
 					controller: "LoginController"
 				})
-                .when("/profile", 
+                .when("/profile",
 				{
 					templateUrl: "views/users/profile.view.html",
 					controller: "ProfileController"
 				})
-                .when("/admin", 
+                .when("/admin",
 				{
 					templateUrl: "views/admin/admin.view.html",
 					controller: "AdminController"
 				})
-                .when("/forms", 
+                .when("/forms",
                 {
                     templateUrl: "views/forms/form.view.html",
-					controller: "FormController"   
+					controller: "FormController"
                 })
-                .when("/form-fields", 
+                .when("/form-fields",
                 {
                     templateUrl: "views/forms/form-fields.view.html",
-					controller: "FormFieldsController"   
+					controller: "FormFieldsController"
                 })
 		});
 })();

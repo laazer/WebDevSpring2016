@@ -9,5 +9,6 @@
         $rootScope.isLoggedIn = false;
         $rootScope.isAdmin = false;
         $location.url();
+        
     }
 })();
