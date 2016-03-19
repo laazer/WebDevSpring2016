@@ -3,17 +3,17 @@
 	angular
 		.module("FormBuilderApp")
 		.controller("RegisterController", registerController);
-		
+
         function registerController($location, $scope, UserService) {
             var rc = this;
             $scope.message = null;
             $scope.register = register;
-            
+
             $scope.currentUser = UserService.getCurrentUser();
             if ($scope.currentUser) {
                 $location.url("/");
-            } 
-            
+            }
+
             function register(user) {
                 $scope.message = null;
                 if (user == null) {
@@ -32,6 +32,10 @@
                     $scope.message = "Passwords must match";
                     return;
                 }
+								if (!user.email) {
+										$scope.message = "Please provide an email address";
+										return;
+								}
                 UserService.findUserByUsername(user.username).then(function(user) {
                     rc.user = user
                 });

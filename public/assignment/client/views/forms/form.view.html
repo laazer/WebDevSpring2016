@@ -3,11 +3,10 @@
     <h1 class="page-header">Forms</h1>
     <div ng-show="error" class="alert alert-danger" role="alert">{{error}}</div>
     <div ng-show="message" class="alert alert-success" role="alert">{{message}}</div>
-    
+
     <!-- Tabs -->
     <ul class="nav nav-tabs">
         <li class="active"><a href="#">Forms</a></li>
-        <li><a href="#/form-fields">Fields</a></li>
     </ul>
     <!-- Form Table -->
     <div class="table-responsive">
@@ -27,7 +26,7 @@
                 </td>
             </tr>
             <tr ng-repeat="f in forms">
-                <td>{{f.title}}</td>
+                <td href="/forms/{{f._id}}/fields">{{f.title}}</td>
                 <td class="actions">
                     <button class="btn btn-default" type="button" ng-click="deleteForm($index)"><span class="glyphicon glyphicon-remove"/></button>
                     <button class="btn btn-default" type="button" ng-click="selectForm($index)"><span class="glyphicon glyphicon-pencil"/></button>

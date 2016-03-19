@@ -16,8 +16,6 @@ module.exports = function() {
     function createUser(user) {
         var u = {
            "_id" : (new Date).getTime(),
-           "firstName" : user.firstname,
-           "lastName" : user.lastname,
            "username" : user.username,
            "password" : user.password,
            "email" : user.email,
