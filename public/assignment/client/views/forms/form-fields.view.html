@@ -1,42 +1,47 @@
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-  <h1 class="header">Forms : Registration Form</h1>
+<div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3 main">
+  <h1 class="header">Forms</h1>
   <ul class="nav nav-tabs">
       <li><a href="#/forms">Forms</a></li>
-      <li class="active"><sapn >Fields</span></li>
+      <li class="active"><a href="#">Fields</a></li>
   </ul>
   <form class="form-horizontal">
     <div class="form-group" ng-repeat="field in fields">
-      <label attr.for={{field._id}} class="col-sm-2 control-label">{{field.label}}</label>
-      <div class="col-sm-6" id={{field.id}} ng-switch on="field.type">
-        <input ng-switch-when="'TEXT'" type="text" class="form-control" placeholder={{field.placeholder}}>
+      <label for={{field._id}} class="col-sm-2 control-label">{{field.label}}</label>
+      <div class="col-sm-6" id={{field._id}} ng-switch="field.type">
+        <input ng-switch-when="TEXT" type="text" class="form-control" placeholder={{field.placeholder}}>
+        <input ng-switch-when="EMAIL" type="email" class="form-control" placeholder={{field.placeholder}}>
+        <input ng-switch-when="TEXTAREA" type="textarea" class="form-control" placeholder={{field.placeholder}}>
 
-        <input ng-switch-when="'TEXTAREA'" type="textarea" class="form-control" placeholder={{field.placeholder}}>
+        <input ng-switch-when="DATE" type="date" class="form-control">
 
-        <input ng-switch-when="'DATE'" type="date" class="form-control">
-
-        <select ng-switch-when="'DROPDOWN'" class="form-control">
-          <option ngFor="#opt of field.options" value={{opt.value}}>{{opt.label}}</option>
+        <select ng-switch-when="DROPDOWN" class="form-control">
+          <option ng-repeat="opt in field.options" value={{opt.value}}>{{opt.label}}</option>
+        </select>
+        <select ng-switch-when="OPTIONS" class="form-control">
+          <option ng-repeat="opt in field.options" value={{opt.value}}>{{opt.label}}</option>
         </select>
 
-        <div ng-switch-when="'CHECKBOXES'">
-          <div ng-repeat="opt of field.options">
+        <div ng-switch-when="CHECKBOXES">
+          <div ng-repeat="opt in field.options">
             <input type="checkbox" id={{opt.value}} value={{opt.value}}>
-            <label attr.for={{opt.value}} class="control-label">{{opt.label}}</label>
+            <label for={{opt.value}} class="control-label">{{opt.label}}</label>
           </div>
         </div>
 
-        <div ng-switch-when="'RADIOS'">
-          <div ngFor="#opt of field.options">
+        <div ng-switch-when="RADIOS">
+          <div ng-repeat="opt in field.options">
             <input type="checkbox" id={{opt.value}} value={{opt.value}} name={{field._id}}-radio>
-            <label attr.for={{opt.value}}>{{opt.label}}</label>
+            <label for={{opt.value}}>{{opt.label}}</label>
           </div>
         </div>
       </div>
       <div class="col-sm-4 icon-div-4">
-        <span class="glyphicon glyphicon-pencil" data-toggle="modal" attr.data-target="#editModal-{{field._id}}"></span>
-        <span class="glyphicon glyphicon-plus"></span>
-        <span class="glyphicon glyphicon-remove" ng-click="deleteField(field._id)"></span>
-        <span class="glyphicon glyphicon-menu-hamburger"></span>
+        <button class="btn btn-default" type="button" data-target="#editModal-{{field._id}}" data-toggle="modal">
+          <span class="glyphicon glyphicon-pencil"></span>
+        </button>
+        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus"></span></button>
+        <button class="btn btn-default" type="button" ng-click="deleteField(field._id)"><span class="glyphicon glyphicon-remove"></span></button>
+        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-menu-hamburger"></span></button>
       </div>
 
       <!-- Modal -->
@@ -70,6 +75,7 @@
           </div>
         </div>
       </div>
+
     </div>
 
     <div class="form-group add-new-field-div">
@@ -87,7 +93,9 @@
       </div>
       <div class="col-sm-4 icon-div-4">
         <span class="glyphicon left-spacer"></span>
-        <span class="glyphicon glyphicon-plus" ng-click="addField(newFieldType)"></span>
+        <button type="button" class="btn btn-primary" ng-click="addField(newFieldType)">
+          <span class="glyphicon glyphicon-plus"></span>
+        </button>
       </div>
     </div>
   </form>

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="FormBuilderApp">
     <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- jquery -->
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
     <!-- Latest compiled and minified CSS -->
@@ -11,8 +13,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--  angualr js cdn -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular-route.js"></script>
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular-route.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.2.4/ui-bootstrap-tpls.js"></script>
     <!-- local stylesheet -->
     <link rel="stylesheet" href="./css/dashboard.css">
     <link rel="stylesheet" href="./css/style.css">
@@ -27,8 +31,10 @@
     <script src="./views/users/profile.controller.js"></script>
     <script src="./views/users/login.controller.js"></script>
     <script src="./views/forms/form.controller.js"></script>
+    <script src="./views/forms/form-fields.controller.js"></script>
     <script src="./services/user.service.client.js"></script>
     <script src="./services/forms.service.client.js"></script>
+    <script src="./services/field.service.client.js"></script>
 </head>
 <body ng-controller="MainController">
     <div ng-include="'views/header/header.view.html'"></div>

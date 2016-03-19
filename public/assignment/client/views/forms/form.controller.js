@@ -17,11 +17,10 @@
        if (!$rootScope.currentUser) {
             $location.url("/");
        }
-       else $scope.userId = $rootScope.currentUser._id;
-
-       FormService.findAllFormsForUser($scope.userId).then(function(forms) {
-           $scope.forms = forms;
-       });
+       else {
+				 	$scope.userId = $rootScope.currentUser._id;
+					reloadForms();
+			 }
 
        function addForm(form) {
             if(!form) {
@@ -68,6 +67,7 @@
        }
 
        function reloadForms() {
+				 		console.log(FormService);
             FormService.findAllFormsForUser($scope.userId).then(function(forms) {
                 $scope.forms = forms;
             });

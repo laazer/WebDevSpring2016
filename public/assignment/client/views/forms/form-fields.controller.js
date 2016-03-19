@@ -2,12 +2,12 @@
 {
 	angular
 		.module("FormBuilderApp")
-		.controller("FieldController", fieldController);
+		.controller("FormFieldsController", formFieldsController);
 
-    function fieldController ($scope, $location, $params, FieldService) {
+    function formFieldsController ($rootScope, $scope, $location, $route, FieldService) {
 
 
-        $scope.formId = $params.get('formId');
+        $scope.formId = $route.current.params['formId'];
         $scope.fields = null;
         $scope.addField = addField;
         $scope.deleteField = deleteField;
@@ -50,13 +50,14 @@
           var optionMap = {};
 
           function addField(newFieldType) {
-            FieldService.createFieldForForm($scope.formId, fieldMap[newFieldType])
+            var field = fieldMap[newFieldType];
+            FieldService.createFieldForForm($scope.formId, field).then(function(field) {
                   reloadFields();
             });
           }
 
           function deleteField(fieldId) {
-            FieldService.deleteFieldFromForm($scope.formId, field)
+            FieldService.deleteFieldFromForm($scope.formId, field).then(function(result) {
                   reloadFields();
             });
           }
@@ -71,7 +72,7 @@
                       var pair = option.split(":");
                       result.push({ "label": pair[0], "value": pair[1] });
                   }
-              });
+              }
               return result;
           };
 
@@ -113,3 +114,4 @@
           }
 
     }
+})();

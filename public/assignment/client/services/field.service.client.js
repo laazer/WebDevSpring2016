@@ -2,10 +2,11 @@
 {
 	angular
 		.module("FormBuilderApp")
-		.factory("FormService", FieldService);
+		.factory("FieldService", FieldService);
 
     function FieldService ($http, $q) {
-        var model = {
+        var baseUrl = "/api/assignment/form/{0}/field/{1}";
+				var model = {
             createFieldForForm: createFieldForForm,
             getFieldsForForm: getFieldsForForm,
             getFieldForForm: getFieldForForm,
@@ -13,8 +14,6 @@
             updateField: updateField
         };
         return model;
-
-        var baseUrl = "/api/assignment/form/{0}/field/{1}";
 
         function createFieldForForm(formId, field) {
             var deferred = $q.defer();
@@ -65,5 +64,6 @@
 
            return deferred.promise;
     }
+	}
 
 })();

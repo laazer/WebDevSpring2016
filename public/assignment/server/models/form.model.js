@@ -34,7 +34,7 @@ module.exports = function() {
 
    function findFormById(formId) {
        for(var f in model.forms) {
-           if(model.forms[f]._id == formId) {
+           if(model.forms[f]._id.toString() == formId) {
                return model.forms[f];
            }
        }
@@ -43,14 +43,14 @@ module.exports = function() {
 
    function findAllFormsForUser(userId) {
        var result = model.forms.filter(function(value) {
-            return value.userId == userId;
+            return value.userId.toString() == userId;
        });
        return result;
    }
 
    function deleteFormById(formId) {
         for(var f in model.forms) {
-            if(model.forms[f]._id == formId) {
+            if(model.forms[f]._id.toString() == formId) {
                 model.forms.splice(f, 1);
                 return true;
             }
@@ -61,7 +61,7 @@ module.exports = function() {
    function deleteFieldById(formId, fieldId) {
        var form = findFormById(fieldId);
        for(f in form.fields) {
-          if(form.fields[f]._id == fieldId) {
+          if(form.fields[f]._id.toString() == fieldId) {
                 form.fields.splice(f, 1);
           }
        }
@@ -71,7 +71,7 @@ module.exports = function() {
    function updateFormById(formId, newForm) {
        var form = null;
        for(var f in model.forms) {
-            if(model.forms[f]._id == formId) {
+            if(model.forms[f]._id.toString() == formId) {
                 cuser = model.forms[f];
                 model.forms[f] = {
                     "_id" : formId,

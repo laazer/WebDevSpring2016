@@ -5,17 +5,15 @@
 		.factory("FormService", FormService);
 
     function FormService ($http, $q) {
-        var model = {
+				var userUrl = "/api/assignment/user/{0}/form";
+				var formUrl = "/api/assignment/form/{0}";
+				var model = {
             createFormForUser: createFormForUser,
             findAllFormsForUser: findAllFormsForUser,
             deleteFormById: deleteFormById,
             updateFormById: updateFormById
-
         };
         return model;
-
-        var userUrl = "/api/assignment/user/{0}/form";
-        var formUrl = "/api/assignment/form/{0}";
 
         function createFormForUser(userId, form) {
             var deferred = $q.defer();
