@@ -18,7 +18,10 @@ app.use(multer());
 app.use(session({ secret: process.env.PASSPORT_SECRET }));
 app.use(cookieParser());
 app.use(passport.initialize());
-app.use(passport.session());
+app.use(session({
+    resave: false,
+    saveUninitialized: true
+}));
 
 app.use('/assignment', express.static(__dirname + '/public/assignment/client'));
 app.use('/project', express.static(__dirname + '/public/project/client'));
