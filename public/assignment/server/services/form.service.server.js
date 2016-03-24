@@ -1,6 +1,5 @@
-var model = require('../models/form.model.js')();
-
-module.exports = function(app) {
+module.exports = function(app, uuid) {
+    var model = require('../models/form.model.js')(uuid);
 
     app.post('/api/assignment/user/:userId/form', function(req, res) {
         var result = model.createFormForUser(req.params.userId, req.body);

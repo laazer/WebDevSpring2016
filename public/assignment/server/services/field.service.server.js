@@ -1,7 +1,6 @@
-var model = require('../models/form.model.js')();
-
-module.exports = function(app) {
-
+module.exports = function(app, uuid) {
+    var model = require('../models/form.model.js')(uuid);
+    
     app.get("/api/assignment/form/:formId/field", function(req, res) {
         var form = model.findFormById(req.params.formId).fields;
         defaultJsonResponse(form, res);
