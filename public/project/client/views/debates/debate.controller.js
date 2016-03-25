@@ -1,7 +1,7 @@
 (function()
 {
 	angular
-		.module("DebateApp")
+		.module("DebateBuilderApp")
 		.controller("DebateController", debateController);
 
     function debateController ($rootScope, $routeParams, $scope, $location, DebateService) {

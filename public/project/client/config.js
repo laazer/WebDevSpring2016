@@ -1,50 +1,50 @@
 (function()
 {
 	angular
-		.module("DebateApp")
+		.module("DebateBuilderApp")
 		.config(function($routeProvider)
 		{
 			$routeProvider
-				.when("/", 
+				.when("/",
 				{
 					templateUrl: "views/home/home.view.html",
 					controller: "HomeController",
                     title: "Debate Home"
 				})
-				.when("/register", 
+				.when("/register",
 				{
 					templateUrl: "views/users/register.view.html",
 					controller: "RegisterController"
 				})
-                .when("/login", 
+                .when("/login",
 				{
 					templateUrl: "views/users/login.view.html",
 					controller: "LoginController"
 				})
-                .when("/profile", 
+                .when("/profile",
 				{
 					templateUrl: "views/users/profile.view.html",
 					controller: "ProfileController"
 				})
-                .when("/admin", 
+                .when("/admin",
 				{
 					templateUrl: "views/admin/admin.view.html",
 					controller: "AdminController"
 				})
-                .when("/user_debates", 
-                {
-                    templateUrl: "views/debates/debates.view.html",
-					controller: "DebateController"   
-                })
-                .when("/all_debates", 
-                {
-                    templateUrl: "views/debates/debates.view.html",
-					controller: "DebateController"   
-                })
-                .when("/debate_item/:debateId*", 
-                {
-                    templateUrl: "views/debates/debate_item.view.html",
-					controller: "DebateController"   
-                })
+        .when("/user_debates",
+        {
+            templateUrl: "views/debates/debates.view.html",
+						controller: "DebateController"
+        })
+        .when("/all_debates",
+        {
+            templateUrl: "views/debates/debates.view.html",
+						controller: "DebateController"
+        })
+        .when("/debate_item/:debateId*",
+        {
+            templateUrl: "views/debates/debate_item.view.html",
+						controller: "DebateController"   
+        })
 		});
 })();

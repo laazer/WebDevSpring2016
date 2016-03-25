@@ -1,7 +1,7 @@
 (function()
 {
 	angular
-		.module("DebateApp")
+		.module("DebateBuilderApp")
 		.controller("SidebarController", sideBarController);
 		
     function sideBarController ($rootScope, $location) {

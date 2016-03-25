@@ -9,7 +9,7 @@ module.exports = function(uuid) {
             updateDebateyId: updateDebateById,
             getDebateById: getDebateById,
 						deleteArgumentById: deleteArgumentById,
-						createArgumentForForm: createArgumentForForm,
+						createArgumentForDebate: createArgumentForDebate,
 						updateArgumentById: updateArgumentById,
         };
         return api;
@@ -67,7 +67,7 @@ module.exports = function(uuid) {
             return debate;
         }
 
-				function createArgumentFordebate(debateId, argument) {
+				function createArgumentForDebate(debateId, argument) {
 						var debate = finddebateById(debateId);
 						var largument = argument;
 						largument._id = uuid.v1();
@@ -89,7 +89,7 @@ module.exports = function(uuid) {
 						return updateDebateById(debateId, debate);
 				}
 
-				 function updateArgumentdById(debateId, argumentId, argument) {
+				 function updateArgumentById(debateId, argumentId, argument) {
 						 deleteArgumentById(debateId, argumentId);
 						 var debate = finddebateById(debateId);
 						 debate.arguments.push(argument);
@@ -97,6 +97,4 @@ module.exports = function(uuid) {
 				 }
 
 
-    }
-
-})();
+  }

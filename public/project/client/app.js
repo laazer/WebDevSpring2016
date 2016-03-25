@@ -1,5 +1,5 @@
 (function()
 {
 	angular
-		.module("DebateApp", ["ngRoute"]);
+		.module("DebateBuilderApp", ["ngRoute"]);
 })();

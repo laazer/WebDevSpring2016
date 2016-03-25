@@ -1,6 +1,6 @@
 (function(){
     angular
-        .module("DebateApp")
+        .module("DebateBuilderApp")
         .controller("LoginController", loginController);
 
     function loginController ($scope, UserService, $location, $rootScope) {
@@ -10,7 +10,7 @@
 
         if ($rootScope.currentUser) {
             $location.url("/");
-        } 
+        }
 
         function login (user) {
             if (!user) {
@@ -25,7 +25,7 @@
                 $scope.error = "Missing password";
                 return;
             }
-            UserService.findUserByUsernameAndPassword(user.username, user.password, function(fuser) {
+            UserService.findUserByUsernameAndPassword(user.username, user.password).then(function(fuser) {
                 lc.user = fuser;
                 if (lc.user) {
                     UserService.setCurrentUser(lc.user);

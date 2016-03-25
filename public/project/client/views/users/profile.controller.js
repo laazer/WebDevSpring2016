@@ -1,9 +1,9 @@
 (function()
 {
 	angular
-		.module("DebateApp")
+		.module("DebateBuilderApp")
 		.controller("ProfileController", profileController);
-		
+
     function profileController($scope, $rootScope, $location, UserService) {
         var pc = this;
 
@@ -14,15 +14,15 @@
         if (!$scope.currentUser) {
             $location.url("/");
         }
-        
+
         $scope.update = updateUser;
-        
+
         function updateUser (user) {
             // same validation as register
             $scope.error = null;
             $scope.message = null;
 
-            UserService.updateUser($rootScope.currentUser._id, user, function(user) {
+            UserService.updateUser($rootScope.currentUser._id, user).then(function(user) {
                 pc.user = angular.copy(user);
                 if (pc.user) {
                     $scope.message = "User updated successfully";

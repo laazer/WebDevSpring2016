@@ -1,7 +1,7 @@
 (function()
 {
 	angular
-		.module("DebateApp")
+		.module("DebateBuilderApp")
 		.controller("MainController", mainController);
 		
     function mainController ($rootScope, $location) {

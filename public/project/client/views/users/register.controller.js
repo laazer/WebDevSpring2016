@@ -1,19 +1,19 @@
 (function()
 {
 	angular
-		.module("DebateApp")
+		.module("DebateBuilderApp")
 		.controller("RegisterController", registerController);
-		
+
         function registerController($location, $scope, UserService) {
             var rc = this;
             $scope.message = null;
             $scope.register = register;
-            
+
             $scope.currentUser = UserService.getCurrentUser();
             if ($scope.currentUser) {
                 $location.url("/");
-            } 
-            
+            }
+
             function register(user) {
                 $scope.message = null;
                 if (user == null) {
@@ -32,17 +32,17 @@
                     $scope.message = "Passwords must match";
                     return;
                 }
-                UserService.findUserByUsername(user.username, function(user) {
+                UserService.findUserByUsername(user.username).then(function(user) {
                     rc.user = user
-                });
-                if (rc.user) {
-                    $scope.message = "User already exists";
-                    return;
-                }
-                UserService.createUser($scope.user, function(user) {
-                    rc.user = user;
-                    UserService.setCurrentUser(rc.user);
-                    $location.url("/profile");
+	                if (rc.user) {
+	                    $scope.message = "User already exists";
+	                    return;
+	                }
+	                UserService.createUser($scope.user).then(function(user) {
+	                    rc.user = user;
+	                    UserService.setCurrentUser(rc.user);
+	                    $location.url("/profile");
+	                });
                 });
             };
         }

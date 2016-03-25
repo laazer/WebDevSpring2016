@@ -22,6 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //app.use(session({ secret: process.env.PASSPORT_SECRET }));
 
+app.use('/', express.static(__dirname + '/public'));
 app.use('/assignment', express.static(__dirname + '/public/assignment/client'));
 app.use('/project', express.static(__dirname + '/public/project/client'));
 
