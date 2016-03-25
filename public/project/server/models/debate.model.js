@@ -1,99 +1,61 @@
-(function()
-{
-	angular
-		.module("DebateApp")
-		.factory("DebateService", DebateService);
-		
-    function DebateService () {
-        var model = {
-            debates : [
-                    {"_id": 100, "ownerId": 123, "text": "Web Dev is the best class!", "merrit": 5,
-                        "pros": [ 
-                            {"text": "The proffesor is awesome", "merrit": 100, "source": {"link": "www.foo.com", "merrit": 21}, "ownerId": 456},
-                            {"text": "So many reasons", "merrit": 36, "source":{"link": "www.stackoverflow.com", "merrit": 99}, "ownerId": 345},
-                            {"text": "DAT MEAN STACK", "merrit": 7, "source": {"link": "www.bar.com", "merrit": 99}, "ownerId": 234}
-                        ],
-                        "cons": [
-                            {"text": "It's a lot of work", "merrit": 100, "source": {"link": "www.baz.com", "merrit": 99}, "ownerId": 234}
-                        ],
-                    },
-                    {"_id": 101, "ownerId": 345, "text": "Beer is good...", "merrit": 12,
-                        "pros": [ 
-                            {"text": "College students are smart and they drink beer", "merrit": 100, "source": {"link": "www.foo.com", "merrit": 21}, "ownerId": 456},
-                            {"text": "Its basic logic", "merrit": 36, "source":{"link": "www.stackoverflow.com", "merrit": 99}, "ownerId": 345}
-                        ],
-                        "cons": [
-                            {"text": "My liver disagrees", "merrit": 100, "source": {"link": "www.baz.com", "merrit": 99}, "ownerId": 234},
-                           {"text": "My phone disagrees", "merrit": 7, "source": {"link": "www.bar.com", "merrit": 99}, "ownerId": 234}
-                        ],
-                    },
-                    {"_id": 102, "ownerId": 456, "text": "Shrek is love", "merrit": 42,
-                        "pros": [ 
-                            {"text": "Shrek is life", "merrit": 100, "source": {"link": "www.foo.com", "merrit": 21}, "ownerId": 456}
-                        ],
-                        "cons": [
-                            {"text": "Shrek is a social construct", "merrit": 68, "source": {"link": "www.baz.com", "merrit": 99}, "ownerId": 234},
-                            {"text": "So many reasons", "merrit": 36, "source":{"link": "www.stackoverflow.com", "merrit": 99}, "ownerId": 345},
-                            {"text": "Who is this stupid?", "merrit": 7, "source": {"link": "www.bar.com", "merrit": 99}, "ownerId": 123}
-                        ],
-                    }
-                    ],
+var model = require("./debate.mock.json");
 
+module.exports = function(uuid) {
+        var api = {
             createDebateForUser: createDebateForUser,
             findAllDebatesForUser: findAllDebatesForUser,
             getAllDebates: getAllDebates,
             deleteDebateById: deleteDebateById,
             updateDebateyId: updateDebateById,
-            getDebateById: getDebateById
-            
+            getDebateById: getDebateById,
+						deleteArgumentById: deleteArgumentById,
+						createArgumentForForm: createArgumentForForm,
+						updateArgumentById: updateArgumentById,
         };
-        return model;
-        
+        return api;
+
         function createDebateForUser(userId, debate, callback) {
             var ldebate = debate;
             ldebate.ownerId = userId;
             ldebate.merrit = 0;
-            ldebate.pros = [];
-            ldebate.cons = [];
-            ldebate._id = (new Date).getTime();
+            ldebate.arguments = [];
+            ldebate._id = uuid.v1();
             model.debates.push(ldebate);
             callback(ldebate);
         }
-    
-       function getDebateById(debateId, callback) {
+
+       function getDebateById(debateId) {
            var d = model.debates.find(function(item) {
                return item._id == debateId;
            });
-           callback(d);
+           return d;
        }
-       
-       function findAllDebatesForUser(userId, callback) {
+
+       function findAllDebatesForUser(userId) {
            var result = model.debates.filter(function(value) {
-                return value.ownerId == userId || 
-                value.pros.filter(function(pval) {
+                return value.ownerId == userId ||
+                value.arguments.filter(function(arg) {
                     return pval.ownerId == userId;
-                }).length > 0 || value.cons.filter(function(cval) {
-                    return cval.ownerId == userId;
-                }).length > 0;    
+                });
            });
-           callback(result);
+           return result;
        }
-        
-       function getAllDebates(callback) {
-           callback(model.debates);
+
+       function getAllDebates() {
+           return model.debates;
        }
-       
-       function deleteDebateById(debateId, callback) {
+
+       function deleteDebateById(debateId) {
             for(var f in model.debates) {
                 if(model.debates[f]._id == debateId) {
                     model.debates.splice(f, 1);
                     break;
                 }
             }
-            callback(model.debates);    
+            model.debates;
        }
-       
-       function updateDebateById(debateId, newdebate, callback) {
+
+       function updateDebateById(debateId, newdebate) {
            var debate = null;
            for(var f in model.debates) {
                 if(model.debates[f]._id == debateId) {
@@ -102,8 +64,39 @@
                     break;
                 }
             }
-            callback(debate);   
+            return debate;
         }
+
+				function createArgumentFordebate(debateId, argument) {
+						var debate = finddebateById(debateId);
+						var largument = argument;
+						largument._id = uuid.v1();
+						if(!debate.arguments) {
+							debate.arguments = [];
+						}
+						debate.arguments.push(largument);
+						updatedebateById(debateId, debate);
+						return largument;
+				}
+
+				function deleteArgumentById(debateId, argumentId) {
+						var debate = finddebateById(debateId);
+						for(f in debate.arguments) {
+							 if(debate.arguments[f]._id.toString() == argumentId) {
+										 debate.arguments.splice(f, 1);
+							 }
+						}
+						return updateDebateById(debateId, debate);
+				}
+
+				 function updateArgumentdById(debateId, argumentId, argument) {
+						 deleteArgumentById(debateId, argumentId);
+						 var debate = finddebateById(debateId);
+						 debate.arguments.push(argument);
+						 return updateDebateById(debateId, debate);
+				 }
+
+
     }
-    
+
 })();

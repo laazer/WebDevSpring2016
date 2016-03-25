@@ -1,45 +1,48 @@
 {
     "debates" : [
-            {"_id": 100, "ownerId": 123, "text": "Web Dev is the best class!",
-                "pros": [
-                    {"text": "The proffesor is awesome",
+            {"_id": "100", "ownerId": 123, "text": "Web Dev is the best class!",
+                "arguments": [
+                    {"_id": "1", "text": "The proffesor is awesome", "argType": "PRO",
                       "merrit": [], "source":
                       {"link": "www.foo.com", "merrit": []},
                       "ownerId": 456},
-                    {"text": "So many reasons",
+                    {"_id": "2", "text": "So many reasons", "argType": "PRO",
                       "merrit": [], "source":{"link": "www.stackoverflow.com", "merrit": []},
                       "ownerId": 345},
-                    {"text": "DAT MEAN STACK", "merrit": [], "source": {"link": "www.bar.com", "merrit": []}, "ownerId": 234}
-                ],
-                "cons": [
-                    {"text": "It's a lot of work", "merrit": [], "source": {"link": "www.baz.com", "merrit": []}, "ownerId": 234}
+                    {"_id": "3", "text": "DAT MEAN STACK", "merrit": [], "argType": "PRO",
+                      "source": {"link": "www.bar.com", "merrit": []}, "ownerId": 234},
+                    {"_id": "4", "text": "It's a lot of work", "merrit": [], "argType": "CON",
+                      "source": {"link": "www.baz.com", "merrit": []}, "ownerId": 234}
                 ],
                 "merrit": [{"user": 123, "value": 1}, {"user": 234, "value": 1}, {"user": 456, "value": -1}]
             },
-            {"_id": 101, "ownerId": 345, "text": "Beer is good...",
-                "pros": [
-                    {"text": "College students are smart and they drink beer", "merrit": [], "source": {"link": "www.foo.com", "merrit": []}, "ownerId": 456},
-                    {"text": "Its basic logic", "merrit": [], "source":{"link": "www.stackoverflow.com", "merrit": []}, "ownerId": 345}
-                ],
-                "cons": [
-                    {"text": "My liver disagrees", "merrit": [], "source": {"link": "www.baz.com", "merrit": []}, "ownerId": 234},
-                   {"text": "My phone disagrees", "merrit": [], "source": {"link": "www.bar.com", "merrit": []}, "ownerId": 234}
+            {"_id": "101", "ownerId": 345, "text": "Beer is good...",
+                "arguments": [
+                    {"_id": "5", "text": "College students are smart and they drink beer", "merrit": [], "argType": "PRO",
+                       "source": {"link": "www.foo.com", "merrit": []}, "ownerId": 456},
+                    {"_id": "6", "text": "Its basic logic", "merrit": [], "argType": "PRO",
+                      "source":{"link": "www.stackoverflow.com", "merrit": []}, "ownerId": 345},
+                    {"_id": "7", "text": "My liver disagrees", "merrit": [], "argType": "CON",
+                      "source": {"link": "www.baz.com", "merrit": []}, "ownerId": 234},
+                   {"_id": "8", "text": "My phone disagrees", "merrit": [], "argType": "CON",
+                     "source": {"link": "www.bar.com", "merrit": []}, "ownerId": 234}
                 ],
                 "merrit": [{"user": 123, "value": -1}, {"user": 234, "value": 1}, {"user": 456, "value": -1}]
             },
-            {"_id": 102, "ownerId": 456, "text": "Shrek is love", "merrit": [],
+            {"_id": "102", "ownerId": 456, "text": "Shrek is love", "merrit": [],
                 "pros": [
-                    {"text": "Shrek is life", "merrit": [], "source": {"link": "www.foo.com", "merrit": []}, "ownerId": 456}
                 ],
-                "cons": [
-                    {"text": "Shrek is a social construct", "merrit": [], "source":
-                      {"link": "www.baz.com", "merrit": []},
+                "arguments": [
+                    {"_id": "9", "text": "Shrek is life", "merrit": [], "argType": "PRO",
+                      "source": {"link": "www.foo.com", "merrit": []}, "ownerId": 456},
+                    {"_id": "10", "text": "Shrek is a social construct", "merrit": [], "argType": "CON",
+                      "source": {"link": "www.baz.com", "merrit": []},
                       "ownerId": 234},
-                    {"text": "So many reasons", "merrit": [], "source":
-                      {"link": "www.stackoverflow.com", "merrit": []},
+                    {"_id": "11", "text": "So many reasons", "merrit": [], "argType": "CON",
+                      "source": {"link": "www.stackoverflow.com", "merrit": []},
                       "ownerId": 345},
-                    {"text": "Who is this stupid?", "merrit": [], "source":
-                      {"link": "www.bar.com", "merrit": []},
+                    {"_id": "12", "text": "Who is this stupid?", "merrit": [], "argType": "CON",
+                      "source": {"link": "www.bar.com", "merrit": []},
                       "ownerId": 123}
                 ],
                 "merrit": [{"user": 123, "value": 1}, {"user": 234, "value": 1}, {"user": 456, "value": 0}]

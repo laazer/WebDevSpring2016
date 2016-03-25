@@ -1,24 +1,24 @@
 module.exports = function(app, uuid) {
     var model = require('../models/debate.model.js')(uuid);
 
-    app.post('/api/project/user/:userId/form', function(req, res) {
-        var result = model.createFormForUser(req.params.userId, req.body);
+    app.post('/api/project/owner/:ownerId/debate', function(req, res) {
+        var result = model.createFormForUser(req.params.ownerId, req.body);
         defaultResponse(result, res);
     });
-    app.get('/api/project/user/:userId/form', function(req, res) {
-        var result = model.findAllFormsForUser(req.params.userId);
+    app.get('/api/project/owner/:userId/deabte', function(req, res) {
+        var result = model.findAllDebatesForUser(req.params.userId);
         defaultJsonResponse(result, res);
     });
-    app.get('/api/project/form/:formId', function(req, res) {
-        var result = model.findFormById(req.params.formId);
+    app.get('/api/project/debate/:debateId', function(req, res) {
+        var result = model.findDebateById(req.params.formId);
         defaultJsonResponse(result, res);
     });
-    app.delete('/api/project/form/:formId', function(req, res) {
-        var result = model.deleteFormById(req.params.formId);
+    app.delete('/api/project/debate/:debateId', function(req, res) {
+        var result = model.deleteDebateById(req.params.formId);
         defaultResponse(result, res);
     });
-    app.put('/api/project/form/:formId', function(req, res) {
-        var result = model.updateFormById(req.params.formId, req.body);
+    app.put('/api/project/debate/:debateId', function(req, res) {
+        var result = model.updateDebateById(req.params.formId, req.body);
         defaultResponse(result, res);
     });
 

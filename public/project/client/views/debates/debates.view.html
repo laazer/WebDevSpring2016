@@ -16,39 +16,40 @@
                 <span class="glyphicon glyphicon-minus-sign"></span>
                 <span class="debate-merrit">{{ldebate.merrit}}</span>
             </div>
-            <div class="row" ng-repeat="i in range(Math.min(3, Math.max(ldebate.pros.length, ldebate.cons.length)))"> 
-                <div class="actions col-xs-sm-6 col-sm-6 col-md-6" ng-init="pro = ldebate.pros[i]">
+            <div class="row" ng-init="pros = getPros(ldebate); cons = getCons(ldebate)"
+             ng-repeat="i in range(Math.min(3, Math.max(pros.length, cons.length)))">
+                <div class="actions col-xs-sm-6 col-sm-6 col-md-6" ng-init="pro = pros[i]">
                     <div class="alert alert-info pro" ng-style="{'visibility': pro ? 'visible':'hidden'}">
                         <div class="body-wrapper">
                             <div class="text-wrapper">{{pro.text}}</div>
                             <div>
                                 <span class="glyphicon glyphicon-plus-sign"></span>
                                 <span class="glyphicon glyphicon-minus-sign"></span>
-                                <span class="merrit">{{pro.merrit}}</span>
+                                <span class="merrit">{{sumMerrit(pro)}}</span>
                             </div>
                         </div>
                         <div class="source-wrapper">
                             <span class="glyphicon glyphicon-plus-sign"></span>
                             <span class="glyphicon glyphicon-minus-sign"></span>
-                            <span class="merrit">{{pro.source.merrit}}</span>
+                            <span class="merrit">{{sumMerrit(pro.source)}}</span>
                             <span class="d-link"><a href="http://{{pro.source.link}}">Source</a></span>
                         </div>
                     </div>
                 </div>
-                <div class="actions col-xs-sm-6 col-sm-6 col-md-6" ng-init="con = ldebate.cons[i]" ng-show="con">
+                <div class="actions col-xs-sm-6 col-sm-6 col-md-6" ng-init="con = cons[i]" ng-show="con">
                     <div class="alert alert-danger con" ng-style="{'visibility': con ? 'visible':'hidden'}">
                         <div class="body-wrapper">
                             <div class="text-wrapper">{{con.text}}</div>
                             <div>
                                 <span class="glyphicon glyphicon-plus-sign"></span>
                                 <span class="glyphicon glyphicon-minus-sign"></span>
-                                <span class="merrit">{{con.merrit}}</span>
+                                <span class="merrit">{{sumMerrit(con)}}</span>
                             </div>
                         </div>
                         <div class="source-wrapper">
                             <span class="glyphicon glyphicon-plus-sign"></span>
                             <span class="glyphicon glyphicon-minus-sign"></span>
-                           <span class=" merrit">{{con.source.merrit}}</span>
+                           <span class=" merrit">{{sumMerrit(con.source)}}</span>
                             <span class="d-link"><a href="http://{{con.source.link}}">Source</a></span>
                         </div>
                     </div>
@@ -58,4 +59,3 @@
     </div>
 </div>
 </div>
-                    

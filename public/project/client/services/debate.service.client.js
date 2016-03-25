@@ -1,109 +1,59 @@
 (function()
 {
 	angular
-		.module("DebateApp")
+		.module("DebateBuilderApp")
 		.factory("DebateService", DebateService);
-		
-    function DebateService () {
-        var model = {
-            debates : [
-                    {"_id": 100, "ownerId": 123, "text": "Web Dev is the best class!", "merrit": 5,
-                        "pros": [ 
-                            {"text": "The proffesor is awesome", "merrit": 100, "source": {"link": "www.foo.com", "merrit": 21}, "ownerId": 456},
-                            {"text": "So many reasons", "merrit": 36, "source":{"link": "www.stackoverflow.com", "merrit": 99}, "ownerId": 345},
-                            {"text": "DAT MEAN STACK", "merrit": 7, "source": {"link": "www.bar.com", "merrit": 99}, "ownerId": 234}
-                        ],
-                        "cons": [
-                            {"text": "It's a lot of work", "merrit": 100, "source": {"link": "www.baz.com", "merrit": 99}, "ownerId": 234}
-                        ],
-                    },
-                    {"_id": 101, "ownerId": 345, "text": "Beer is good...", "merrit": 12,
-                        "pros": [ 
-                            {"text": "College students are smart and they drink beer", "merrit": 100, "source": {"link": "www.foo.com", "merrit": 21}, "ownerId": 456},
-                            {"text": "Its basic logic", "merrit": 36, "source":{"link": "www.stackoverflow.com", "merrit": 99}, "ownerId": 345}
-                        ],
-                        "cons": [
-                            {"text": "My liver disagrees", "merrit": 100, "source": {"link": "www.baz.com", "merrit": 99}, "ownerId": 234},
-                           {"text": "My phone disagrees", "merrit": 7, "source": {"link": "www.bar.com", "merrit": 99}, "ownerId": 234}
-                        ],
-                    },
-                    {"_id": 102, "ownerId": 456, "text": "Shrek is love", "merrit": 42,
-                        "pros": [ 
-                            {"text": "Shrek is life", "merrit": 100, "source": {"link": "www.foo.com", "merrit": 21}, "ownerId": 456}
-                        ],
-                        "cons": [
-                            {"text": "Shrek is a social construct", "merrit": 68, "source": {"link": "www.baz.com", "merrit": 99}, "ownerId": 234},
-                            {"text": "So many reasons", "merrit": 36, "source":{"link": "www.stackoverflow.com", "merrit": 99}, "ownerId": 345},
-                            {"text": "Who is this stupid?", "merrit": 7, "source": {"link": "www.bar.com", "merrit": 99}, "ownerId": 123}
-                        ],
-                    }
-                    ],
 
+    function DebateService ($http, $q) {
+				var userUrl = "/api/assignment/owner/{0}/debate";
+				var debateUrl = "/api/assignment/debate/{0}";
+				var model = {
             createDebateForUser: createDebateForUser,
             findAllDebatesForUser: findAllDebatesForUser,
-            getAllDebates: getAllDebates,
             deleteDebateById: deleteDebateById,
-            updateDebateyId: updateDebateById,
-            getDebateById: getDebateById
-            
+            updateDebateById: updateDebateById
         };
         return model;
-        
-        function createDebateForUser(userId, debate, callback) {
-            var ldebate = debate;
-            ldebate.ownerId = userId;
-            ldebate.merrit = 0;
-            ldebate.pros = [];
-            ldebate.cons = [];
-            ldebate._id = (new Date).getTime();
-            model.debates.push(ldebate);
-            callback(ldebate);
+
+        function createDebateForUser(ownerId, debate) {
+            var deferred = $q.defer();
+            $http.post(userUrl.debateat(ownerId), debate)
+                .success(function(response){
+                    deferred.resolve(response);
+                });
+
+            return deferred.promise;
         }
-    
-       function getDebateById(debateId, callback) {
-           var d = model.debates.find(function(item) {
-               return item._id == debateId;
-           });
-           callback(d);
+
+       function findAllDebatesForUser(ownerId) {
+            var deferred = $q.defer();
+            $http.get(userUrl.debateat(ownerId))
+                .success(function(response){
+                    deferred.resolve(response);
+                });
+
+            return deferred.promise;
        }
-       
-       function findAllDebatesForUser(userId, callback) {
-           var result = model.debates.filter(function(value) {
-                return value.ownerId == userId || 
-                value.pros.filter(function(pval) {
-                    return pval.ownerId == userId;
-                }).length > 0 || value.cons.filter(function(cval) {
-                    return cval.ownerId == userId;
-                }).length > 0;    
-           });
-           callback(result);
+
+       function deleteDebateById(debateId) {
+            var deferred = $q.defer();
+            $http.delete(debateUrl.debateat(debateId))
+                .success(function(response){
+                    deferred.resolve(response);
+                });
+
+            return deferred.promise;
        }
-        
-       function getAllDebates(callback) {
-           callback(model.debates);
-       }
-       
-       function deleteDebateById(debateId, callback) {
-            for(var f in model.debates) {
-                if(model.debates[f]._id == debateId) {
-                    model.debates.splice(f, 1);
-                    break;
-                }
-            }
-            callback(model.debates);    
-       }
-       
-       function updateDebateById(debateId, newdebate, callback) {
-           var debate = null;
-           for(var f in model.debates) {
-                if(model.debates[f]._id == debateId) {
-                    model.debates[f] = newdebate;
-                    debate = model.debates[f];
-                    break;
-                }
-            }
-            callback(debate);   
-        }
-    }
-    
+
+       function updateDebateById(debateId, newDebate) {
+            var deferred = $q.defer();
+            $http.put(debateUrl.debateat(debateId), newDebate)
+                .success(function(response){
+                    deferred.resolve(response);
+                });
+
+           return deferred.promise;
+  		}
+
+		}
 })();
