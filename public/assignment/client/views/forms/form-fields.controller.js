@@ -51,8 +51,12 @@
 
           function addField(newFieldType) {
             var field = fieldMap[newFieldType];
+						if (field == undefined) {
+							$scope.error = "must choose valid field type!";
+							return;
+						}
             FieldService.createFieldForForm($scope.formId, field).then(function(field) {
-                  reloadFields();
+									reloadFields();
             });
           }
 
@@ -87,7 +91,8 @@
 
           function reloadFields() {
                FieldService.getFieldsForForm($scope.formId).then(function(fields) {
-                   $scope.fields = fields;
+								 	 $scope.error = "";
+									 $scope.fields = fields;
                });
           }
 

@@ -16,7 +16,7 @@ module.exports = function(uuid) {
 
     function createFormForUser(userId, lform) {
         lform.userId = userId;
-        lform.title = form.title;
+        lform.title = lform.title;
         lform._id = uuid.v1();
         model.forms.push(lform);
         return lform;
@@ -26,6 +26,9 @@ module.exports = function(uuid) {
         var form = findFormById(formId);
         var lfield = field;
         lfield._id = uuid.v1();
+        if(!form.fields) {
+          form.fields = [];
+        }
         form.fields.push(lfield);
         updateFormById(formId, form);
         return lfield;
@@ -58,7 +61,7 @@ module.exports = function(uuid) {
    }
 
    function deleteFieldById(formId, fieldId) {
-       var form = findFormById(fieldId);
+       var form = findFormById(formId);
        for(f in form.fields) {
           if(form.fields[f]._id.toString() == fieldId) {
                 form.fields.splice(f, 1);
@@ -71,11 +74,11 @@ module.exports = function(uuid) {
        var form = null;
        for(var f in model.forms) {
             if(model.forms[f]._id.toString() == formId) {
-                cuser = model.forms[f];
                 model.forms[f] = {
                     "_id" : formId,
                     "title" : newForm.title ? newForm.title : form.title,
                     "userId" : newForm.userId ? newForm.userId : form.userId,
+                    "fields" : newForm.fields ? newForm.fields : form.fields,
                 }
                 form = model.forms[f];
                 return form;

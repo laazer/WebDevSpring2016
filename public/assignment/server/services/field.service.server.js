@@ -1,19 +1,19 @@
 module.exports = function(app, uuid) {
     var model = require('../models/form.model.js')(uuid);
-    
+
     app.get("/api/assignment/form/:formId/field", function(req, res) {
-        var form = model.findFormById(req.params.formId).fields;
-        defaultJsonResponse(form, res);
+        var fields = model.findFormById(req.params.formId).fields;
+        defaultJsonResponse(fields, res);
     });
 
     app.get("/api/assignment/form/:formId/field/:fieldId", function(req, res) {
-        var form = model.findFormById(req.params.formId).fields.find(function(x) { x == req.params.fieldId; });
-        defaultJsonResponse(form, res);
+        var field = model.findFormById(req.params.formId).fields.find(function(x) { x == req.params.fieldId; });
+        defaultJsonResponse(field, res);
     });
 
     app.delete("/api/assignment/form/:formId/field/:fieldId", function(req, res) {
         var result = model.deleteFieldById(req.params.formId, req.params.fieldId);
-        defaultJsonResponse(form, res);
+        defaultJsonResponse(result, res);
     });
 
     app.post("/api/assignment/form/:formId/field", function(req, res) {
@@ -41,7 +41,7 @@ module.exports = function(app, uuid) {
     }
 
     function defaultResponse(nobj, res) {
-        if(njson) success(res);
+        if(nobj) success(res);
         else notFound(res);
     }
 }

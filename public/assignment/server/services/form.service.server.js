@@ -37,7 +37,7 @@ module.exports = function(app, uuid) {
     }
 
     function defaultResponse(nobj, res) {
-        if(njson) success(res);
+        if(nobj) success(res);
         else notFound(res);
     }
 }

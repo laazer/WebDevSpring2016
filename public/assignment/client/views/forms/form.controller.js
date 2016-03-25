@@ -67,7 +67,6 @@
        }
 
        function reloadForms() {
-				 		console.log(FormService);
             FormService.findAllFormsForUser($scope.userId).then(function(forms) {
                 $scope.forms = forms;
             });
