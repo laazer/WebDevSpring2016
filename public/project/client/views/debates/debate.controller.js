@@ -4,7 +4,7 @@
 		.module("DebateBuilderApp")
 		.controller("DebateController", debateController);
 
-    function debateController ($rootScope, $routeParams, $scope, $location, DebateService) {
+    function debateController ($rootScope, $routeParams, $route, $scope, $location, DebateService) {
 	   var dc = this;
        $scope.error =  null;
        $scope.message = null;
@@ -12,18 +12,21 @@
        $scope.updateDebate = updateDebate;
        $scope.deleteDebate = deleteDebate;
        $scope.selectedDebate = null;
-       $scope.selectDebate = selectDebate;
-       setSelectedDebate($routeParams.debateId);
+       setSelectedDebate($route.current.params.debateId);
 			 $scope.getPros = getPros;
 			 $scope.getCons = getCons;
 			 $scope.sumMerrit = sumMerrit;
        $scope.range = $rootScope.range;
        $scope.Math = window.Math;
 
-       if (!$rootScope.currentUser) {
-            $location.url("/");
-       }
-       else $scope.userId = $rootScope.currentUser._id;
+
+
+			 //for debugging
+			 $scope.userId = "123";
+      //  if (!$rootScope.currentUser) {
+      //       $location.url("/");
+      //  }
+      //  else $scope.userId = $rootScope.currentUser._id;
 
        function reloadDebates() {
            if($location.url() == "/all_debates") {
@@ -73,8 +76,12 @@
        }
 
        function setSelectedDebate(dId) {
-           DebateService.getDebateById(dId, function(d) {
-              $scope.selectedDebate = d;
+           DebateService.getDebateById(dId).then(function(d) {
+						  d.pros = getPros(d);
+							d.cons = getCons(d);
+							setMerritSums(d);
+							$scope.selectedDebate = d;
+
            });
        }
 
@@ -104,16 +111,26 @@
 
 			 function getArgOfType(debate, ntype) {
 				 return debate.arguments.filter(function(val) {
+					 	console.log(val);
 					 	return val.argType == ntype;
 				 });
 			 }
 
 			 function sumMerrit(item) {
+				 if(!item) return 0;
 				 var merrit = item.merrit;
 				 return merrit.reduce(function(a, b) {
 					 return a + b.value;
 				 }, 0)
 			 }
 
-    }
+			 function setMerritSums(d) {
+				 	d.merritSum = sumMerrit(d);
+				 for(var i in d.arguments) {
+					 		d.arguments[i].merritSum = sumMerrit(d.arguments[i]);
+					 		d.arguments[i].source.merritSum = sumMerrit(d.arguments[i].source);
+					}
+		 		}
+
+  }
 })();

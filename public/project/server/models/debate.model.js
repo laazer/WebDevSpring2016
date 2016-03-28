@@ -1,13 +1,12 @@
-var model = require("./debate.mock.json");
-
 module.exports = function(uuid) {
+        var model = require("./debate.mock.json");
         var api = {
             createDebateForUser: createDebateForUser,
             findAllDebatesForUser: findAllDebatesForUser,
-            getAllDebates: getAllDebates,
+            findAllDebates: findAllDebates,
             deleteDebateById: deleteDebateById,
             updateDebateyId: updateDebateById,
-            getDebateById: getDebateById,
+            findDebateById: findDebateById,
 						deleteArgumentById: deleteArgumentById,
 						createArgumentForDebate: createArgumentForDebate,
 						updateArgumentById: updateArgumentById,
@@ -24,7 +23,13 @@ module.exports = function(uuid) {
             callback(ldebate);
         }
 
-       function getDebateById(debateId) {
+       function findDebateById(debateId) {
+         for(var i in model.debates) {
+           if(model.debates[i]._id == debateId) {
+             return model.debates[i];
+           }
+           return null;
+         }
            var d = model.debates.find(function(item) {
                return item._id == debateId;
            });
@@ -35,13 +40,13 @@ module.exports = function(uuid) {
            var result = model.debates.filter(function(value) {
                 return value.ownerId == userId ||
                 value.arguments.filter(function(arg) {
-                    return pval.ownerId == userId;
+                    return arg.ownerId == userId;
                 });
            });
            return result;
        }
 
-       function getAllDebates() {
+       function findAllDebates() {
            return model.debates;
        }
 

@@ -14,7 +14,7 @@
                 <div class="ng-binding">{{ldebate.text}}</div>
                 <span class="glyphicon glyphicon-plus-sign"></span>
                 <span class="glyphicon glyphicon-minus-sign"></span>
-                <span class="debate-merrit">{{ldebate.merrit}}</span>
+                <span class="debate-merrit">{{sumMerrit(ldebate.merrit)}}</span>
             </div>
             <div class="row" ng-init="pros = getPros(ldebate); cons = getCons(ldebate)"
              ng-repeat="i in range(Math.min(3, Math.max(pros.length, cons.length)))">

@@ -1,24 +1,28 @@
 module.exports = function(app, uuid) {
     var model = require('../models/debate.model.js')(uuid);
 
-    app.post('/api/project/owner/:ownerId/debate', function(req, res) {
+    app.post('/api/project/user/:ownerId/debate', function(req, res) {
         var result = model.createFormForUser(req.params.ownerId, req.body);
         defaultResponse(result, res);
     });
-    app.get('/api/project/owner/:userId/deabte', function(req, res) {
-        var result = model.findAllDebatesForUser(req.params.userId);
+    app.get('/api/project/user/:ownerId/debate', function(req, res) {
+        var result = model.findAllDebatesForUser(req.params.ownerId);
         defaultJsonResponse(result, res);
     });
     app.get('/api/project/debate/:debateId', function(req, res) {
-        var result = model.findDebateById(req.params.formId);
+        var result = model.findDebateById(req.params.debateId);
+        defaultJsonResponse(result, res);
+    });
+    app.get('/api/project/debate/', function(req, res) {
+        var result = model.findAllDebates();
         defaultJsonResponse(result, res);
     });
     app.delete('/api/project/debate/:debateId', function(req, res) {
-        var result = model.deleteDebateById(req.params.formId);
+        var result = model.deleteDebateById(req.params.debateId);
         defaultResponse(result, res);
     });
     app.put('/api/project/debate/:debateId', function(req, res) {
-        var result = model.updateDebateById(req.params.formId, req.body);
+        var result = model.updateDebateById(req.params.debateId, req.body);
         defaultResponse(result, res);
     });
 
@@ -37,7 +41,7 @@ module.exports = function(app, uuid) {
     }
 
     function defaultResponse(nobj, res) {
-        if(njson) success(res);
+        if(nobj) success(res);
         else notFound(res);
     }
 }

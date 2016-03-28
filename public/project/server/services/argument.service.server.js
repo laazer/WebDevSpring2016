@@ -7,7 +7,8 @@ module.exports = function(app, uuid) {
     });
 
     app.get("/api/project/debate/:debateId/argument/:argumentId", function(req, res) {
-        var debate = model.findFormById(req.params.debateId).arguments.find(function(x) { x == req.params.argumentId; });
+        var debate = model.findFormById(req.params.debateId).arguments.find(
+          function(x) { x == req.params.argumentId; });
         defaultJsonResponse(debate, res);
     });
 
