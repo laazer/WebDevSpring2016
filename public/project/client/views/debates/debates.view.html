@@ -9,9 +9,11 @@
         </div>
     </div>
     <div class="debates-wrapper">
-        <div class="debate-wrapper" ng-repeat="ldebate in debates|limitTo:Math.min(10, debates.length)" ng-click="selectDebate(ldebate)">
+        <div class="debate-wrapper" ng-repeat="ldebate in debates|limitTo:Math.min(10, debates.length)">
             <div class="debate-text-wrapper">
-                <div class="ng-binding">{{ldebate.text}}</div>
+                <div class="ng-binding">{{ldebate.text}}
+                  <span class="glyphicon glyphicon-fullscreen pull-right" ng-click="selectDebate(ldebate)"></span>
+                </div>
                 <span class="glyphicon glyphicon-plus-sign"></span>
                 <span class="glyphicon glyphicon-minus-sign"></span>
                 <span class="debate-merrit">{{ldebate.merritSum}}</span>

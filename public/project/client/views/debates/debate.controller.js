@@ -5,7 +5,7 @@
 		.controller("DebateController", debateController);
 
     function debateController ($rootScope, $routeParams, $route, $scope, $location, DebateService) {
-	   var dc = this;
+   		 var dc = this;
        $scope.error =  null;
        $scope.message = null;
        $scope.addDebate = addDebate;
@@ -88,6 +88,7 @@
        }
 
        function selectDebate(nDebate) {
+				 	 console.log(nDebate);
            $location.url("/debate_item/" + nDebate._id);
        }
 
@@ -114,6 +115,7 @@
 			 }
 
 			 function getArgOfType(debate, ntype) {
+				 if(!debate || !debate.arguments) return;
 				 return debate.arguments.filter(function(val) {
 					 	return val.argType == ntype;
 				 });

@@ -13,14 +13,14 @@ module.exports = function(uuid) {
         };
         return api;
 
-        function createDebateForUser(userId, debate, callback) {
+        function createDebateForUser(userId, debate) {
             var ldebate = debate;
             ldebate.ownerId = userId;
-            ldebate.merrit = 0;
+            ldebate.merrit = [];
             ldebate.arguments = [];
             ldebate._id = uuid.v1();
             model.debates.push(ldebate);
-            callback(ldebate);
+            return ldebate;
         }
 
        function findDebateById(debateId) {
@@ -79,6 +79,8 @@ module.exports = function(uuid) {
 						if(!debate.arguments) {
 							debate.arguments = [];
 						}
+            largument.merrit = [];
+            largument.source.merrit = [];
 						debate.arguments.push(largument);
 						updatedebateById(debateId, debate);
 						return largument;

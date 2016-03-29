@@ -120,19 +120,22 @@ tr .glyphicon {
 .debate-wrapper {
     margin-bottom: 15px;
     padding: 10px;
-    border: 0.5px solid #ccc;   
+    border: 0.5px solid #ccc;
     border-radius: 10px;
+}
+
+.debate-wrapper .glyphicon {
+  cursor: pointer;
 }
 
 .debate-text-wrapper {
     padding: 5px;
     margin-bottom: 10px;
     border-bottom: 0.5px solid #ccc;
-    cursor: pointer;
 }
 
 .new-debate-input {
-    border: 0.5px solid #ccc;   
+    border: 0.5px solid #ccc;
     border-radius: 5px;
 }
 
