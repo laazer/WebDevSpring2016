@@ -12,7 +12,8 @@
        $scope.updateDebate = updateDebate;
        $scope.deleteDebate = deleteDebate;
        $scope.selectedDebate = null;
-       setSelectedDebate($route.current.params.debateId);
+			 $scope.debateId = $route.current.params.debateId;
+       setSelectedDebate($scope.debateId);
 			 $scope.getPros = getPros;
 			 $scope.getCons = getCons;
 			 $scope.sumMerrit = sumMerrit;
@@ -35,6 +36,9 @@
            if($location.url() == "/user_debates") {
                reloadUserDebates();
            }
+					 else {
+						 	setSelectedDebate($route.current.params.debateId);
+					 }
        }
 
        reloadDebates();
@@ -77,9 +81,7 @@
 
        function setSelectedDebate(dId) {
            DebateService.getDebateById(dId).then(function(d) {
-						  d.pros = getPros(d);
-							d.cons = getCons(d);
-							setMerritSums(d);
+						 	initDebate(d);
 							$scope.selectedDebate = d;
 
            });
@@ -91,12 +93,14 @@
 
        function reloadUserDebates() {
             DebateService.findAllDebatesForUser($scope.userId).then(function(debates) {
-                $scope.debates = debates;
+								initAllDebates(debates);
+								$scope.debates = debates;
             });
        }
 
        function reloadAllDebates() {
             DebateService.getAllDebates().then(function(debates) {
+								initAllDebates(debates);
                 $scope.debates = debates;
             });
        }
@@ -111,9 +115,20 @@
 
 			 function getArgOfType(debate, ntype) {
 				 return debate.arguments.filter(function(val) {
-					 	console.log(val);
 					 	return val.argType == ntype;
 				 });
+			 }
+
+			 function initAllDebates(debates) {
+					 for(var d in debates) {
+						 	initDebate(debates[d]);
+					 }
+			 }
+
+			 function initDebate(debate) {
+					 debate.pros = getPros(debate);
+					 debate.cons = getCons(debate);
+					 setMerritSums(debate);
 			 }
 
 			 function sumMerrit(item) {

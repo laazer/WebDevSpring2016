@@ -2,7 +2,7 @@ module.exports = function(app, uuid) {
     var model = require('../models/debate.model.js')(uuid);
 
     app.post('/api/project/user/:ownerId/debate', function(req, res) {
-        var result = model.createFormForUser(req.params.ownerId, req.body);
+        var result = model.createDebateForUser(req.params.ownerId, req.body);
         defaultResponse(result, res);
     });
     app.get('/api/project/user/:ownerId/debate', function(req, res) {
