@@ -5,7 +5,7 @@ module.exports = function(uuid) {
             findAllDebatesForUser: findAllDebatesForUser,
             findAllDebates: findAllDebates,
             deleteDebateById: deleteDebateById,
-            updateDebateyId: updateDebateById,
+            updateDebateById: updateDebateById,
             findDebateById: findDebateById,
 						deleteArgumentById: deleteArgumentById,
 						createArgumentForDebate: createArgumentForDebate,

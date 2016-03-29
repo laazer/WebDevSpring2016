@@ -86,7 +86,6 @@
            DebateService.getDebateById(dId).then(function(d) {
 						 	initDebate(d);
 							$scope.selectedDebate = d;
-
            });
        }
 
@@ -151,20 +150,23 @@
 					}
 		 		}
 
-				function addMerrit(item) {
-						updateMerrit(item, 1);
+				function addMerrit(nDebate, item) {
+						updateMerrit(nDebate, item, 1);
 				}
 
-				function removeMerrit(item) {
-						updateMerrit(item, -1);
+				function removeMerrit(nDebate, item) {
+						updateMerrit(nDebate, item, -1);
 				}
 
-				function updateMerrit(item, value) {
-							var pair = {"ownerId": $scope.userId, "value": value};
-							item.merrit.push(item);
-							DebateService.updateDebateById(debate._id, debate).then(function(debate) {
-									reloadDebates();
-							});
+				function updateMerrit(nDebate, item, value) {
+						if(item.merrit.find(function(val) {
+								return val.ownerId == $scope.userId;
+						})) return;
+						var pair = {"ownerId": $scope.userId, "value": value};
+						item.merrit.push(item);
+						DebateService.updateDebateById(nDebate._id, nDebate).then(function(debate) {
+								reloadDebates();
+						});
 				}
 
   }

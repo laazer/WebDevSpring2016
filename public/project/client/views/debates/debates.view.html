@@ -14,8 +14,8 @@
                 <div class="ng-binding">{{ldebate.text}}
                   <span class="glyphicon glyphicon-fullscreen pull-right" ng-click="selectDebate(ldebate)"></span>
                 </div>
-                <span class="glyphicon glyphicon-plus-sign"></span>
-                <span class="glyphicon glyphicon-minus-sign"></span>
+                <span class="glyphicon glyphicon-plus-sign" ng-click="addMerrit(ldebate, ldebate)"></span>
+                <span class="glyphicon glyphicon-minus-sign" ng-click="removeMerrit(ldebate, ldebate)"></span>
                 <span class="debate-merrit">{{ldebate.merritSum}}</span>
             </div>
             <div class="row"
@@ -25,14 +25,14 @@
                         <div class="body-wrapper">
                             <div class="text-wrapper">{{pro.text}}</div>
                             <div>
-                                <span class="glyphicon glyphicon-plus-sign"></span>
-                                <span class="glyphicon glyphicon-minus-sign"></span>
+                                <span class="glyphicon glyphicon-plus-sign" ng-click="addMerrit(ldebate, pro)"></span>
+                                <span class="glyphicon glyphicon-minus-sign" ng-click="removeMerrit(ldebate, pro)"></span>
                                 <span class="merrit">{{pro.merritSum}}</span>
                             </div>
                         </div>
                         <div class="source-wrapper">
-                            <span class="glyphicon glyphicon-plus-sign"></span>
-                            <span class="glyphicon glyphicon-minus-sign"></span>
+                            <span class="glyphicon glyphicon-plus-sign" ng-click="addMerrit(ldebate, pro.source)"></span>
+                            <span class="glyphicon glyphicon-minus-sign" ng-click="removeMerrit(ldebate, pro.source)"></span>
                             <span class="merrit">{{pro.source.merritSum}}</span>
                             <span class="d-link"><a href="http://{{pro.source.link}}">Source</a></span>
                         </div>
@@ -43,14 +43,14 @@
                         <div class="body-wrapper">
                             <div class="text-wrapper">{{con.text}}</div>
                             <div>
-                                <span class="glyphicon glyphicon-plus-sign"></span>
-                                <span class="glyphicon glyphicon-minus-sign"></span>
+                                <span class="glyphicon glyphicon-plus-sign" ng-click="addMerrit(ldebate, con)"></span>
+                                <span class="glyphicon glyphicon-minus-sign" ng-click="removeMerrit(ldebate, con)"></span>
                                 <span class="merrit">{{con.merritSum}}</span>
                             </div>
                         </div>
                         <div class="source-wrapper">
-                            <span class="glyphicon glyphicon-plus-sign"></span>
-                            <span class="glyphicon glyphicon-minus-sign"></span>
+                           <span class="glyphicon glyphicon-plus-sign" ng-click="addMerrit(ldebate, con.source)"></span>
+                           <span class="glyphicon glyphicon-minus-sign" ng-click="removeMerrit(ldebate, con.source)"></span>
                            <span class=" merrit">{{con.source.merritSum}}</span>
                             <span class="d-link"><a href="http://{{con.source.link}}">Source</a></span>
                         </div>
