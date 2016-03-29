@@ -11,6 +11,9 @@
        $scope.addDebate = addDebate;
        $scope.updateDebate = updateDebate;
        $scope.deleteDebate = deleteDebate;
+			 $scope.selectDebate = selectDebate;
+			 $scope.addMerrit = addMerrit;
+			 $scope.removeMerrit = removeMerrit;
        $scope.selectedDebate = null;
 			 $scope.debateId = $route.current.params.debateId;
        setSelectedDebate($scope.debateId);
@@ -23,11 +26,11 @@
 
 
 			 //for debugging
-			 $scope.userId = "123";
-      //  if (!$rootScope.currentUser) {
-      //       $location.url("/");
-      //  }
-      //  else $scope.userId = $rootScope.currentUser._id;
+			 //$scope.userId = "123";
+       if (!$rootScope.currentUser) {
+            $location.url("/");
+       }
+       else $scope.userId = $rootScope.currentUser._id;
 
        function reloadDebates() {
            if($location.url() == "/all_debates") {
@@ -88,7 +91,6 @@
        }
 
        function selectDebate(nDebate) {
-				 	 console.log(nDebate);
            $location.url("/debate_item/" + nDebate._id);
        }
 
@@ -148,6 +150,22 @@
 					 		d.arguments[i].source.merritSum = sumMerrit(d.arguments[i].source);
 					}
 		 		}
+
+				function addMerrit(item) {
+						updateMerrit(item, 1);
+				}
+
+				function removeMerrit(item) {
+						updateMerrit(item, -1);
+				}
+
+				function updateMerrit(item, value) {
+							var pair = {"ownerId": $scope.userId, "value": value};
+							item.merrit.push(item);
+							DebateService.updateDebateById(debate._id, debate).then(function(debate) {
+									reloadDebates();
+							});
+				}
 
   }
 })();
