@@ -159,11 +159,17 @@
 				}
 
 				function updateMerrit(nDebate, item, value) {
-						if(item.merrit.find(function(val) {
-								return val.ownerId == $scope.userId;
-						})) return;
-						var pair = {"ownerId": $scope.userId, "value": value};
-						item.merrit.push(item);
+						if(!item.merrit) item.merrit = [];
+						var pair = item.merrit.find(function(val) {
+								return (val.ownerId == $scope.userId) });
+						if(!pair) {
+							pair = {"ownerId": $scope.userId, "value": value};
+							item.merrit.push(pair);
+						}
+						else if(pair.value == value) return;
+						else {
+							pair.value = value;
+						}
 						DebateService.updateDebateById(nDebate._id, nDebate).then(function(debate) {
 								reloadDebates();
 						});

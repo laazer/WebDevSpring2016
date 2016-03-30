@@ -70,7 +70,7 @@
        function updateDebateById(debateId, newDebate) {
             var deferred = $q.defer();
             $http.put(debateUrl.format(debateId), newDebate)
-                .success(function(response){
+                .success(function(response) {
                     deferred.resolve(response);
                 });
 
