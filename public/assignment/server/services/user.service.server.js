@@ -1,34 +1,41 @@
-var model = require('../models/user.model.js')();
+module.exports = function(app, mongoose, db) {
+    var model = require('../models/user.model.js')(mongoose, db);
 
-module.exports = function(app) {
     app.post('/api/assignment/user', function(req, res) {
-        var result = model.createUser(req.body);
-        defaultJsonResponse(result, res);
+        model.createUser(req.body).then(function(result) {
+          defaultJsonResponse(result, res);
+        });
     });
     app.get('/api/assignment/user', function(req, res) {
-        var result = model.findUserByUsername(req.query.username);
-        defaultJsonResponse(result, res);
+        model.findUserByUsername(req.query.username).then(function(result){
+          defaultJsonResponse(result, res);
+        });
     });
     app.get('/api/assignment/user/:userId', function(req, res) {
-        var result = model.findUserByUserId(req.params.userId);
-        defaultJsonResponse(result, res);
+        model.findUserByUserId(req.params.userId).then(function(result){
+          defaultJsonResponse(result, res);
+        });
     });
     app.get('/api/assignment/user', function(req, res) {
-        var result = model.findUserByCredentials({'username': req.query.username,
-                                            'password': req.query.pasword});
-        defaultJsonResponse(result, res);
+        model.findUserByCredentials({'username': req.query.username,
+                                            'password': req.query.pasword}).then(function(result){
+                                                    defaultJsonResponse(result, res);
+                                            });
     });
     app.get('/api/assignment/user', function(req, res) {
-        var result = model.findAllUsers();
-        defaultJsonResponse(result, res);
+        model.findAllUsers().then(function(result) {
+          defaultJsonResponse(result, res);
+        });
     });
     app.delete('/api/assignment/user/:userId', function(req, res) {
-        var result = model.deleteUserById(req.params.userId);
-        defaultResponse(result, res);
+        model.deleteUserById(req.params.userId).then(function(result){
+          defaultResponse(result, res);
+        });
     });
     app.put('/api/assignment/user/:userId', function(req, res) {
-        var result = model.updateUser(req.params.userId, req.body);
-        defaultResponse(result, res);
+        model.updateUser(req.params.userId, req.body).then(function(result) {
+          defaultResponse(result, res);
+        });
     });
 
     //generic 404 response
