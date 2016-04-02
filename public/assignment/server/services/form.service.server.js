@@ -1,43 +1,80 @@
-module.exports = function(app, uuid) {
-    var model = require('../models/form.model.js')(uuid);
+module.exports = function(app, uuid, mongoose, db) {
+    var model = require('../models/form.model.js')(uuid, mongoose, db);
 
-    app.post('/api/assignment/user/:userId/form', function(req, res) {
-        var result = model.createFormForUser(req.params.userId, req.body);
-        defaultResponse(result, res);
-    });
-    app.get('/api/assignment/user/:userId/form', function(req, res) {
-        var result = model.findAllFormsForUser(req.params.userId);
-        defaultJsonResponse(result, res);
-    });
-    app.get('/api/assignment/form/:formId', function(req, res) {
-        var result = model.findFormById(req.params.formId);
-        defaultJsonResponse(result, res);
-    });
-    app.delete('/api/assignment/form/:formId', function(req, res) {
-        var result = model.deleteFormById(req.params.formId);
-        defaultResponse(result, res);
-    });
-    app.put('/api/assignment/form/:formId', function(req, res) {
-        var result = model.updateFormById(req.params.formId, req.body);
-        defaultResponse(result, res);
-    });
+    app.get("/api/assignment/user/:userId/form", getAllFormsByUserId);
+    app.get("/api/assignment/form/:formId", getFormById);
+    app.put("/api/assignment/form/:formId",updateFormById);
+    app.post("/api/assignment/user/:userId/form",createFormForUser);
+    app.delete("/api/assignment/form/:formId",deleteFormById);
 
-    //generic 404 response
-    function notFound(res) {
-        res.status(200).send(null);
+    function createFormForUser(req, res) {
+        var userId = req.params.userId;
+        var form = req.body;
+        form.fields = [];
+        model.createFormForUser(userId, form)
+            .then(
+                function(form) {
+                    res.json(form);
+                },function(err) {
+                    res.status(400).send(err);
+                });
     }
 
-    function success(res) {
-        res.status(200).send("success");
+    function getAllFormsByUserId(req, res) {
+        var userId = req.params.userId;
+        model.findAllFormsForUser(userId)
+            .then(
+                function (form) {
+                    res.json(form);
+                },
+                function (err) {
+                    res.status(400).send(err);
+
+                }
+            );
     }
 
-    function defaultJsonResponse(njson, res) {
-        if(njson) res.json(njson);
-        else notFound(res);
+    function getFormById(req, res) {
+        var formId = req.params.formId;
+        model.findFromById(formId)
+            .then(
+                function(form) {
+                    res.json(form);
+                },
+                function(err) {
+                  res.status(400).send(err);
+                }
+            );
     }
 
-    function defaultResponse(nobj, res) {
-        if(nobj) success(res);
-        else notFound(res);
+    function updateFormById(req, res) {
+        var formId = req.params.formId;
+        var newForm = req.body;
+        model
+            .updateFormById(formId, newForm)
+            .then(
+                function(form) {
+                    res.json(forn);
+
+                },
+                function(err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
+    function deleteFormById (req, res) {
+        var formId = req.params.formId;
+        model
+            .deleteFormById(formId)
+            .then(
+                function (form) {
+                    res.json(form);
+                },
+                function(err) {
+                   res.status(400).send(err);
+                }
+
+            );
     }
 }

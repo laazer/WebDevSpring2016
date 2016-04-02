@@ -2,7 +2,9 @@ var model = require('./user.mock.json');
 var q = require("q");
 
 module.exports = function(mongoose, db) {
-    var UserModel = require('./user.schema.server.js')(mongoose);
+    var UserSchema = require("./user.schema.server.js")(mongoose);
+    var UserModel = mongoose.model('User', UserSchema);
+    
     var api = {
         createUser: createUser,
         findUserByUsername: findUserByUsername,
@@ -28,7 +30,7 @@ module.exports = function(mongoose, db) {
 
     function findUserByUsername(username) {
         var defered = q.defer();
-        UserModel.findOne({username}, function(err, user) {
+        UserModel.findOne({username: username}, function(err, user) {
           if(err) {
             defered.reject(err);
           } else {
@@ -43,7 +45,7 @@ module.exports = function(mongoose, db) {
         var username = credentials.username;
         var password = credentials.password;
         var defered = q.defer();
-        UserModel.findOne({username, password}, function(err, user) {
+        UserModel.findOne({username: username, password: password}, function(err, user) {
           if(err) {
             defered.reject(err);
           } else {

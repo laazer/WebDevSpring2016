@@ -1,47 +1,91 @@
 module.exports = function(app, uuid) {
-    var model = require('../models/form.model.js')(uuid);
+    var model = require('../models/form.model.js')(uuid, mongoose, db);
 
-    app.get("/api/assignment/form/:formId/field", function(req, res) {
-        var fields = model.findFormById(req.params.formId).fields;
-        defaultJsonResponse(fields, res);
-    });
+    app.get("/api/assignment/form/:formId/field", getAllFieldsByFormId);
+    app.get("/api/assignment/form/:formId/field/:fieldId", getFieldById);
+    app.put("/api/assignment/form/:formId/field/:fieldId",updateFieldById);
+    app.put("/api/assignment/form/:formId/field",updateAllFields);
+    app.post("/api/assignment/form/:formId/field",createFieldForForm);
+    app.delete("/api/assignment/form/:formId/field/:fieldId",deleteFieldById);
 
-    app.get("/api/assignment/form/:formId/field/:fieldId", function(req, res) {
-        var field = model.findFormById(req.params.formId).fields.find(function(x) { x == req.params.fieldId; });
-        defaultJsonResponse(field, res);
-    });
-
-    app.delete("/api/assignment/form/:formId/field/:fieldId", function(req, res) {
-        var result = model.deleteFieldById(req.params.formId, req.params.fieldId);
-        defaultJsonResponse(result, res);
-    });
-
-    app.post("/api/assignment/form/:formId/field", function(req, res) {
-        var result = model.createFieldForForm(req.params.formId, req.body);
-        defaultJsonResponse(result, res);
-    });
-
-    app.put("/api/assignment/form/:formId/field/:fieldId", function(req, res) {
-        var result = model.updateFieldById(req.param.formId, req.params.fieldId, req.body);
-        defaultResponse(result, res);
-    });
-
-    //generic 404 response
-    function notFound(res) {
-        res.status(200).send(null);
+    function createFieldForForm(req, res) {
+        var formId = req.params.formId;
+        var field = req.body;
+        model.createField(formId, field)
+            .then(
+                function(field){
+                    res.json(field);
+                },
+                function(err) {
+                    res.status(400).send(err);
+                });
     }
 
-    function success(res) {
-        res.status(200).send("success");
+    function updateAllFields(req,res) {
+        model.updateAllFieldsInForm(req.params.formId, req.body)
+            .then(
+                function(field) {
+                    res.json(field);
+                },
+                function(err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
-    function defaultJsonResponse(njson, res) {
-        if(njson) res.json(njson);
-        else notFound(res);
+    function getAllFieldsByFormId(req, res) {
+        var formId = req.params.formId;
+        model.findAllFieldsForFrom(formId)
+            .then(
+                function(field) {
+                    res.json(field)
+                },
+                function(err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 
-    function defaultResponse(nobj, res) {
-        if(nobj) success(res);
-        else notFound(res);
+    function getFieldById(req, res) {
+        var formId = req.params.formId;
+        var fieldId = req.params.fieldId;
+        model.findFieldById(formId,fieldId)
+            .then(
+                function(field) {
+                    res.json(field);
+                },
+                function(err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
+    function updateFieldById(req, res) {
+        var formId = req.params.formId;
+        var fieldId = req.params.fieldId;
+        var newField = req.body;
+        model.updateFieldById(formId, fieldId, newField)
+            .then(
+                function(field) {
+                    res.json(field);
+                },
+                function(err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
+    function deleteFieldById (req, res) {
+        var formId = req.params.formId;
+        var fieldId = req.params.fieldId;
+        model.deleteFieldById(formId,fieldId)
+            .then(
+                function (field) {
+                    res.json(field);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     }
 }
