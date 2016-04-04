@@ -10,7 +10,7 @@
 
         if ($rootScope.currentUser) {
             $location.url("/");
-        } 
+        }
 
         function login (user) {
             if (!user) {
@@ -34,6 +34,8 @@
                 else {
                     $scope.error = "Incorrect username and passowrd cobmination";
                 }
+            }, function(err) {
+                  $scope.error = "Incorrect username and passowrd cobmination";
             });
         }
     }

@@ -3,7 +3,7 @@
 	angular
 		.module("FormBuilderApp")
 		.controller("ProfileController", profileController);
-		
+
     function profileController($scope, $rootScope, $location, UserService) {
         var pc = this;
 
@@ -14,9 +14,9 @@
         if (!$scope.currentUser) {
             $location.url("/");
         }
-        
+
         $scope.update = updateUser;
-        
+
         function updateUser (user) {
             // same validation as register
             $scope.error = null;
@@ -30,7 +30,9 @@
                 } else {
                     $scope.message = "Unable to update the user";
                 }
-            });
+            }, function(err) {
+								$scope.message = "Unable to update the user";
+						});
         }
     }
 })();

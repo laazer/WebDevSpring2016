@@ -34,7 +34,7 @@
            var cform = angular.copy(form);
            FormService.createFormForUser($scope.userId, cform).then(function(form) {
                reloadForms();
-           });
+           }, function(err) {});
        }
 
        function updateForm(form) {
@@ -44,7 +44,7 @@
            }
            FormService.updateFormById(form._id, form).then(function(form) {
                reloadForms();
-           });
+           }, function(err) {});
            fc.selectedForm = null;
            $scope.form = null;
            $scope.message = "Form updated successfully."
@@ -58,7 +58,7 @@
            var formId = $scope.forms[index]._id;
             FormService.deleteFormById(formId).then(function(form) {
                reloadForms();
-           });
+           }, function(err) {});
        }
 
        function selectForm(index) {
@@ -69,7 +69,7 @@
        function reloadForms() {
             FormService.findAllFormsForUser($scope.userId).then(function(forms) {
                 $scope.forms = forms;
-            });
+            }, function(err) {});
        }
     }
 })();

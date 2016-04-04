@@ -1,28 +1,21 @@
 module.exports = function(app, mongoose, db) {
     var model = require('../models/user.model.js')(mongoose, db);
-    
+    var resp = require("./resp.js")();
+
     app.get("/api/assignment/user", getAllUsers);
     app.get("/api/assignment/user/:id", getUserById);
     app.get("/api/assignment/loggedin",loggedin);
     app.post("/api/assignment/logout", logout);
     app.get("/api/assignment/user", getUserByUsername);
-    app.get("/api/assignment/user",getUserByCredentials);
-    app.put("/api/assignment/user/:id",updateUserById);
-    app.post("/api/assignment/user",createUser);
-    app.delete("/api/assignment/user/:id",deleteUserById);
+    app.get("/api/assignment/user", getUserByCredentials);
+    app.put("/api/assignment/user/:id", updateUserById);
+    app.post("/api/assignment/user", createUser);
+    app.delete("/api/assignment/user/:id", deleteUserById);
 
     function createUser (req, res) {
         var user = req.body;
         model.createUser(user)
-            .then(
-                function (doc) {
-                    req.session.newUser = doc;
-                    res.json(user);
-                },
-                function (err) {
-                    res.status(400).send(err);
-                }
-            );
+            .then(resp.defaultJsonCallBack(res), resp.notFound(res));
     }
 
     function loggedin(req, res) {
@@ -35,13 +28,12 @@ module.exports = function(app, mongoose, db) {
     }
 
     function getAllUsers (req, res) {
-
         if(req.query.username) {
             if(req.query.password) {
-                getUserByCredentials(req,res);
+                getUserByCredentials(req, res);
             }
             else {
-                getUserByUsername(req,res);
+                getUserByUsername(req, res);
             }
         }
         else {
@@ -54,14 +46,7 @@ module.exports = function(app, mongoose, db) {
     function getUserById (req, res) {
         var id = req.params.id;
         var user = model.findUserById(id)
-            .then(
-                function(doc) {
-                    res.json(doc);
-                },
-                function (err) {
-                    res.status(400).send(err);
-                }
-            )
+            .then(resp.defaultJsonCallBack(res), resp.notFound(res));
     }
 
     function getUserByCredentials (req, res) {
@@ -72,58 +57,26 @@ module.exports = function(app, mongoose, db) {
             password: password
         };
         model.findUserByCredentials(credentials)
-            .then(
-                function(doc) {
-                    req.session.newUser = doc;
-                    res.json(doc);
-                },
-                function (err) {
-                    res.status(400).send(err);
-                }
-
-            );
+            .then(resp.defaultJsonCallBack(res), resp.notFound(res));
     }
 
     function getUserByUsername (req, res) {
         var username = req.query.username;
         model.findUserByUsername(username)
-            .then(
-                function(user) {
-                    res.json(user);
-                },
-                function (err) {
-                    res.status(400).send(err);
-                }
-            );
+            .then(resp.defaultJsonCallBack(res), resp.notFound(res));
     }
-
-
 
     function updateUserById (req, res) {
         var id = req.params.id;
         var user = req.body;
-        model
-            .updateUser(id, user)
-            .then(
-                function(stats) {
-                    res.send(200);
-                },
-                function(err) {
-                    res.status(400).send(err);
-                }
-            );
+        model.updateUser(id, user)
+            .then(resp.defaultCallBack(res), resp.notFound(res));
     }
 
     function deleteUserById (req, res) {
         var id = req.params.id;
         model.deleteUser(id)
-            .then (
-                function (stats) {
-                    res.send(200);
-                },
-                function (err) {
-                    res.status(400).send(err);
-                }
-            );
+            .then (resp.defaultCallBack(res), resp.notFound(res));
     }
+
 }

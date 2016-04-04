@@ -16,53 +16,22 @@
         return model;
 
         function createFieldForForm(formId, field) {
-            var deferred = $q.defer();
-            $http.post(baseUrl.format(formId, ""), field)
-                .success(function(response){
-                    deferred.resolve(response);
-                });
-
-            return deferred.promise;
-        }
+            return $http.post(baseUrl.format(formId, ""), field);
 
        function getFieldsForForm(formId) {
-            var deferred = $q.defer();
-            $http.get(baseUrl.format(formId, ""))
-                .success(function(response){
-                    deferred.resolve(response);
-                });
-
-            return deferred.promise;
+            return $http.get(baseUrl.format(formId, ""));
        }
 
        function getFieldForForm(formId, fieldId) {
-            var deferred = $q.defer();
-            $http.get(baseUrl.format(formId, fieldId))
-                .success(function(response){
-                    deferred.resolve(response);
-                });
-
-            return deferred.promise;
+            return $http.get(baseUrl.format(formId, fieldId));
        }
 
        function deleteFieldFromForm(formId, fieldId) {
-            var deferred = $q.defer();
-            $http.delete(baseUrl.format(formId, fieldId))
-                .success(function(response){
-                    deferred.resolve(response);
-                });
-
-            return deferred.promise;
+            return $http.delete(baseUrl.format(formId, fieldId));
        }
 
        function updateField(formId, fieldId, newField) {
-            var deferred = $q.defer();
-            $http.put(baseUrl.format(formId, fieldId), newField)
-                .success(function(response){
-                    deferred.resolve(response);
-                });
-
-           return deferred.promise;
+            return $http.put(baseUrl.format(formId, fieldId), newField);
     }
 	}
 

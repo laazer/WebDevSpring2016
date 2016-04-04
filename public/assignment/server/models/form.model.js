@@ -1,10 +1,17 @@
+var q = require("q");
+
 module.exports = function(uuid, mongoose, db) {
     var model = require("./form.mock.json");
     var FormSchema = require("./form.schema.server.js")(mongoose);
-    var FormModel = mongoose.model('Form',FormSchema);
-    var FieldSchema = require("./field.schema.server.js")(mongoose);
-    var FieldModel = mongoose.model('Field',FieldSchema);
-    
+    var FormModel;
+    if (mongoose.models.Form) {
+      FormModel = mongoose.model('Form');
+    } else {
+      FormModel = mongoose.model('Form', FormSchema);
+    }
+    // var FieldSchema = require("./field.schema.server.js")(mongoose);
+    // var FieldModel = mongoose.model('Field', FieldSchema);
+
     var api = {
         createFormForUser: createFormForUser,
         findFormById: findFormById,

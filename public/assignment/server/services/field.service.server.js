@@ -1,5 +1,6 @@
-module.exports = function(app, uuid) {
+module.exports = function(app, uuid, mongoose, db) {
     var model = require('../models/form.model.js')(uuid, mongoose, db);
+    var resp = require("./resp.js")();
 
     app.get("/api/assignment/form/:formId/field", getAllFieldsByFormId);
     app.get("/api/assignment/form/:formId/field/:fieldId", getFieldById);
@@ -12,52 +13,25 @@ module.exports = function(app, uuid) {
         var formId = req.params.formId;
         var field = req.body;
         model.createField(formId, field)
-            .then(
-                function(field){
-                    res.json(field);
-                },
-                function(err) {
-                    res.status(400).send(err);
-                });
+            .then(resp.defaultJsonCallBack(res), resp.notFound(res));
     }
 
     function updateAllFields(req,res) {
         model.updateAllFieldsInForm(req.params.formId, req.body)
-            .then(
-                function(field) {
-                    res.json(field);
-                },
-                function(err) {
-                    res.status(400).send(err);
-                }
-            );
+          .then(resp.defaultJsonCallBack(res), resp.notFound(res));
     }
 
     function getAllFieldsByFormId(req, res) {
         var formId = req.params.formId;
         model.findAllFieldsForFrom(formId)
-            .then(
-                function(field) {
-                    res.json(field)
-                },
-                function(err) {
-                    res.status(400).send(err);
-                }
-            );
+          .then(resp.defaultJsonCallBack(res), resp.notFound(res));
     }
 
     function getFieldById(req, res) {
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
         model.findFieldById(formId,fieldId)
-            .then(
-                function(field) {
-                    res.json(field);
-                },
-                function(err) {
-                    res.status(400).send(err);
-                }
-            );
+          .then(resp.defaultJsonCallBack(res), resp.notFound(res));
     }
 
     function updateFieldById(req, res) {
@@ -65,27 +39,13 @@ module.exports = function(app, uuid) {
         var fieldId = req.params.fieldId;
         var newField = req.body;
         model.updateFieldById(formId, fieldId, newField)
-            .then(
-                function(field) {
-                    res.json(field);
-                },
-                function(err) {
-                    res.status(400).send(err);
-                }
-            );
+            .then(resp.defaultJsonCallBack(res), resp.notFound(res));
     }
 
     function deleteFieldById (req, res) {
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
         model.deleteFieldById(formId,fieldId)
-            .then(
-                function (field) {
-                    res.json(field);
-                },
-                function (err) {
-                    res.status(400).send(err);
-                }
-            );
+            .then(resp.defaultJsonCallBack(res), resp.notFound(res));
     }
 }

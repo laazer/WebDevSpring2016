@@ -12,7 +12,7 @@ var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 var upload = multer();
 
-var connectionString = 'mongodb://127.0.0.1:27017/data/db';
+var connectionString = 'mongodb://127.0.0.1:27017/public/assignment/db/';
 
 if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
     connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
@@ -40,7 +40,7 @@ app.use('/project', express.static(__dirname + '/public/project/client'));
 
 // Routes
 require('./public/assignment/server/app.js')(app, uuid, mongoose, db);
-require('./public/project/server/app.js')(app, uuid, mongoose, db);
+require('./public/project/server/app.js')(app, uuid);
 
 // app.get('/hello', function(req, res){
 //     res.send('hello world');

@@ -16,43 +16,19 @@
         return model;
 
         function createFormForUser(userId, form) {
-            var deferred = $q.defer();
-            $http.post(userUrl.format(userId), form)
-                .success(function(response){
-                    deferred.resolve(response);
-                });
-
-            return deferred.promise;
+            return $http.post(userUrl.format(userId), form);
         }
 
        function findAllFormsForUser(userId) {
-            var deferred = $q.defer();
-            $http.get(userUrl.format(userId))
-                .success(function(response){
-                    deferred.resolve(response);
-                });
-
-            return deferred.promise;
+            return $http.get(userUrl.format(userId));
        }
 
        function deleteFormById(formId) {
-            var deferred = $q.defer();
-            $http.delete(formUrl.format(formId))
-                .success(function(response){
-                    deferred.resolve(response);
-                });
-
-            return deferred.promise;
+            return $http.delete(formUrl.format(formId));
        }
 
        function updateFormById(formId, newForm) {
-            var deferred = $q.defer();
-            $http.put(formUrl.format(formId), newForm)
-                .success(function(response){
-                    deferred.resolve(response);
-                });
-
-           return deferred.promise;
+            return $http.put(formUrl.format(formId), newForm);
   		}
 
 		}
