@@ -55,14 +55,18 @@
 							return;
 						}
             FieldService.createFieldForForm($scope.formId, field).then(function(field) {
+									$scope.error = "";
 									reloadFields();
-            }, function(err) {});
+            }, function(field) {
+									$scope.error = "";
+									reloadFields();
+            });
           }
 
           function deleteField(fieldId) {
             FieldService.deleteFieldFromForm($scope.formId, field).then(function(result) {
                   reloadFields();
-            }, function(err) {});
+            });
           }
 
           function getOptionsForField(fieldId) {
@@ -85,14 +89,15 @@
               }
               FieldService.updateField($scope.formId, field._id, field).then(function(fields) {
                   reloadFields();
-              }, function(err) {})
+              })
           }
 
           function reloadFields() {
-               FieldService.getFieldsForForm($scope.formId).then(function(fields) {
-								 	 $scope.error = "";
+               FieldService.getFieldsForForm($scope.formId).then(function(response) {
+								 	 var fields = response.data;
+									 $scope.error = "";
 									 $scope.fields = fields;
-               }, function(err) {});
+               });
           }
 
           function updateOptions() {

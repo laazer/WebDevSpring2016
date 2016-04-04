@@ -42,8 +42,9 @@ module.exports = function(uuid, mongoose, db) {
         return FormModel.findById(formId)
             .then(
                 function (form) {
+                    field._id = uuid.v1();
                     form.fields.push(field);
-                    return form.save();
+                    updateFormById(formId, form);
                 }
             )
     }

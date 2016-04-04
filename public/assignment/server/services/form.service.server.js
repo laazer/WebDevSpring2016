@@ -13,19 +13,19 @@ module.exports = function(app, uuid, mongoose, db) {
         var form = req.body;
         form.fields = [];
         model.createFormForUser(userId, form)
-          .then(resp.defaultJsonCallBack(res), resp.notFound(res));
+          .then(resp.defaultJsonCallBack(res));
     }
 
     function getAllFormsByUserId(req, res) {
         var userId = req.params.userId;
         model.findAllFormsForUser(userId)
-          .then(resp.defaultJsonCallBack(res), resp.notFound(res));
+          .then(resp.defaultJsonCallBack(res));
     }
 
     function getFormById(req, res) {
         var formId = req.params.formId;
         model.findFromById(formId)
-            .then(resp.defaultJsonCallBack(res), resp.notFound(res));
+            .then(resp.defaultJsonCallBack(res));
     }
 
     function updateFormById(req, res) {
@@ -33,13 +33,13 @@ module.exports = function(app, uuid, mongoose, db) {
         var newForm = req.body;
         model
             .updateFormById(formId, newForm)
-              .then(resp.defaultJsonCallBack(res), resp.notFound(res));
+              .then(resp.defaultJsonCallBack(res));
     }
 
     function deleteFormById (req, res) {
         var formId = req.params.formId;
         model
             .deleteFormById(formId)
-            .then(resp.defaultJsonCallBack(res), resp.notFound(res));
+            .then(resp.defaultJsonCallBack(res));
     }
 }

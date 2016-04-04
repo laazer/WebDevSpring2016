@@ -57,26 +57,26 @@ module.exports = function(app, mongoose, db) {
             password: password
         };
         model.findUserByCredentials(credentials)
-            .then(resp.defaultJsonCallBack(res), resp.notFound(res));
+            .then(resp.defaultJsonCallBack(res));
     }
 
     function getUserByUsername (req, res) {
         var username = req.query.username;
         model.findUserByUsername(username)
-            .then(resp.defaultJsonCallBack(res), resp.notFound(res));
+            .then(resp.defaultJsonCallBack(res));
     }
 
     function updateUserById (req, res) {
         var id = req.params.id;
         var user = req.body;
         model.updateUser(id, user)
-            .then(resp.defaultCallBack(res), resp.notFound(res));
+            .then(resp.defaultCallBack(res));
     }
 
     function deleteUserById (req, res) {
         var id = req.params.id;
         model.deleteUser(id)
-            .then (resp.defaultCallBack(res), resp.notFound(res));
+            .then (resp.defaultCallBack(res));
     }
 
 }

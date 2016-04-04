@@ -4,7 +4,9 @@ module.exports = function() {
       notFound: notFound,
       success: success,
       defaultCallBack: defaultCallBack,
-      defaultJsonCallBack: defaultJsonCallBack
+      defaultJsonCallBack: defaultJsonCallBack,
+      defaultJsonResponse: defaultJsonResponse,
+      defaultResponse: defaultResponse
     };
     return api;
 
@@ -13,7 +15,7 @@ module.exports = function() {
     }
 
     function notFound(res, err) {
-        res.status(200).send(err);
+        res.status(404).send(err);
     }
 
     function success(res) {
@@ -29,7 +31,6 @@ module.exports = function() {
     }
 
     function defaultJsonResponse(njson, res) {
-        console.log(njson);
         if(njson) res.json(njson);
         else notFound(res, "error");
     }

@@ -17,6 +17,7 @@
 
         function createFieldForForm(formId, field) {
             return $http.post(baseUrl.format(formId, ""), field);
+				}
 
        function getFieldsForForm(formId) {
             return $http.get(baseUrl.format(formId, ""));
@@ -32,7 +33,7 @@
 
        function updateField(formId, fieldId, newField) {
             return $http.put(baseUrl.format(formId, fieldId), newField);
-    }
-	}
+      }
+		}
 
 })();

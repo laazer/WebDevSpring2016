@@ -16,7 +16,6 @@
         }
 
         $scope.update = updateUser;
-
         function updateUser (user) {
             // same validation as register
             $scope.error = null;

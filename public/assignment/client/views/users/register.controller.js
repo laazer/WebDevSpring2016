@@ -36,8 +36,8 @@
 										$scope.message = "Please provide an email address";
 										return;
 								}
-                UserService.findUserByUsername(user.username).then(function(lUser) {
-										console.log(lUser);
+                UserService.findUserByUsername(user.username).then(function(response) {
+										var lUser = response.data;
 										if (lUser) {
 												$scope.message = "User already exists";
 												return;
@@ -48,9 +48,8 @@
 												$location.url("/profile");
 										});
 									}, function(err) {
-										 console.log(err);
-											UserService.createUser(user).then(function(nUser) {
-													user = nUser;
+											UserService.createUser(user).then(function(response) {
+													var user = response.data;
 													UserService.setCurrentUser(user);
 													$location.url("/profile");
 											});
