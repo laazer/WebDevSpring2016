@@ -18,63 +18,27 @@
         return model;
 
 				function getAllDebates() {
-					var deferred = $q.defer();
-					$http.get(debateUrl.format(""))
-							.success(function(response){
-									deferred.resolve(response);
-							});
-
-					return deferred.promise;
+					return $http.get(debateUrl.format(""));
 				}
 
 				function getDebateById(debateId) {
-					var deferred = $q.defer();
-					$http.get(debateUrl.format(debateId))
-							.success(function(response){
-									deferred.resolve(response);
-							});
-
-					return deferred.promise;
+					return $http.get(debateUrl.format(debateId));
 				}
 
         function createDebateForUser(ownerId, debate) {
-            var deferred = $q.defer();
-            $http.post(userUrl.format(ownerId), debate)
-                .success(function(response){
-                    deferred.resolve(response);
-                });
-
-            return deferred.promise;
+					return $http.post(userUrl.format(ownerId), debate));
         }
 
        function findAllDebatesForUser(ownerId) {
-            var deferred = $q.defer();
-            $http.get(userUrl.format(ownerId))
-                .success(function(response){
-                    deferred.resolve(response);
-                });
-
-            return deferred.promise;
+          return $http.get(userUrl.format(ownerId));
        }
 
        function deleteDebateById(debateId) {
-            var deferred = $q.defer();
-            $http.delete(debateUrl.format(debateId))
-                .success(function(response){
-                    deferred.resolve(response);
-                });
-
-            return deferred.promise;
+				  return $http.delete(debateUrl.format(debateId));
        }
 
        function updateDebateById(debateId, newDebate) {
-            var deferred = $q.defer();
-            $http.put(debateUrl.format(debateId), newDebate)
-                .success(function(response) {
-                    deferred.resolve(response);
-                });
-
-           return deferred.promise;
+           return $http.put(debateUrl.format(debateId), newDebate);
   		}
 
 		}
