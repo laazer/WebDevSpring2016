@@ -38,5 +38,6 @@ node_modules
 
 # Optional REPL history
 
-#Local Db
+# Local Db
 ./public/db
+*/db
