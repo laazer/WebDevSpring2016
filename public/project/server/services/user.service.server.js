@@ -1,52 +1,82 @@
-var model = require('../models/user.model.js')();
+module.exports = function(app, mongoose, db) {
+    var model = require('../models/user.model.js')(mongoose, db);
+    var resp = require("./resp.js")();
 
-module.exports = function(app) {
-    app.post('/api/project/user', function(req, res) {
-        var result = model.createUser(req.body);
-        defaultJsonResponse(result, res);
-    });
-    app.get('/api/project/user', function(req, res) {
-        var result = model.findUserByUsername(req.query.username);
-        defaultJsonResponse(result, res);
-    });
-    app.get('/api/project/user/:userId', function(req, res) {
-        var result = model.findUserByUserId(req.params.userId);
-        defaultJsonResponse(result, res);
-    });
-    app.get('/api/project/user', function(req, res) {
-        var result = model.findUserByCredentials({'username': req.query.username,
-                                            'password': req.query.pasword});
-        defaultJsonResponse(result, res);
-    });
-    app.get('/api/project/user', function(req, res) {
-        var result = model.findAllUsers();
-        defaultJsonResponse(result, res);
-    });
-    app.delete('/api/project/user/:userId', function(req, res) {
-        var result = model.deleteUserById(req.params.userId);
-        defaultResponse(result, res);
-    });
-    app.put('/api/project/user/:userId', function(req, res) {
-        var result = model.updateUser(req.params.userId, req.body);
-        defaultResponse(result, res);
-    });
+    app.get("/api/project/user", getAllUsers);
+    app.get("/api/project/user/:id", getUserById);
+    app.get("/api/project/loggedin",loggedin);
+    app.post("/api/project/logout", logout);
+    app.get("/api/project/user", getUserByUsername);
+    app.get("/api/project/user", getUserByCredentials);
+    app.put("/api/project/user/:id", updateUserById);
+    app.post("/api/project/user", createUser);
+    app.delete("/api/project/user/:id", deleteUserById);
 
-    //generic 404 response
-    function notFound(res) {
-        res.status(200).send(null);
+    function createUser (req, res) {
+        var user = req.body;
+        model.createUser(user)
+            .then(resp.defaultJsonCallBack(res), resp.notFound(res));
     }
 
-    function success(res) {
-        res.status(200).send("success");
+    function loggedin(req, res) {
+        res.json(req.session.newUser);
     }
 
-    function defaultJsonResponse(njson, res) {
-        if(njson) res.json(njson);
-        else notFound(res);
+    function logout(req, res) {
+        req.session.destroy();
+        res.send(200);
     }
 
-    function defaultResponse(nobj, res) {
-        if(nobj) success(res);
-        else notFound(res);
+    function getAllUsers (req, res) {
+        if(req.query.username) {
+            if(req.query.password) {
+                getUserByCredentials(req, res);
+            }
+            else {
+                getUserByUsername(req, res);
+            }
+        }
+        else {
+            var users = model.findAllUsers();
+            res.json(users);
+        }
+
     }
+
+    function getUserById (req, res) {
+        var id = req.params.id;
+        var user = model.findUserById(id)
+            .then(resp.defaultJsonCallBack(res), resp.notFound(res));
+    }
+
+    function getUserByCredentials (req, res) {
+        var username = req.query.username;
+        var password = req.query.password;
+        var credentials = {
+            username: username,
+            password: password
+        };
+        model.findUserByCredentials(credentials)
+            .then(resp.defaultJsonCallBack(res));
+    }
+
+    function getUserByUsername (req, res) {
+        var username = req.query.username;
+        model.findUserByUsername(username)
+            .then(resp.defaultJsonCallBack(res));
+    }
+
+    function updateUserById (req, res) {
+        var id = req.params.id;
+        var user = req.body;
+        model.updateUser(id, user)
+            .then(resp.defaultCallBack(res));
+    }
+
+    function deleteUserById (req, res) {
+        var id = req.params.id;
+        model.deleteUser(id)
+            .then (resp.defaultCallBack(res));
+    }
+
 }

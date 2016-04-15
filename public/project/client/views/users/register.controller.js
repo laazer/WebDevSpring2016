@@ -32,18 +32,28 @@
                     $scope.message = "Passwords must match";
                     return;
                 }
-                UserService.findUserByUsername(user.username).then(function(user) {
-                    rc.user = user
-	                if (rc.user) {
-	                    $scope.message = "User already exists";
-	                    return;
-	                }
-	                UserService.createUser($scope.user).then(function(user) {
-	                    rc.user = user;
-	                    UserService.setCurrentUser(rc.user);
-	                    $location.url("/profile");
-	                });
-                });
+								if (!user.email) {
+										$scope.message = "Please provide an email address";
+										return;
+								}
+                UserService.findUserByUsername(user.username).then(function(response) {
+										var lUser = response.data;
+										if (lUser) {
+												$scope.message = "User already exists";
+												return;
+										}
+										UserService.createUser(user).then(function(nUser) {
+												user = nUser;
+												UserService.setCurrentUser(user);
+												$location.url("/profile");
+										});
+									}, function(err) {
+											UserService.createUser(user).then(function(response) {
+													var user = response.data;
+													UserService.setCurrentUser(user);
+													$location.url("/profile");
+											});
+									});
             };
         }
 })();

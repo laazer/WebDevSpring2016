@@ -1,47 +1,51 @@
-module.exports = function(app, uuid) {
-    var model = require('../models/debate.model.js')(uuid);
+module.exports = function(app, uuid, mongoose, db)  {
+    var model = require('../models/debate.model.js')(uuid, mongoose, db);
+    var resp = require("./resp.js")();
 
-    app.post('/api/project/user/:ownerId/debate', function(req, res) {
-        var result = model.createDebateForUser(req.params.ownerId, req.body);
-        defaultResponse(result, res);
-    });
-    app.get('/api/project/user/:ownerId/debate', function(req, res) {
-        var result = model.findAllDebatesForUser(req.params.ownerId);
-        defaultJsonResponse(result, res);
-    });
-    app.get('/api/project/debate/:debateId', function(req, res) {
-        var result = model.findDebateById(req.params.debateId);
-        defaultJsonResponse(result, res);
-    });
-    app.get('/api/project/debate/', function(req, res) {
-        var result = model.findAllDebates();
-        defaultJsonResponse(result, res);
-    });
-    app.delete('/api/project/debate/:debateId', function(req, res) {
-        var result = model.deleteDebateById(req.params.debateId);
-        defaultResponse(result, res);
-    });
-    app.put('/api/project/debate/:debateId', function(req, res) {
-        var result = model.updateDebateById(req.params.debateId, req.body);
-        defaultResponse(result, res);
-    });
+    app.get("/api/project/user/:ownerId/debate", getAllDebatesByUserId);
+    app.get("/api/project/debate/:debateId", getDebateById);
+    app.put("/api/project/debate/:debateId",updateDebateById);
+    app.post("/api/project/user/:ownerId/debate",createDebateForUser);
+    app.delete("/api/project/debate/:debateId",deleteDebateById);
+    app.get('/api/project/debate/', getAllDebates);
 
-    //generic 404 response
-    function notFound(res) {
-        res.status(200).send(null);
+    function createDebateForUser(req, res) {
+        var userId = req.params.userId;
+        var debate = req.body;
+        debate.arguments = [];
+        model.createDebateForUser(userId, debate)
+          .then(resp.defaultJsonCallBack(res));
     }
 
-    function success(res) {
-        res.status(200).send("success");
+    function getAllDebatesByUserId(req, res) {
+        var userId = req.params.userId;
+        model.findAllDebatesForUser(userId)
+          .then(resp.defaultJsonCallBack(res));
     }
 
-    function defaultJsonResponse(njson, res) {
-        if(njson) res.json(njson);
-        else notFound(res);
+    function getAllDebates(req, res) {
+        model.findAllDebates(userId)
+          .then(resp.defaultJsonCallBack(res));
     }
 
-    function defaultResponse(nobj, res) {
-        if(nobj) success(res);
-        else notFound(res);
+    function getDebateById(req, res) {
+        var debateId = req.params.debateId;
+        model.findFromById(debateId)
+            .then(resp.defaultJsonCallBack(res));
+    }
+
+    function updateDebateById(req, res) {
+        var debateId = req.params.debateId;
+        var newDebate = req.body;
+        model
+            .updateDebateById(debateId, newDebate)
+              .then(resp.defaultJsonCallBack(res));
+    }
+
+    function deleteDebateById (req, res) {
+        var debateId = req.params.debateId;
+        model
+            .deleteDebateById(debateId)
+            .then(resp.defaultJsonCallBack(res));
     }
 }

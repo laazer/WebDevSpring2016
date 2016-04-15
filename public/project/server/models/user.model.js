@@ -1,6 +1,9 @@
 var model = require('./user.mock.json');
+var q = require("q");
 
-module.exports = function() {
+module.exports = function(mongoose, db) {
+    var UserSchema = require("./user.schema.server.js")(mongoose);
+    var UserModel = mongoose.model('User', UserSchema);
 
     var api = {
         createUser: createUser,
@@ -14,79 +17,91 @@ module.exports = function() {
     return api;
 
     function createUser(user) {
-        var u = {
-           "_id" : (new Date).getTime(),
-           "username" : user.username,
-           "password" : user.password,
-           "email" : user.email,
-        };
-       model.users.push(u);
-       return u;
+       var defered = q.defer();
+       UserModel.create(user, function(err, user) {
+         if(err) {
+           defered.reject(err);
+         } else {
+           defered.resolve(user);
+         }
+       })
+       return defered.promise;
     }
 
     function findUserByUsername(username) {
-        for (var u in model.users) {
-               if(model.users[u].username == username) {
-                   return model.users[u];
-               }
-        }
-        return null;
-    }
-
-    function findUserByUserId(userId) {
-        for (var u in model.users) {
-               if(model.users[u]._id == userId) {
-                   return model.users[u];
-               }
-        }
-        return null;
+        var defered = q.defer();
+        UserModel.findOne({username: username}, function(err, user) {
+          if(err) {
+            defered.reject(err);
+          } else {
+            defered.resolve(user);
+          }
+        })
+        return defered.promise;
     }
 
     function findUserByCredentials(credentials) {
         var user = null;
         var username = credentials.username;
         var password = credentials.password;
-        for (var u in model.users) {
-            user = model.users[u];
-            if (user.username === username && user.password == password) {
-                 return user;
+        var defered = q.defer();
+        UserModel.findOne({username: username, password: password}, function(err, user) {
+          if(err) {
+            defered.reject(err);
+          } else {
+            defered.resolve(user);
+          }
+        })
+        return defered.promise;
+    }
+
+    function findUserByUserId(userId) {
+        var defered = q.defer();
+        UserModel.findById(userId, function(err, user){
+            if(err) {
+                defered.reject(err);
+            } else {
+                defered.resolve(user);
             }
-        }
-        return null;
+        });
+        return defered.promise;
     }
 
     function findAllUsers() {
-        return model.users;
+        var defered = q.defer();
+        UserModel.find(function(err, users){
+           if(err) {
+               defered.reject(err);
+           } else {
+               defered.resolve(users);
+           }
+        });
+        return defered.promise;
     }
 
     function deleteUserById(userId) {
-        for(var u in model.users) {
-            if(model.user[u]._id == userId) {
-                model.users.splice(u, 1);
-                return true;
-            }
-        }
-        return false;
+      var defered = q.defer();
+       UserModel.remove({_id: userId}, function(err, status) {
+           if(err) {
+               defered.reject(err);
+           } else {
+               defered.resolve(status);
+           }
+       });
+       return defered.promise;
     }
 
     function updateUser(userId, user) {
-       var cuser = null;
-       for(var u in model.users) {
-            if(model.users[u]._id == userId) {
-                cuser = model.users[u];
-                model.users[u] = {
-                    "_id" : userId,
-                    "firstName" : user.firstName ? user.firstName : cuser.firstName,
-                    "lastName" : user.lastName ? user.lastName : cuser.lastName,
-                    "username" : user.username ? user.username : cuser.username,
-                    "password" : user.password ? user.password : cuser.password,
-                    "email" : user.email ? user.email : cuser.email,
-                }
-                cuser = model.users[u];
-                return true;
-            }
+      var defered = q.defer();
+      user.delete("_id");
+      UserModel.update({_id: userId}, {$set: user}, function(err, user) {
+        if(err) {
+            defered.reject(err);
+        } else {
+            defered.resolve(user);
         }
-        return false;
+      });
+      return defered.promise;
     }
 
 }

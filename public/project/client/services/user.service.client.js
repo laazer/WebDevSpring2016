@@ -19,65 +19,29 @@
         return model;
 
         function findUserByUsername(username) {
-            var deferred = $q.defer();
 						var url = baseUrl + '?username=' + username;
-            $http.jsonp(url)
-                .success(function(response){
-                    deferred.resolve(response);
-                });
-
-            return deferred.promise;
+            return $http.jsonp(url);
         }
 
         function findUserByUsernameAndPassword(username, password) {
-            var deferred = $q.defer();
 						var url = baseUrl + '?username=' + username + '&password=' + password;
-            $http.get(url)
-                .success(function(response){
-                    deferred.resolve(response);
-                });
-
-            return deferred.promise;
+            return $http.get(url)
         }
 
         function findAllUsers() {
-            var deferred = $q.defer();
-            $http.jsonp(baseUrl)
-                .success(function(response){
-                    deferred.resolve(response);
-                });
-
-            return deferred.promise;
+            return $http.jsonp(baseUrl);
         }
 
         function createUser(user) {
-            var deferred = $q.defer();
-            $http.post(baseUrl, user)
-                .success(function(response){
-                    deferred.resolve(response);
-                });
-
-            return deferred.promise;
+            return $http.post(baseUrl, user);
         }
 
         function deleteUserById(userId) {
-            var deferred = $q.defer();
-            $http.delete(baseUrl + '/' + userId)
-                .success(function(response){
-                    deferred.resolve(response);
-                });
-
-            return deferred.promise;
+            return $http.delete(baseUrl + '/' + userId);
         }
 
         function updateUser(userId, user) {
-            var deferred = $q.defer();
-            $http.put(baseUrl + '/' + userId, user)
-                .success(function(response){
-                    deferred.resolve(response);
-                });
-
-            return deferred.promise;
+            return $http.put(baseUrl + '/' + userId, user);
         }
 
         function setCurrentUser(user) {

@@ -37,3 +37,6 @@ node_modules
 .npm
 
 # Optional REPL history
+
+#Local Db
+./public/db

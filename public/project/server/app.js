@@ -1,5 +1,5 @@
-module.exports = function(app, uuid) {
-    //require("./services/field.service.server.js")(app, uuid);
-    require("./services/debate.service.server.js")(app, uuid);
-    require("./services/user.service.server.js")(app);
+module.exports = function(app, uuid, mongoose, db) {
+    require("./services/argument.service.server.js")(app, uuid, mongoose, db);
+    require("./services/debate.service.server.js")(app, uuid, mongoose, db);
+    require("./services/user.service.server.js")(app, mongoose, db);
 };

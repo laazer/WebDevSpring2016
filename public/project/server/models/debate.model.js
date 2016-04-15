@@ -1,5 +1,14 @@
+var q = require("q");
+
 module.exports = function(uuid) {
         var model = require("./debate.mock.json");
+        var DebateSchema = require("./debate.schema.server.js")(mongoose);
+        var DebateModel;
+        if (mongoose.models.Debate) {
+          DebateModel = mongoose.model('Debate');
+        } else {
+          DebateModel = mongoose.model('Debate', DebateSchema);
+        }
         var api = {
             createDebateForUser: createDebateForUser,
             findAllDebatesForUser: findAllDebatesForUser,
@@ -14,93 +23,108 @@ module.exports = function(uuid) {
         return api;
 
         function createDebateForUser(userId, debate) {
-            var ldebate = debate;
-            ldebate.ownerId = userId;
-            ldebate.merrit = [];
-            ldebate.arguments = [];
-            ldebate._id = uuid.v1();
-            model.debates.push(ldebate);
-            return ldebate;
+            debate.userId = userId;
+            var deferred = q.defer();
+            DebateSchema.create(debate, function(err, debate){
+                if(err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(debate);
+                }
+            });
+            return deferred.promise;
         }
 
        function findDebateById(debateId) {
-         for(var i in model.debates) {
-           if(model.debates[i]._id == debateId) {
-             return model.debates[i];
-           }
-           return null;
-         }
-           var d = model.debates.find(function(item) {
-               return item._id == debateId;
+           var deferred = q.defer();
+           DebateModel.findOne({_id: debateId}, function(err, debate) {
+               if(err) {
+                   deferred.reject(err);
+               } else {
+                   deferred.resolve(debate);
+               }
            });
-           return d;
+           return deferred.promise;
        }
 
        function findAllDebatesForUser(userId) {
-           var result = model.debates.filter(function(value) {
-                return value.ownerId == userId ||
-                value.arguments.filter(function(arg) {
-                    return arg.ownerId == userId;
-                });
+           var deferred = q.defer();
+           DebateModel.find({userId : userId}, function(err, debates) {
+              if(err) {
+                  deferred.reject(err);
+              } else {
+                  deferred.resolve(debates);
+              }
            });
-           return result;
+           return deferred.promise;
        }
 
        function findAllDebates() {
-           return model.debates;
+         var deferred = q.defer();
+         DebateModel.find({}, function(err, debates) {
+            if(err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(debates);
+            }
+         });
+         return deferred.promise;
        }
 
        function deleteDebateById(debateId) {
-            for(var f in model.debates) {
-                if(model.debates[f]._id == debateId) {
-                    model.debates.splice(f, 1);
-                    break;
+            var deferred = q.defer();
+            DebateModel.remove({_id : debateId}, function(err, debate) {
+                if(err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(debate);
                 }
-            }
-            model.debates;
+            });
+            return deferred.promise;
        }
 
        function updateDebateById(debateId, newdebate) {
-           var debate = null;
-           for(var f in model.debates) {
-                if(model.debates[f]._id == debateId) {
-                    model.debates[f] = newdebate;
-                    debate = model.debates[f];
-                    break;
+            var deferred = q.defer();
+            FormModel.update({_id : debateId}, {$set: newdebate},
+              function (err, debate) {
+                if(err) {
+                    deferred.reject(err);
+                } else{
+                    deferred.resolve(debate);
                 }
-            }
-            return debate;
+            });
+            return deferred.promise;
         }
 
 				function createArgumentForDebate(debateId, argument) {
-						var debate = finddebateById(debateId);
-						var largument = argument;
-						largument._id = uuid.v1();
-						if(!debate.arguments) {
-							debate.arguments = [];
-						}
-            largument.merrit = [];
-            largument.source.merrit = [];
-						debate.arguments.push(largument);
-						updatedebateById(debateId, debate);
-						return largument;
+            return DebateModel.findById(debateId)
+                .then(
+                    function (debate) {
+                        argumentId._id = uuid.v1();
+                        debate.arguments.push(argument);
+                        updateDebateById(debateId, debate);
+                    }
+                )
+
 				}
 
 				function deleteArgumentById(debateId, argumentId) {
-						var debate = finddebateById(debateId);
-						for(f in debate.arguments) {
-							 if(debate.arguments[f]._id.toString() == argumentId) {
-										 debate.arguments.splice(f, 1);
-							 }
-						}
-						return updateDebateById(debateId, debate);
+            return DebateModel.findById(debateId).then(
+                function(debate) {
+                    debate.arguments.id(argumentId).remove();
+                    return debate.save();
+                }
+            )
 				}
 
 				 function updateArgumentById(debateId, argumentId, argument) {
-						 deleteArgumentById(debateId, argumentId);
-						 var debate = finddebateById(debateId);
-						 debate.arguments.push(argument);
-						 return updateDebateById(debateId, debate);
+           return DebateModel.findDebateById(debateId).then(
+             function(debate) {
+               deleteArgumentById(argumentId).then(function(debate) {
+                  createArgumentForDebate(debateId, argument);
+                });
+             }
+           );
 				 }
 
 
