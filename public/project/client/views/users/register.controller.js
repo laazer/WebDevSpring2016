@@ -43,7 +43,8 @@
 												$scope.message = "User already exists";
 												return;
 										}
-										UserService.createUser(user).then(function(nUser) {
+										UserService.createUser(user).then(
+											function(nUser) {
 												user = nUser;
 												UserService.setCurrentUser(user);
 												$location.url("/profile");

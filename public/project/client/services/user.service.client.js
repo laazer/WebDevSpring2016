@@ -6,6 +6,7 @@
 
     function UserService ($rootScope, $q, $http) {
         var baseUrl = "/api/project/user";
+				var baseFormatUrl = "/api/project/user/{0}";
 				var model = {
             findUserByUsernameAndPassword: findUserByUsernameAndPassword,
             findUserByUsername: findUserByUsername,
@@ -14,9 +15,32 @@
             deleteUserById: deleteUserById,
             updateUser: updateUser,
             setCurrentUser: setCurrentUser,
-            getCurrentUser: getCurrentUser
+            getCurrentUser: getCurrentUser,
+						login: login,
+						logout: logout,
+						loggedin: loggedin
         };
         return model;
+
+
+				function login(username, password) {
+					  var creds = {
+	              username: username,
+	              password: password
+	          };
+						var url = baseFormatUrl.format("login");
+						return $http.post(url, creds);
+				}
+
+				function logout() {
+						var url = baseFormatUrl.format("logout");
+						return $http.get(url);
+				}
+
+				function loggedin() {
+						var url = baseFormatUrl.format("loggedin");
+						return $http.get(url);
+				}
 
         function findUserByUsername(username) {
 						var url = baseUrl + '?username=' + username;
@@ -47,6 +71,10 @@
         function setCurrentUser(user) {
             $rootScope.isLoggedIn = true;
             $rootScope.currentUser = user;
+						if(!user.roles) return;
+						if (user.roles.indexOf("admin") >-1) {
+							$rootScope.isAdmin = true;
+						}
         }
 
         function getCurrentUser() {

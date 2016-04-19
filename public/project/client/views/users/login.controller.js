@@ -25,7 +25,7 @@
                 $scope.error = "Missing password";
                 return;
             }
-            UserService.findUserByUsernameAndPassword(user.username, user.password).then(function(response) {
+            UserService.login(user.username, user.password).then(function(response) {
                 lc.user = response.data;
                 if (lc.user) {
                     UserService.setCurrentUser(lc.user);

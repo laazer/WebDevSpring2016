@@ -19,6 +19,7 @@ module.exports = function(uuid, mongoose, db) {
 						deleteArgumentById: deleteArgumentById,
 						createArgumentForDebate: createArgumentForDebate,
 						updateArgumentById: updateArgumentById,
+            findDebatesByContent: findDebatesByContent
         };
         return api;
 
@@ -62,6 +63,20 @@ module.exports = function(uuid, mongoose, db) {
        function findAllDebates() {
          var deferred = q.defer();
          DebateModel.find({}, function(err, debates) {
+            if(err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(debates);
+            }
+         });
+         return deferred.promise;
+       }
+
+       function findDebatesByContent(content) {
+         var regx = ".*" + content + ".*";
+         var deferred = q.defer();
+         DebateModel.find({text: { $regex: regx, $options: 'si'}},
+         function(err, debates) {
             if(err) {
                 deferred.reject(err);
             } else {

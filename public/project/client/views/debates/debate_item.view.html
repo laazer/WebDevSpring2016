@@ -50,11 +50,13 @@
             </div>
             <div class="pc-inputs row ">
                 <div class="pro-input col-xs-sm-6 col-sm-6 col-md-6">
+                    <div ng-show="pro_message" class="alert alert-info" role="alert">{{pro_message}}</div>
                     <input type="text" class="form-control" placeholder="Pro Idea" ng-model="pro.text">
                     <input type="text" class="form-control" placeholder="Source" ng-model="pro.source.link">
                     <button type="submit" class="btn btn-default btn-block done" ng-click="addPro(selectedDebate, pro)">Done</button>
                 </div>
                 <div class="con-input col-xs-sm-6 col-sm-6 col-md-6">
+                    <div ng-show="con_message" class="alert alert-info" role="alert">{{con_message}}</div>
                     <input type="text" class="form-control" placeholder="Con Idea" ng-model="con.text">
                     <input type="text" class="form-control" placeholder="Source" ng-model="con.source.link">
                     <button type="submit" class="btn btn-default btn-block done" ng-click="addCon(selectedDebate, pro)">Done</button>

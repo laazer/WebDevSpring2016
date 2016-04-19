@@ -1,4 +1,4 @@
-module.exports = function(app, uuid, mongoose, db)  {
+locamodule.exports = function(app, uuid, mongoose, db)  {
     var model = require('../models/debate.model.js')(uuid, mongoose, db);
     var resp = require("./resp.js")();
 
@@ -8,6 +8,7 @@ module.exports = function(app, uuid, mongoose, db)  {
     app.post("/api/project/user/:ownerId/debate",createDebateForUser);
     app.delete("/api/project/debate/:debateId",deleteDebateById);
     app.get('/api/project/debate/', getAllDebates);
+    app.get('/api/project/debate/search', getDebateByContent);
 
     function createDebateForUser(req, res) {
         var userId = req.params.ownerId;
@@ -48,5 +49,12 @@ module.exports = function(app, uuid, mongoose, db)  {
         model
             .deleteDebateById(debateId)
             .then(resp.defaultJsonCallBack(res));
+    }
+
+    function getDebateByContent(req, res) {
+      var content = req.query.content;
+      model
+          .findDebatesByContent(content)
+          .then(resp.defaultJsonCallBack(res));
     }
 }

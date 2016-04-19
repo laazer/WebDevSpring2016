@@ -13,7 +13,8 @@
 						getDebateById: getDebateById,
 						getAllDebates: getAllDebates,
             deleteDebateById: deleteDebateById,
-            updateDebateById: updateDebateById
+            updateDebateById: updateDebateById,
+						findDebateByContent: findDebateByContent
         };
         return model;
 
@@ -40,6 +41,12 @@
        function updateDebateById(debateId, newDebate) {
            return $http.put(debateUrl.format(debateId), newDebate);
   		}
+
+			function findDebateByContent(content) {
+				  var search = "search?content=" + content;
+					var url = debateUrl.format(search);
+					return $http.get(url);
+			}
 
 		}
 })();
