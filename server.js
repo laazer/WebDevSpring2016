@@ -27,11 +27,16 @@ var db = mongoose.connect(connectionString);
 // Configuration
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-//app.use(cookieParser());
-// app.use(passport.initialize());
-// app.use(session({ secret: process.env.PASSPORT_SECRET }));
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(cookieParser());
+app.use(passport.initialize());
+app.use(session({
+    secret: 'its not just a secret, its a super secret',
+    resave: true,
+    saveUninitialized: true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 app.use('/', express.static(__dirname + '/public'));

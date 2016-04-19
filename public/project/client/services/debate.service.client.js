@@ -26,7 +26,7 @@
 				}
 
         function createDebateForUser(ownerId, debate) {
-					return $http.post(userUrl.format(ownerId), debate));
+					return $http.post(userUrl.format(ownerId), debate);
         }
 
        function findAllDebatesForUser(ownerId) {

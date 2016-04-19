@@ -5,10 +5,10 @@
     <div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
     <form class="form-horizontal">
         <div class="form-group">
-                <input type="text" class="form-control" id="reg-username" placeholder="First Name" ng-model="user.username">
+                <input type="text" class="form-control" id="reg-username" placeholder="First Name" ng-model="user.firstName">
         </div>
         <div class="form-group">
-                <input type="text" class="form-control" id="reg-username" placeholder="Last Name" ng-model="user.username">
+                <input type="text" class="form-control" id="reg-username" placeholder="Last Name" ng-model="user.lastName">
         </div>
         <div class="form-group">
                 <input type="text" class="form-control" id="reg-username" placeholder="Username" ng-model="user.username">
@@ -22,9 +22,9 @@
         <div class="form-group">
                 <input type="email" class="form-control" id="reg-email" placeholder="Email" ng-model="user.email">
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
             <input type="{{this.value==null ? 'text' : 'date'}}" onfocus="this.type='date'" class="form-control" id="field-dob" placeholder="Date of Birth">
-        </div>
+        </div> -->
         <div class="form-group">
            <a type="submit" ng-click="register(user)" class="btn btn-default btn-block">Register</a>
         </div>

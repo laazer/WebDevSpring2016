@@ -1,6 +1,7 @@
 <div ng-include="'views/sidebar/sidebar.view.html'"></div>
 <div class="container-fluid">
 <div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3 main">
+    <div ng-show="message" class="alert alert-info" role="alert">{{message}}</div>
     <div class="new-debate-item">
         <textarea class="new-debate-input col-md-12" rows="3" placeholder="What's grinding your gears?" ng-model="in_debate.text">
         </textarea>

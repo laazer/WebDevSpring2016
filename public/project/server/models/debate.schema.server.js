@@ -5,8 +5,8 @@ module.exports = function(mongoose) {
 
     var DebateSchema = new mongoose.Schema({
     		ownerId: String,
-    		text: type: String,
-    		arguments: { type: [ArgumentSchema], default: [] },
+    		text: String,
+    		darguments: { type: [ArgumentSchema], default: [] },
         merrit: {type: [MerritSchema], default: [] },
     		created: { type: Date, default: Date.now() },
     		updated: { type: Date, default: Date.now() }

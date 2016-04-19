@@ -1,6 +1,6 @@
 var q = require("q");
 
-module.exports = function(uuid) {
+module.exports = function(uuid, mongoose, db) {
         var model = require("./debate.mock.json");
         var DebateSchema = require("./debate.schema.server.js")(mongoose);
         var DebateModel;
@@ -23,9 +23,9 @@ module.exports = function(uuid) {
         return api;
 
         function createDebateForUser(userId, debate) {
-            debate.userId = userId;
+            debate.ownerId = userId;
             var deferred = q.defer();
-            DebateSchema.create(debate, function(err, debate){
+            DebateModel.create(debate, function(err, debate){
                 if(err) {
                     deferred.reject(err);
                 } else {
@@ -49,7 +49,7 @@ module.exports = function(uuid) {
 
        function findAllDebatesForUser(userId) {
            var deferred = q.defer();
-           DebateModel.find({userId : userId}, function(err, debates) {
+           DebateModel.find({ownerId : userId}, function(err, debates) {
               if(err) {
                   deferred.reject(err);
               } else {
@@ -85,7 +85,8 @@ module.exports = function(uuid) {
 
        function updateDebateById(debateId, newdebate) {
             var deferred = q.defer();
-            FormModel.update({_id : debateId}, {$set: newdebate},
+            newdebate.updated = Date.now();
+            DebateModel.update({_id : debateId}, {$set: newdebate},
               function (err, debate) {
                 if(err) {
                     deferred.reject(err);
@@ -101,7 +102,7 @@ module.exports = function(uuid) {
                 .then(
                     function (debate) {
                         argumentId._id = uuid.v1();
-                        debate.arguments.push(argument);
+                        debate.darguments.push(argument);
                         updateDebateById(debateId, debate);
                     }
                 )
@@ -111,7 +112,7 @@ module.exports = function(uuid) {
 				function deleteArgumentById(debateId, argumentId) {
             return DebateModel.findById(debateId).then(
                 function(debate) {
-                    debate.arguments.id(argumentId).remove();
+                    debate.darguments.id(argumentId).remove();
                     return debate.save();
                 }
             )

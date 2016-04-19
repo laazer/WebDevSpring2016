@@ -10,27 +10,28 @@ module.exports = function(app, uuid, mongoose, db)  {
     app.get('/api/project/debate/', getAllDebates);
 
     function createDebateForUser(req, res) {
-        var userId = req.params.userId;
+        var userId = req.params.ownerId;
         var debate = req.body;
-        debate.arguments = [];
+        debate.darguments = [];
         model.createDebateForUser(userId, debate)
           .then(resp.defaultJsonCallBack(res));
     }
 
     function getAllDebatesByUserId(req, res) {
-        var userId = req.params.userId;
+        var userId = req.params.ownerId;
         model.findAllDebatesForUser(userId)
           .then(resp.defaultJsonCallBack(res));
     }
 
     function getAllDebates(req, res) {
+        var userId = req.params.ownerId;
         model.findAllDebates(userId)
           .then(resp.defaultJsonCallBack(res));
     }
 
     function getDebateById(req, res) {
         var debateId = req.params.debateId;
-        model.findFromById(debateId)
+        model.findDebateById(debateId)
             .then(resp.defaultJsonCallBack(res));
     }
 

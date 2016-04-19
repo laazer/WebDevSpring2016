@@ -37,6 +37,7 @@
 										return;
 								}
                 UserService.findUserByUsername(user.username).then(function(response) {
+										console.log(response);
 										var lUser = response.data;
 										if (lUser) {
 												$scope.message = "User already exists";
@@ -46,12 +47,11 @@
 												user = nUser;
 												UserService.setCurrentUser(user);
 												$location.url("/profile");
+												return;
 										});
 									}, function(err) {
 											UserService.createUser(user).then(function(response) {
-													var user = response.data;
-													UserService.setCurrentUser(user);
-													$location.url("/profile");
+												$scope.message("request to register failed");
 											});
 									});
             };

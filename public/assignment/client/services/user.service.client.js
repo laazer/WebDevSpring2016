@@ -20,7 +20,7 @@
 
         function findUserByUsername(username) {
 						var url = baseUrl + '?username=' + username;
-            return $http.jsonp(url);
+            return $http.get(url);
         }
 
         function findUserByUsernameAndPassword(username, password) {

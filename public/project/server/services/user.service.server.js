@@ -1,9 +1,14 @@
+var passport  = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var bcrypt = require("bcrypt-nodejs");
+
 module.exports = function(app, mongoose, db) {
     var model = require('../models/user.model.js')(mongoose, db);
     var resp = require("./resp.js")();
 
     app.get("/api/project/user", getAllUsers);
     app.get("/api/project/user/:id", getUserById);
+    app.post("/api/assignment/login", passport.authenticate("project"), login);
     app.get("/api/project/loggedin",loggedin);
     app.post("/api/project/logout", logout);
     app.get("/api/project/user", getUserByUsername);
@@ -12,10 +17,25 @@ module.exports = function(app, mongoose, db) {
     app.post("/api/project/user", createUser);
     app.delete("/api/project/user/:id", deleteUserById);
 
+    passport.use('project', new LocalStrategy(
+      function (username, password, done) {
+        model.findUserByCredentials({username: username, password: password})
+            .then(resp.defaultJsonCallBack(res))
+          }
+      ));
+      passport.serializeUser(serializeUser);
+      passport.deserializeUser(deserializeUser);
+
+
     function createUser (req, res) {
         var user = req.body;
         model.createUser(user)
             .then(resp.defaultJsonCallBack(res), resp.notFound(res));
+    }
+
+    function login(req, res) {
+      var user = req.user;
+      resp.defaultJsonResponse(req, user);
     }
 
     function loggedin(req, res) {
