@@ -1,4 +1,5 @@
-(function(){
+(function()
+{
     angular
         .module("DebateBuilderApp")
         .controller("LoginController", loginController);

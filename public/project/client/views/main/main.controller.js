@@ -10,7 +10,7 @@
         $rootScope.isAdmin = false;
         $location.url();
 				$rootScope.range = range;
-				logIn();
+				//logIn();
 
 				function logIn() {
 						UserService.loggedin().then(function(res) {

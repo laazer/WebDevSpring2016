@@ -1,4 +1,4 @@
-locamodule.exports = function(app, uuid, mongoose, db)  {
+module.exports = function(app, uuid, mongoose, db)  {
     var model = require('../models/debate.model.js')(uuid, mongoose, db);
     var resp = require("./resp.js")();
 
@@ -7,8 +7,8 @@ locamodule.exports = function(app, uuid, mongoose, db)  {
     app.put("/api/project/debate/:debateId",updateDebateById);
     app.post("/api/project/user/:ownerId/debate",createDebateForUser);
     app.delete("/api/project/debate/:debateId",deleteDebateById);
+    app.get("/api/project/debate/search/:content", getDebateByContent);
     app.get('/api/project/debate/', getAllDebates);
-    app.get('/api/project/debate/search', getDebateByContent);
 
     function createDebateForUser(req, res) {
         var userId = req.params.ownerId;
@@ -52,7 +52,7 @@ locamodule.exports = function(app, uuid, mongoose, db)  {
     }
 
     function getDebateByContent(req, res) {
-      var content = req.query.content;
+      var content = req.params.content;
       model
           .findDebatesByContent(content)
           .then(resp.defaultJsonCallBack(res));

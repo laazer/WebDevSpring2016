@@ -14,7 +14,7 @@
 						getAllDebates: getAllDebates,
             deleteDebateById: deleteDebateById,
             updateDebateById: updateDebateById,
-						findDebateByContent: findDebateByContent
+						findDebatesByContent: findDebatesByContent
         };
         return model;
 
@@ -42,8 +42,8 @@
            return $http.put(debateUrl.format(debateId), newDebate);
   		}
 
-			function findDebateByContent(content) {
-				  var search = "search?content=" + content;
+			function findDebatesByContent(content) {
+				  var search = "search/" + content;
 					var url = debateUrl.format(search);
 					return $http.get(url);
 			}

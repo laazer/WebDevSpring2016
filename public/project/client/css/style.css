@@ -13,33 +13,6 @@ tr .glyphicon {
     cursor: pointer;
 }
 
-/*
- * Forms
- */
-.ffields-form input,
-.ffields-form select {
-    width: 70%;
-}
-
-.ffields-form .inline-field {
-    display: inline-table;
-}
-
-.ffields-form .inline-field .input-group-addon {
-    background: inherit;
-    padding: inherit;
-    border: inherit;
-}
-
-.ffields-form .add-item-group {
-    padding-top: 10px;
-    border-top: 1.5px solid #ccc;
-}
-
-.ffields-form .add-item-group .spoof-btn {
-    visibility: hidden;
-}
-
 /**
   * Buttons
   */
@@ -144,4 +117,8 @@ tr .glyphicon {
     border-bottom: 0.5px solid;
     padding-bottom: 3px;
     margin-bottom: 3px;
+}
+
+.no-display {
+  display: none;
 }

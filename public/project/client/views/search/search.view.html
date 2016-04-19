@@ -4,6 +4,12 @@
         <!-- All main content goes here -->
         <h1 class="page-header">Search Results</h1>
         <div ng-show="message" class="alert alert-info" role="alert">{{message}}</div>
-
+        <div class="debate-wrapper" ng-repeat="ldebate in debates">
+            <div class="debate-text-wrapper">
+                <div class="ng-binding">{{ldebate.text}}
+                  <span class="glyphicon glyphicon-fullscreen pull-right" ng-click="selectDebate(ldebate)"></span>
+                </div>
+            </div>
+          </div>
     </div>
 </div>

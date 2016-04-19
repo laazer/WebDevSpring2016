@@ -2,13 +2,19 @@
 {
 	angular
 		.module("DebateBuilderApp")
-		.controller("SearchController", SearchController);
+		.controller("SearchController", searchController);
 
-    function SearchController($rootScope, $location, DebateService) {
+    function searchController ($rootScope, $location, $route, $scope, DebateService) {
 
 				$scope.searchContent = $route.current.params.content;
 				$scope.debates = [];
 				$scope.message = null;
+				$scope.selectDebate = selectDebate;
+				doSeach();
+
+				if (!$rootScope.isLoggedIn) {
+						 $location.url("/");
+				}
 
 				function doSeach() {
 						DebateService.findDebatesByContent($scope.searchContent).then(
@@ -22,6 +28,10 @@
 								}
 							}
 						);
+				}
+
+				function selectDebate(nDebate) {
+						$location.url("/debate_item/" + nDebate._id);
 				}
     }
 })();
