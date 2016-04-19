@@ -36,25 +36,23 @@
 										$scope.message = "Please provide an email address";
 										return;
 								}
-                UserService.findUserByUsername(user.username).then(function(response) {
-										console.log(response);
-										var lUser = response.data;
-										if (lUser) {
-												$scope.message = "User already exists";
-												return;
-										}
-										UserService.createUser(user).then(
-											function(nUser) {
-												user = nUser;
-												UserService.setCurrentUser(user);
-												$location.url("/profile");
-												return;
-										});
+                UserService.findUserByUsername(user.username).then(
+									function(response) {
+											var lUser = response.data;
+											if (lUser) {
+													$scope.message = "User already exists";
+													return;
+											};
 									}, function(err) {
-											UserService.createUser(user).then(function(response) {
-												$scope.message("request to register failed");
-											});
-									});
-            };
+											UserService.createUser(user).then(
+												function(resp) {
+													user = resp.data;
+													UserService.setCurrentUser(user);
+													$location.url("/profile");
+													return;
+										});
+
+								});
+            }
         }
 })();

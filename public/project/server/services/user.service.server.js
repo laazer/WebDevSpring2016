@@ -57,7 +57,7 @@ module.exports = function(app, mongoose, db) {
     function createUser (req, res) {
           var user = req.body;
           model.createUser(user)
-              .then(resp.defaultJsonCallBack(res), resp.notFound(res));
+              .then(resp.defaultJsonCallBack(res));
       }
 
       function login(req, res) {
