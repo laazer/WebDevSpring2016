@@ -7,14 +7,14 @@ module.exports = function(app, mongoose, db) {
 
     app.get("/api/project/user", getAllUsers);
     app.get("/api/project/user/:id", getUserById);
-    app.post("/api/project/user/login", passport.authenticate("project"), login);
-    app.get("/api/project/user/loggedin",loggedin);
-    app.post("/api/project/user/logout", logout);
+    app.get("/api/project/loggedin",loggedin);
+    app.get("/api/project/logout", logout);
     app.get("/api/project/user", getUserByUsername);
     app.get("/api/project/user", getUserByCredentials);
     app.put("/api/project/user/:id", updateUserById);
     app.post("/api/project/user", createUser);
     app.delete("/api/project/user/:id", deleteUserById);
+    app.post("/api/project/login", passport.authenticate("project"), login);
 
     passport.use('project', new LocalStrategy(
       function (username, password, done) {
@@ -54,7 +54,7 @@ module.exports = function(app, mongoose, db) {
             );
       }
 
-    function createUser (req, res) {
+    function createUser(req, res) {
           var user = req.body;
           model.createUser(user)
               .then(resp.defaultJsonCallBack(res));
@@ -72,7 +72,7 @@ module.exports = function(app, mongoose, db) {
       }
 
       function loggedin(req, res) {
-          res.json(req.session.user);
+          resp.defaultJsonResponse(req.session.user, res);
       }
 
       function logout(req, res) {
@@ -81,19 +81,8 @@ module.exports = function(app, mongoose, db) {
       }
 
       function getAllUsers (req, res) {
-          if(req.query.username) {
-              if(req.query.password) {
-                  getUserByCredentials(req, res);
-              }
-              else {
-                  getUserByUsername(req, res);
-              }
-          }
-          else {
-              var users = model.findAllUsers();
-              res.json(users);
-          }
-
+          model.findAllUsers()
+              .then(resp.defaultJsonCallBack(res));
       }
 
       function getUserById (req, res) {

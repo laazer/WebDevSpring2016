@@ -6,7 +6,7 @@
 
     function UserService ($rootScope, $q, $http) {
         var baseUrl = "/api/project/user";
-				var baseFormatUrl = "/api/project/user/{0}";
+				var baseFormatUrl = "/api/project/{0}";
 				var model = {
             findUserByUsernameAndPassword: findUserByUsernameAndPassword,
             findUserByUsername: findUserByUsername,

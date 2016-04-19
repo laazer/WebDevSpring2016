@@ -10,13 +10,13 @@
         $rootScope.isAdmin = false;
         $location.url();
 				$rootScope.range = range;
-				//logIn();
+				logIn();
 
 				function logIn() {
 						UserService.loggedin().then(function(res) {
 								var user = res.data;
 								if(user) {
-									UserService.setCurrentUser(user)
+									UserService.setCurrentUser(user);
 								}
 						}, function(err) {});
 				}
