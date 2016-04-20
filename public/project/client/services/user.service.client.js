@@ -34,6 +34,7 @@
 				}
 
 				function logout() {
+						logoutUser();
 						var url = baseFormatUrl.format("logout");
 						return $http.get(url);
 				}
@@ -85,6 +86,12 @@
 							$rootScope.isAdmin = true;
 						}
         }
+
+				function logoutUser() {
+						$rootScope.isLoggedIn = false;
+						$rootScope.currentUser = null;
+						$rootScope.isAdmin = false;
+				}
 
         function getCurrentUser() {
             return $rootScope.currentUser;
