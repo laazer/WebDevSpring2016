@@ -2,36 +2,36 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3 main">
     <!-- All main content goes here -->
     <h1 class="page-header">Profile</h1>
-    
+
     <div ng-show="message" class="alert alert-success" role="alert">{{message}}</div>
     <div ng-show="error" class="alert alert-success" role="alert">{{error}}</div>
-    
+
     <form class="form-horizontal">
         <div class="form-group">
             <label for="up-username" class="col-sm-2 control-label">Username</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="up-username" 
+                <input type="text" class="form-control" id="up-username"
                 placeholder="{{isLoggedIn ? currentUser.username : 'Username'}}" ng-model="user.username">
             </div>
         </div>
         <div class="form-group">
             <label for="up-password" class="col-sm-2 control-label">Password</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" id="up-password" 
+                <input type="password" class="form-control" id="up-password"
                 placeholder="Password" ng-model="user.password">
             </div>
         </div>
         <div class="form-group">
             <label for="up-fname" class="col-sm-2 control-label">First Name</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="up-fname" 
+                <input type="text" class="form-control" id="up-fname"
                 placeholder="{{currentUser.firstName ? currentUser.firstName : 'First Name'}}" ng-model="user.firstName">
             </div>
         </div>
         <div class="form-group">
             <label for="up-lname" class="col-sm-2 control-label">Last Name</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" id="up-lname" 
+                <input type="text" class="form-control" id="up-lname"
                 placeholder="{{currentUser.lastName ? currentUser.lastName : 'Last Name'}}" ng-model="user.lastName">
             </div>
         </div>

@@ -1,57 +1,79 @@
+<div ng-include="'views/sidebar/sidebar.view.html'"></div>
+<div class="container-fluid">
 <div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3 main">
-    <!-- All main content goes here -->
     <h1 class="page-header">Admin</h1>
-
     <h3>Users</h3>
+    <div ng-show="message" class="alert alert-success" role="alert">{{message}}</div>
+    <div ng-show="error" class="alert alert-danger" role="alert">{{error}}</div>
     <div class="table-responsive">
-        <table class="table table-bordered table-striped">
+        <table class="table table-striped table-condensed">
             <thead>
             <tr>
-                <th><span class="glyphicon glyphicon-triangle-bottom"></span><span class="col-title"> Username</span></th>
-                <th><span class="glyphicon glyphicon-triangle-bottom"></span><span class="col-title"> Password</span></th>
-                <th><span class="glyphicon glyphicon-triangle-bottom"></span><span class="col-title"> Role</span></th>
-                <th><span class="glyphicon glyphicon-triangle-bottom"></span><span class="col-title"> Action</span></th>
+                <th>
+                    Username
+                </th>
+                <th>
+                    Password
+                </th>
+                <th>
+                    First Name
+                </th>
+                <th>
+                    Last Name
+                </th>
+                <th>Actions</th>
+            </tr>
+            <tr>
+                <td>
+                    <input ng-model="user.username" class="form-control ng-pristine ng-valid ng-touched" placeholder="username">
+                </td>
+                <td>
+                    <input class="form-control ng-pristine ng-valid ng-touched" ng-model="user.password" type="password" placeholder="password">
+                </td>
+                <td>
+                    <input ng-model="user.firstName" class="form-control ng-pristine ng-valid ng-touched" placeholder="FirstName">
+                </td>
+                <td>
+                    <input ng-model="user.lastName" class="form-control ng-pristine ng-valid ng-touched" placeholder="LastName">
+                </td>
+                <td>
+                    <div>
+                        <button class="btn btn-default" ng-click="addUser(user)" type="button">
+                          <span class="glyphicon glyphicon-plus"/>
+                        </button>
+                        <button class="btn btn-default" ng-click="updateUser(user)" type="button">
+                          <span class="glyphicon glyphicon-ok"/>
+                        </button>
+                    </div>
+                </td>
             </tr>
             </thead>
             <tbody>
-                <tr class="input-row">
-                    <td><input class="form-control" type="text" placeholder="username"></td>
-                    <td><input class="form-control" type="text" placeholder="password"></td>
-                    <td><input class="form-control" type="text" placeholder="role1, role2"></td>
-                    <td class="actions container col-sm-3 col-md-3">
-                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus"/></button>
-                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-ok"/></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>alice</td>
-                    <td></td>
-                    <td><span class="role">student</span></td>
-                    <td class="actions container col-sm-3 col-md-3">
-                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"/></button>
-                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-pencil"/></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>bob</td>
-                    <td></td>
-                    <td><span class="role">faculty</span> | <span class="role">admin</span></td>
-                    <td class="actions container col-sm-3 col-md-3">
-                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"/></button>
-                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-pencil"/></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>charlie</td>
-                    <td></td>
-                    <td></td>
-                    <td class="actions container col-sm-3 col-md-3">
-                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"/></button>
-                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-pencil"/></button>
-                    </td>
-                </tr>
+            <tr ng-repeat="user in users">
+                <td>
+                    {{user.username}}
+                </td>
+                <td>
+                </td>
+                <td>
+                    {{user.firstName}}
+                </td>
+                <td>
+                    {{user.lastName}}
+                </td>
+                <td>
+                    <div>
+                        <button class="btn btn-default" ng-click="deleteUser(user)" type="button">
+                          <span class="glyphicon glyphicon-remove"/>
+                        </button>
+                        <button class="btn btn-default" ng-click="selectUser(user)" type="button">
+                          <span class="glyphicon glyphicon-pencil"/>
+                        </button>
+                    </div>
+                </td>
+            </tr>
             </tbody>
-
         </table>
     </div>
+</div>
 </div>

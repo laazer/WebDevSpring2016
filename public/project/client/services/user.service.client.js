@@ -16,6 +16,7 @@
             updateUser: updateUser,
             setCurrentUser: setCurrentUser,
             getCurrentUser: getCurrentUser,
+						findUserById: findUserById,
 						login: login,
 						logout: logout,
 						loggedin: loggedin
@@ -52,8 +53,13 @@
             return $http.get(url)
         }
 
+				function findUserById(userId) {
+						var url = baseUrl + '?userId=' + userId;
+						return $http.get(url);
+				}
+
         function findAllUsers() {
-            return $http.jsonp(baseUrl);
+            return $http.get(baseUrl);
         }
 
         function createUser(user) {
@@ -71,8 +77,11 @@
         function setCurrentUser(user) {
             $rootScope.isLoggedIn = true;
             $rootScope.currentUser = user;
-						if(!user.roles) return;
-						if (user.roles.indexOf("admin") >-1) {
+						// if(!user.roles) return;
+						// if (user.roles.indexOf("admin") >-1) {
+						// 	$rootScope.isAdmin = true;
+						// }
+						if(user.username == "root") {
 							$rootScope.isAdmin = true;
 						}
         }
