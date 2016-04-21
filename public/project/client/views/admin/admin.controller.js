@@ -29,6 +29,10 @@
                 .then(function(response) {
                     var users = response.data;
                     if (users) {
+                        for(i in users) {
+                          if(!users[i].phones) users[i].sroles = "";
+                          else users[i].sroles = users[i].phones.toString();
+                        }
                         $scope.users = users;
                     }
                     $scope.user = null;
@@ -40,8 +44,8 @@
             if(!user) {
               $scope.error = "no user selected to add";
             }
-            user.emails = [];
-            user.phones = [];
+            user.email = "";
+            user.phones = user.sroles.split(',');
             UserService
                 .createUser(user)
                 .then(function(response) {
@@ -56,6 +60,7 @@
             if(!user) {
               $scope.warning = "no user selected to edit";
             }
+            user.phones = user.sroles.split(',');
             if (selectedUserId) {
                 UserService
                     .updateUser(selectedUserId, user)
@@ -89,8 +94,9 @@
 
         function deleteUser(user) {
             // find user id from $scope.users
-            if(user.username == getCurrentUser().username) {
+            if(user.username == UserService.getCurrentUser().username) {
               $scope.error = "cannot delete admin";
+              return;
             }
             var index = null;
             for (var u in $scope.users) {

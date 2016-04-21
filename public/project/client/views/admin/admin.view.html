@@ -21,6 +21,9 @@
                 <th>
                     Last Name
                 </th>
+                <th>
+                    Roles
+                </th>
                 <th>Actions</th>
             </tr>
             <tr>
@@ -35,6 +38,9 @@
                 </td>
                 <td>
                     <input ng-model="user.lastName" class="form-control ng-pristine ng-valid ng-touched" placeholder="LastName">
+                </td>
+                <td>
+                    <input ng-model="user.sroles" class="form-control ng-pristine ng-valid ng-touched" placeholder="role1,role2,...">
                 </td>
                 <td>
                     <div>
@@ -60,6 +66,9 @@
                 </td>
                 <td>
                     {{user.lastName}}
+                </td>
+                <td>
+                    {{user.sroles}}
                 </td>
                 <td>
                     <div>

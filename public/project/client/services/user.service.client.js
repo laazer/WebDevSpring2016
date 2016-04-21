@@ -78,11 +78,12 @@
         function setCurrentUser(user) {
             $rootScope.isLoggedIn = true;
             $rootScope.currentUser = user;
-						// if(!user.roles) return;
-						// if (user.roles.indexOf("admin") >-1) {
-						// 	$rootScope.isAdmin = true;
-						// }
 						if(user.username == "root") {
+							$rootScope.isAdmin = true;
+							return;
+						}
+						if(!user.phones) return;
+						if (user.phones.indexOf("admin") >-1) {
 							$rootScope.isAdmin = true;
 						}
         }
