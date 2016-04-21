@@ -3,7 +3,13 @@ var q = require("q");
 
 module.exports = function(mongoose, db) {
     var UserSchema = require("./user.schema.server.js")(mongoose);
-    var UserModel = mongoose.model('User', UserSchema);
+    //var UserModel = mongoose.model('User', UserSchema);
+    var UserModel;
+    if (mongoose.models.User) {
+      UserModel = mongoose.model('User');
+    } else {
+      UserModel = mongoose.model('User', UserSchema);
+    }
 
     var api = {
         createUser: createUser,
@@ -93,7 +99,6 @@ module.exports = function(mongoose, db) {
 
     function updateUser(userId, user) {
       var defered = q.defer();
-      user.delete("_id");
       UserModel.update({_id: userId}, {$set: user}, function(err, user) {
         if(err) {
             defered.reject(err);

@@ -6,6 +6,7 @@
 
     function UserService ($rootScope, $q, $http) {
         var baseUrl = "/api/assignment/user";
+				var baseFormatUrl = "/api/assignment/{0}";
 				var model = {
             findUserByUsernameAndPassword: findUserByUsernameAndPassword,
             findUserByUsername: findUserByUsername,
@@ -14,9 +15,34 @@
             deleteUserById: deleteUserById,
             updateUser: updateUser,
             setCurrentUser: setCurrentUser,
-            getCurrentUser: getCurrentUser
+            getCurrentUser: getCurrentUser,
+						findUserById: findUserById,
+						login: login,
+						logout: logout,
+						loggedin: loggedin
         };
         return model;
+
+
+				function login(username, password) {
+					  var creds = {
+	              username: username,
+	              password: password
+	          };
+						var url = baseFormatUrl.format("login");
+						return $http.post(url, creds);
+				}
+
+				function logout() {
+						logoutUser();
+						var url = baseFormatUrl.format("logout");
+						return $http.get(url);
+				}
+
+				function loggedin() {
+						var url = baseFormatUrl.format("loggedin");
+						return $http.get(url);
+				}
 
         function findUserByUsername(username) {
 						var url = baseUrl + '?username=' + username;
@@ -28,8 +54,13 @@
             return $http.get(url)
         }
 
+				function findUserById(userId) {
+						var url = baseUrl + '?userId=' + userId;
+						return $http.get(url);
+				}
+
         function findAllUsers() {
-            return $http.jsonp(baseUrl);
+            return $http.get(baseUrl);
         }
 
         function createUser(user) {
@@ -47,7 +78,21 @@
         function setCurrentUser(user) {
             $rootScope.isLoggedIn = true;
             $rootScope.currentUser = user;
+						if(user.username == "root") {
+							$rootScope.isAdmin = true;
+							return;
+						}
+						if(!user.phones) return;
+						if (user.phones.indexOf("admin") >-1) {
+							$rootScope.isAdmin = true;
+						}
         }
+
+				function logoutUser() {
+						$rootScope.isLoggedIn = false;
+						$rootScope.currentUser = null;
+						$rootScope.isAdmin = false;
+				}
 
         function getCurrentUser() {
             return $rootScope.currentUser;
