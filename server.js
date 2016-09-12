@@ -40,8 +40,8 @@ app.use(passport.session());
 
 
 app.use('/', express.static(__dirname + '/public'));
-app.use('/assignment', express.static(__dirname + '/public/assignment/client'));
-app.use('/project', express.static(__dirname + '/public/project/client'));
+app.use('/fm', express.static(__dirname + '/public/assignment/client'));
+app.use('/debate', express.static(__dirname + '/public/project/client'));
 
 // Routes
 require('./public/assignment/server/app.js')(app, uuid, mongoose, db);
