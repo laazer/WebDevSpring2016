@@ -50,3 +50,49 @@
 #portfolio .portfolio-item .portfolio-link .caption.disabled {
     background: rgba(185, 180, 188, 0.9);
 }
+
+/*********************************************
+Pie Chart
+*********************************************/
+#skillz .chart {
+  position: relative;
+  display: inline-block;
+  width: 110px;
+  height: 110px;
+  margin: 50px 0px 50px 20px;    
+  text-align: center;
+}
+
+#skillz .chart canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#skillz .percent {
+  display: inline-block;
+  line-height: 110px;
+  z-index: 2;
+}
+
+#skillz .percent:after {
+  content: '';
+  margin-left: 0.1em;
+  font-size: .8em;
+}
+
+#skillz .angular {
+  margin-top: 100px;
+}
+#skillz .angular .chart {
+  margin-top: 0;
+}
+
+#skillz .chart .skill-text {
+    display: inline-block;
+    margin-top: 110px;
+    margin-left: -8px;
+    width: 125px;
+    font-size: 13px;
+    z-index: 2;
+}

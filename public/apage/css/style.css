@@ -1,0 +1,124 @@
+/*
+ * Links
+ */
+.navbar-fixed-top .container-fluid a.l-disable {
+    color: #ffffff;
+    cursor: default;
+}
+
+/*
+ * Glyphicons
+ */
+tr .glyphicon {
+    cursor: pointer;
+}
+
+/**
+  * Buttons
+  */
+.btn-circle {
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.42;
+    border-radius: 15px;
+    margin:5px;
+    margin-top: 10px;
+    font-size: 10px;
+}
+
+.btn-max,
+.btn-max:hover,
+.btn-max:active,
+.btn-max:focus,
+.btn-max:active:focus {
+    background: #5bce5b;
+    border-color: #5bce5b;
+}
+
+.btn-min,
+.btn-min:hover,
+.btn-min:active,
+.btn-min:focus,
+.btn-min:active:focus {
+    background: #febd2d;
+    border-color: #febd2d;
+}
+
+.btn-rem,
+.btn-rem:hover,
+.btn-rem:active,
+.btn-rem:focus,
+.btn-rem:active:focus {
+    background: #fe6058;
+    border-color: #fe6058;
+}
+
+
+.btn-max .glyphicon-plus,
+.btn-rem .glyphicon-remove,
+.btn-min .glyphicon-minus {
+    visibility: hidden;
+}
+
+.btn-max:hover .glyphicon-plus,
+.btn-rem:hover .glyphicon-remove,
+.btn-min:hover .glyphicon-minus,
+.btn-max:focus .glyphicon-plus,
+.btn-rem:focus .glyphicon-remove,
+.btn-min:focus .glyphicon-minus {
+    visibility: visible;
+}
+
+/*
+ * Custom Popup
+ */
+.custom-popup .container {
+    margin-top: 10px;
+}
+
+/*
+ * Header
+ */
+.header-search {
+    padding-right: 0px;
+}
+
+/*
+ * Debates
+ */
+
+.debate-wrapper {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 0.5px solid #ccc;
+    border-radius: 10px;
+}
+
+.debate-wrapper .glyphicon {
+  cursor: pointer;
+}
+
+.debate-text-wrapper {
+    padding: 5px;
+    margin-bottom: 10px;
+    border-bottom: 0.5px solid #ccc;
+}
+
+.new-debate-input {
+    border: 0.5px solid #ccc;
+    border-radius: 5px;
+}
+
+.pro .body-wrapper,
+.con .body-wrapper {
+    border-bottom: 0.5px solid;
+    padding-bottom: 3px;
+    margin-bottom: 3px;
+}
+
+.no-display {
+  display: none;
+}
