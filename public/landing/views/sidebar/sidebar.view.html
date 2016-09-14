@@ -1,10 +1,15 @@
 <div class="row navbar" id="side-bar" ng-controller="SidebarController">
     <div class="col-sm-3 col-md-3 sidebar" id="main-sidebar">
+        <div id="logo">
+							<!-- <span class="image profile"><img src="{{me.getRandomImg()}}" alt=""></span> -->
+							<h1 id="title">{{me.name}}</h1>
+							<span class="byline">{{me.slogan}}</span>
+				</div>
         <ul class="nav nav-sidebar">
             <li><div> </div></li>
             <li ng-repeat="item in barItems"
 				        ng-class="{'active': $location.url() == item.ref}">
-        				<a href="" ng-click="gotoAnchor(item.ref)" class="side-item">
+        				<a href="" ng-click="smoothScroll(item.ref)" class="side-item">
         					<span class="fa {{'fa-' + item.icon}}"></span>
                   <span> </span>
                   <span class="text">{{item.title}}</span>

@@ -21,7 +21,10 @@
 
 				$scope.projects = [
 						{name:"Form Maker", slogan:"Simple Form Maker", img:"./img/forms.png", ref:"formModal", src:"./fm/"},
-						{name:"Debate Forum", slogan:"Simple Debate Forum", img:"./img/gavel.png", ref:"debateModal", src:"./debate/"}
+						{name:"Debate Forum", slogan:"Simple Debate Forum", img:"./img/gavel.png", ref:"debateModal", src:"./debate/"},
+						{name:"Java Common Tools", slogan:"Useful Tools for Java", img:"./img/toolbox.jpg", ref:"commonsModal", src:"https://github.com/laazer/commons"},
+						{name:"Portal++", slogan:"2D Portalish Game", img:"./img/portal.png", ref:"portalModal", src:"https://github.com/laazer/portalpp"},
+						{name:"Scroggle", slogan:"Fun Word Game", img:"./img/scroggle.png", ref:"scroggleModal", src:"https://play.google.com/store/apps/details?id=com.laazer.scroggle"},
 				]
 
 				function getOptions(newOptions) {
