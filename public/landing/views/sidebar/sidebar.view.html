@@ -1,11 +1,14 @@
-<div class="row" ng-controller="SidebarController">
-    <div class="col-sm-3 col-md-3 sidebar" id="main-sidebar">
+<div class="row" id="side-bar" ng-controller="SidebarController">
+    <div class="col-sm-2 col-md-3 sidebar" id="main-sidebar">
         <ul class="nav nav-sidebar">
+            <li><div> </div></li>
             <li ng-repeat="item in barItems"
-				ng-class="{'active': $location.url() == item.ref}">
-				<a href="{{item.ref}}" class="side-item skel-panels-ignoreHref">
-					<span class="fa {{'fa-' + item.icon}}"></span><span class="text">{{item.title}}</span>
-				</a>
+				        ng-class="{'active': $location.url() == item.ref}">
+        				<a href="{{item.ref}}" class="side-item">
+        					<span class="fa {{'fa-' + item.icon}}"></span>
+                  <span> </span>
+                  <span class="text">{{item.title}}</span>
+        				</a>
             </li>
         </ul>
     </div>

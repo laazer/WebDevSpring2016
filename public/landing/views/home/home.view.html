@@ -1,6 +1,38 @@
 <div ng-include="'views/sidebar/sidebar.view.html'"></div>
 <div class="container-fluid">
     <div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3 main">
-	
+      <!-- Header -->
+      <header>
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-12">
+                      <img class="img-responsive img-circle img-profile" src="{{me.img}}" alt="">
+                      <div class="intro-text">
+                          <span class="name">{{me.name}}</span>
+                          <hr class="star-light">
+                          <span>{{me.slogan}}</span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </header>
+      <!-- Skills Section -- >
+      <!-- Skills Section -->
+      <section id=skillz class="one">
+      	<div class="container">
+              <div class="row">
+                  <div class="col-lg-12 text-center">
+                      <h2>Skills</h2>
+                      <hr class="star-primary">
+                  </div>
+              </div>
+      		<div class ="charts">
+      			<div ng-repeat="item in skills" class="chart" easypiechart
+                  percent="item.rank" options="item.options">
+              <span class="skill-text">{{item.name}}</span>
+            </div>
+          </div>
+      	</div>
+      </section>
     </div>
 </div>

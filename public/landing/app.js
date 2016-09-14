@@ -1,5 +1,5 @@
 (function()
 {
 	angular
-		.module("JBSite", ["ngRoute"]);
+		.module("JBSite", ["ngRoute", "easypiechart"]);
 })();
