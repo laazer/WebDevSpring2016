@@ -38,9 +38,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-app.use('/', express.static(__dirname + '/public'));
-//app.use('/', express.static(__dirname + '/public/landing')); uncomment when landing page is finished
+app.use('/', express.static(__dirname + '/public/landing'));
 app.use('/fm', express.static(__dirname + '/public/assignment/client'));
 app.use('/debate', express.static(__dirname + '/public/project/client'));
 

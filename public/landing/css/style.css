@@ -1,3 +1,7 @@
+body {
+  position: relative;
+}
+
 /*
  * Links
  */
@@ -13,70 +17,6 @@ tr .glyphicon {
     cursor: pointer;
 }
 
-/**
-  * Buttons
-  */
-.btn-circle {
-    width: 25px;
-    height: 25px;
-    text-align: center;
-    padding: 6px 0;
-    font-size: 12px;
-    line-height: 1.42;
-    border-radius: 15px;
-    margin:5px;
-    margin-top: 10px;
-    font-size: 10px;
-}
-
-.btn-max,
-.btn-max:hover,
-.btn-max:active,
-.btn-max:focus,
-.btn-max:active:focus {
-    background: #5bce5b;
-    border-color: #5bce5b;
-}
-
-.btn-min,
-.btn-min:hover,
-.btn-min:active,
-.btn-min:focus,
-.btn-min:active:focus {
-    background: #febd2d;
-    border-color: #febd2d;
-}
-
-.btn-rem,
-.btn-rem:hover,
-.btn-rem:active,
-.btn-rem:focus,
-.btn-rem:active:focus {
-    background: #fe6058;
-    border-color: #fe6058;
-}
-
-.btn-max .glyphicon-plus,
-.btn-rem .glyphicon-remove,
-.btn-min .glyphicon-minus {
-    visibility: hidden;
-}
-
-.btn-max:hover .glyphicon-plus,
-.btn-rem:hover .glyphicon-remove,
-.btn-min:hover .glyphicon-minus,
-.btn-max:focus .glyphicon-plus,
-.btn-rem:focus .glyphicon-remove,
-.btn-min:focus .glyphicon-minus {
-    visibility: visible;
-}
-
-/*
- * Custom Popup
- */
-.custom-popup .container {
-    margin-top: 10px;
-}
 
 /*
  * Header
@@ -115,7 +55,7 @@ tr .glyphicon {
 /*
 * Pie Chart
 */
-#skillz .chart {
+#skills .chart {
   position: relative;
   display: inline-block;
   width: 110px;
@@ -124,32 +64,32 @@ tr .glyphicon {
   text-align: center;
 }
 
-#skillz .chart canvas {
+#skills .chart canvas {
   position: absolute;
   top: 0;
   left: 0;
 }
 
-#skillz .percent {
+#skills .percent {
   display: inline-block;
   line-height: 110px;
   z-index: 2;
 }
 
-#skillz .percent:after {
+#skills .percent:after {
   content: '';
   margin-left: 0.1em;
   font-size: .8em;
 }
 
-#skillz .angular {
+#skills .angular {
   margin-top: 100px;
 }
-#skillz .angular .chart {
+#skills .angular .chart {
   margin-top: 0;
 }
 
-#skillz .chart .skill-text {
+#skills .chart .skill-text {
     display: inline-block;
     margin-top: 110px;
     margin-left: -8px;

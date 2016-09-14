@@ -30,11 +30,13 @@
     <script src="./views/home/home.controller.js"></script>
 
 	<!-- For SideBar -->
-
+  <!-- <script src="./js/skel.min.js"></script>
+  <script src="./js/skel-panels.min.js"></script>
+  <script src="./js/skel-init.js"></script> -->
   <!-- pie charsts -->
   <script src="./js/angular.easypiechart.min.js"></script>
 </head>
-<body ng-controller="MainController">
+<body ng-controller="MainController" data-spy="scroll" data-target="#side-bar" data-offset="50">
     <div ng-view></div>
 </body>
 </html>
