@@ -5,7 +5,7 @@ module.exports = function(app, mongoose, db) {
     var model = require('../models/user.model.js')(mongoose, db);
     var resp = require("./resp.js")();
 
-    app.get("/api/assignment/loggedin",loggedin);
+    app.get("/api/assignment/loggedin", loggedin);
     app.get("/api/assignment/logout", logout);
     app.get("/api/assignment/user", getUser);
     app.put("/api/assignment/user/:id", updateUserById);

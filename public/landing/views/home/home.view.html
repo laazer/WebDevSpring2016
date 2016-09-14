@@ -44,7 +44,7 @@
               </div>
               <div class="row">
                   <div class="col-sm-6 portfolio-item" ng-repeat="p in projects">
-                      <a href="{{'#' + p.ref}}" class="portfolio-link" data-toggle="modal">
+                      <a href="" data-target="#{{p.ref}}" data-toggle="modal" class="portfolio-link" data-toggle="modal">
                           <div class="caption">
                               <div class="caption-content">
                                   <i class="fa fa-search-plus fa-3x"></i>
@@ -57,7 +57,7 @@
           </div>
       </section>
       <!-- About Section -->
-      <section class="success" id="about">
+      <section class="success" id="about" name="about">
           <div class="container">
               <div class="row">
                   <div class="col-lg-12 text-center">
@@ -92,18 +92,8 @@
                         <h2>{{p.name}}</h2>
                         <hr class="star-primary">
                         <img src="{{p.img}}" class="img-responsive img-centered" alt="">
-                        <p>Simple form maker</p>
-                        <ul class="list-inline item-details">
-                            <li>Client:
-                                <strong><a href="https://portal-cs5610online.rhcloud.com/">Web Dev</a>
-                                </strong>
-                            </li>
-                            <li>Date:
-                                <strong>Spring 2016
-                                </strong>
-                            </li>
-                        </ul>
-                        <button onclick="window.location.href={{p.src}}" type="button" class="btn btn-default"><a href="{{p.src}}">Go To Project</i></a></button>
+                        <p>{{p.slogan}}</p>
+                        <button ng-click="location.url(p.ref)" type="button" class="btn btn-default"><a href="{{p.src}}">Go To Project</i></a></button>
                         <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
                     </div>
                 </div>

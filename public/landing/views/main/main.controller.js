@@ -4,7 +4,7 @@
 		.module("JBSite")
 		.controller("MainController", mainController);
 
-    function mainController ($rootScope, $location) {
+    function mainController ($rootScope, $location, $anchorScroll) {
         $rootScope.$location = $location;
         $location.url();
 				$rootScope.range = range;
@@ -19,6 +19,18 @@
 						// if(!n) return [];
 						return Array.apply(null, Array(n)).map(function (_, i) {return i;});
 				}
+
+				$rootScope.gotoAnchor = function(newHash) {
+					if ($location.hash() !== newHash) {
+						// set the $location.hash to `newHash` and
+						// $anchorScroll will automatically scroll to it
+						$location.hash(newHash);
+					} else {
+						// call $anchorScroll() explicitly,
+						// since $location.hash hasn't changed
+						$anchorScroll();
+					}
+				};
 
     }
 })();

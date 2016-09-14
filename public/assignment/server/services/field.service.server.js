@@ -5,7 +5,7 @@ module.exports = function(app, uuid, mongoose, db) {
     app.get("/api/assignment/form/:formId/field", getAllFieldsByFormId);
     app.get("/api/assignment/form/:formId/field/:fieldId", getFieldById);
     app.put("/api/assignment/form/:formId/field/:fieldId",updateFieldById);
-    app.post("/api/assignment/form/:formId/field",createFieldForForm);
+    app.post("/api/assignment/form/:formId/field", createFieldForForm);
     app.delete("/api/assignment/form/:formId/field/:fieldId",deleteFieldById);
 
     function createFieldForForm(req, res) {
