@@ -14,6 +14,7 @@
 					img: ["./img/me.jpg"],
 					github: "https://github.com/laazer",
 					linkedin: "https://www.linkedin.com/in/brandtjacob",
+					resume: "./assets/resume.pdf",
 				};
 				$rootScope.me.getRandomImg = function() {
 					var img = $rootScope.me.img;

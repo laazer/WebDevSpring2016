@@ -30,8 +30,6 @@
 						{name:"Secure Chat", slogan:"Secure Chat Server and Client", img:"./img/secure-chat.png", ref:"chatModal", src:"https://github.com/blakelymadden/netsec_securechat"},
 				];
 
-				$scope.resume = {ref: "./assets/resume.pdf"};
-
 				function getOptions(newOptions) {
 					var options = {
 								barColor: '#ef1e25',

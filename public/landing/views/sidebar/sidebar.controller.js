@@ -19,7 +19,7 @@
 	      SmoothScroll.scrollTo(eID);
 
 	    };
-			$scope.barItems = [home, skills, port, about, contact];
+			$scope.barItems = [home, skills, port, about];
 			//$anchorScroll.yOffset = 50;
 	}
 })();
