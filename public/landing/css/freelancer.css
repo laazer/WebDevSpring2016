@@ -57,6 +57,11 @@ hr.star-primary:after {
     font-size: 2em;
 }
 
+hr.star-light.gears:after
+hr.star-primary.gears:after {
+
+}
+
 hr.star-light {
     border-color: #fff;
 }
