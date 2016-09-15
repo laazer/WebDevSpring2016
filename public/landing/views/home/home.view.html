@@ -5,8 +5,16 @@
       <header id="home">
           <div class="container">
               <div class="row">
-                  <div class="col-lg-12">
-                      <img class="img-responsive img-circle img-profile" src="{{me.getRandomImg()}}" alt="">
+                  <div class="col-sm-10 col-md-10 col-lg-12">
+                        <a href="" data-target="#resumeModal" class="portfolio-link" data-toggle="modal">
+                              <div class="caption img-circle">
+                                <div class="caption-content">
+                                    <i class="fa fa-file-text-o fa-3x"></i>
+                                </div>
+                              </div>
+                              <img class="img-responsive img-circle img-profile"
+                                src="{{me.getRandomImg()}}" alt="">
+                        </a>
                       <div class="intro-text">
                           <span class="name">{{me.name}}</span>
                           <hr class="star-light">
@@ -44,7 +52,7 @@
               </div>
               <div class="row">
                   <div class="col-sm-6 col-md-6 portfolio-item" ng-repeat="p in projects">
-                      <a href="" data-target="#{{p.ref}}" data-toggle="modal" class="portfolio-link" data-toggle="modal">
+                      <a href="" data-target="#{{p.ref}}" class="portfolio-link" data-toggle="modal">
                           <div class="caption">
                               <div class="caption-content">
                                   <i class="fa fa-search-plus fa-3x"></i>
@@ -77,6 +85,7 @@
       </section>
     </div>
 </div>
+<!-- Modals -->
 <div ng-repeat="p in projects" class="portfolio-modal modal fade" id="{{p.ref}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content">
         <div class="close-modal" data-dismiss="modal">
@@ -94,6 +103,29 @@
                         <img src="{{p.img}}" class="img-responsive img-centered" alt="">
                         <p>{{p.slogan}}</p>
                         <button ng-click="location.url(p.ref)" type="button" class="btn btn-default"><a href="{{p.src}}">Go To Project</i></a></button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div  class="portfolio-modal modal fade" id="resumeModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+                <div class="rl">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="modal-body">
+                        <h2>My Resume</h2>
+                        <hr class="star-primary">
+                        <object type="application/pdf" data="{{resume.ref}}" width="100%" height="500">No Support</object>
+                        <button ng-click="" type="button" class="btn btn-default">Download</i></button>
                         <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
                     </div>
                 </div>

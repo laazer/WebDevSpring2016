@@ -5,15 +5,17 @@
 		.controller("HomeController", homeController);
 
     function homeController ($scope, $rootScope, $location) {
+
+				var defaultOptions = getOptions({barColor: '#18bc9c'})
 				$scope.skills = [
-						{name: "Java", rank: "95", options:getOptions({barColor: "#2C3E50"})},
-						{name: "Python", rank: "77", options:getOptions({barColor: "#2C3E50"})},
-						{name: "Android SDK", rank: "83", options:getOptions({barColor: "#2C3E50"})},
-						{name: "MEAN Stack", rank: "75", options:getOptions({barColor: "#2C3E50"})},
-						{name: "Git", rank: "75", options:getOptions({barColor: "#2C3E50"})},
-						{name: "Scala", rank: "70", options:getOptions({barColor: "#2C3E50"})},
-						{name: "C#", rank: "70", options:getOptions({barColor: "#2C3E50"})},
-						{name: "Racket", rank: "55", options:getOptions({barColor: "#2C3E50"})},
+						{name: "Java", rank: "95", options:defaultOptions},
+						{name: "Python", rank: "77", options:defaultOptions},
+						{name: "Android SDK", rank: "83", options:defaultOptions},
+						{name: "MEAN Stack", rank: "75", options:defaultOptions},
+						{name: "Git", rank: "75", options:defaultOptions},
+						{name: "Scala", rank: "70", options:defaultOptions},
+						{name: "C#", rank: "70", options:defaultOptions},
+						{name: "Racket", rank: "55", options:defaultOptions},
 				];
 				$scope.skills = $scope.skills.sort(function(a, b) {
 					return a.rank < b.rank;
@@ -25,7 +27,10 @@
 						{name:"Java Common Tools", slogan:"Useful Tools for Java", img:"./img/toolbox.jpg", ref:"commonsModal", src:"https://github.com/laazer/commons"},
 						{name:"Portal++", slogan:"2D Portalish Game", img:"./img/portal.png", ref:"portalModal", src:"https://github.com/laazer/portalpp"},
 						{name:"Scroggle", slogan:"Fun Word Game", img:"./img/scroggle.png", ref:"scroggleModal", src:"https://play.google.com/store/apps/details?id=com.laazer.scroggle"},
-				]
+						{name:"Secure Chat", slogan:"Secure Chat Server and Client", img:"./img/secure-chat.png", ref:"chatModal", src:"https://github.com/blakelymadden/netsec_securechat"},
+				];
+
+				$scope.resume = {ref: "./assets/resume.pdf"};
 
 				function getOptions(newOptions) {
 					var options = {
