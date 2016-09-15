@@ -125,7 +125,8 @@
                         <h2>My Resume</h2>
                         <hr class="star-primary">
                         <object type="application/pdf" data="{{resume.ref}}" width="100%" height="500">No Support</object>
-                        <button ng-click="" type="button" class="btn btn-default">Download</i></button>
+                        <!-- <button dowload="{{resume.ref}}" type="button" class="btn btn-default">Download</i></button> -->
+                        <a href="{{resume.ref}}" class="btn btn-default"><i class="fa fa-download"></i> Download</i></a>
                         <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
                     </div>
                 </div>
