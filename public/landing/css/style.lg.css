@@ -1,0 +1,33 @@
+@media (min-width: 1200px) {
+/*
+* Main Body
+*/
+    .main {
+    }
+/*
+* Sidebar
+*/
+  #main-sidebar #nav li a span {
+    font-size: 1em;
+  }
+
+  #main-sidebar .bottom .icons .fa {
+    font-size: 1.5em;
+  }
+
+/*
+ * About Me
+ */
+  #about .br {
+    display: none;
+  }
+
+  #main-sidebar #logo h1 {
+      font-size: 1em;
+  }
+
+  #main-sidebar #logo .byline {
+
+  }
+
+}
