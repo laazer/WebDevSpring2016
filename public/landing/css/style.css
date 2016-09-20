@@ -1,5 +1,16 @@
+/*
+* Main Body
+*/
 body {
   position: relative;
+}
+
+.main {
+    padding: 20px;
+}
+
+.main .container {
+  width: 100%;
 }
 
 /*
@@ -28,15 +39,18 @@ tr .glyphicon {
 /*
  * Side Bar
  */
- #main-sidebar {
+#main-sidebar {
     background: #333333;
     font-size: 20px;
     font-family: "Source Sans Pro", sans-serif;
     padding: 0px;
  }
 
+ .sidebar {
+   display: none;
+ }
+
 #main-sidebar li {
-    margin-left: 20px;
     margin-top: 10px;
 }
 
@@ -44,43 +58,7 @@ tr .glyphicon {
    padding-right: 10px;
  }
 
- #main-sidebar .bottom {
-   position: absolute;
-   bottom: 15px;
-   width: 100%;
-   text-align: center;
- }
-
-  #main-sidebar .bottom .icons {
-    width: 100%;
-    left: 0;
-    right: 0;
-    padding-left: 0;
-    padding-right: 10%;
-  }
-
- #main-sidebar .bottom ul.icons li {
-   display: inline-block;
- }
-
- #main-sidebar .bottom ul.icons li a{
-   color: #fff;
-   opacity: .2;
- }
-
- #main-sidebar .bottom ul.icons li a:hover {
-   opacity: 1;
-   text-decoration: none;
- }
-
-#main-sidebar .bottom .icons .text {
-  display: none;
-}
-
-#main-sidebar .bottom .icons .fa {
-  font-size: 1.5em;
-}
-
+/**** Top Sidebar ****/
 #main-sidebar #logo {
 	position: relative;
 	margin: 1.75em 1.5em 1.5em 1.5em;
@@ -92,7 +70,7 @@ tr .glyphicon {
 	position: relative;
 	color: #fff;
 	font-weight: 600;
-	font-size: 1em;
+	font-size: 0.8em;
 	line-height: 1em;
 }
 
@@ -117,9 +95,11 @@ tr .glyphicon {
   width: 60px;
 }
 
+/**** Sidebar Navs ****/
+
 #main-sidebar #nav li a {
 	display: block;
-	padding: 0.5em 1.25em 0.5em 1.5em;
+	padding: 0.5em 1.25em 0.5em 1.1em;
 	color: rgba(255,255,255,0.5);
 	text-decoration: none;
 	outline: 0;
@@ -134,7 +114,9 @@ tr .glyphicon {
 #main-sidebar #nav li a span {
 	position: relative;
 	display: block;
-	font-size: 1.1em;
+	font-size: 0.7em;
+  text-align: right;
+  font-family: sans-serif;
 }
 
 #main-sidebar #nav li a span.fa::before{
@@ -151,7 +133,6 @@ tr .glyphicon {
 #main-sidebar #nav li a span.fa .text{
   text-align: right;
   padding-right: 15px;
-  color: #41484c;
   font-family: sans-serif;
   font-weight: bolder;
 }
@@ -164,7 +145,6 @@ tr .glyphicon {
 #main-sidebar #nav li a span:before {
 	position: absolute;
 	left: 0;
-	color: #41484c;
 	text-align: center;
 	width: 1.25em;
 	line-height: 1.75em;
@@ -188,17 +168,54 @@ tr .glyphicon {
   padding-bottom: 30px;
   border-width: thin;
 }
-/*
- * Body
- */
- .img-profile {
-    height: 275px;
-    width: 275px;
+
+/**** Bottom sidebar ****/
+ #main-sidebar .bottom {
+   position: absolute;
+   bottom: 15px;
+   width: 100%;
+   text-align: center;
+ }
+
+  #main-sidebar .bottom .icons {
+    width: 100%;
+    left: 0;
+    right: 0;
+    padding-left: 0;
+    padding-right: 10%;
+  }
+
+ #main-sidebar .bottom ul.icons li {
+   display: inline-block;
+   margin-right: 10px;
+ }
+
+ #main-sidebar .bottom ul.icons li a{
+   color: #fff;
+   opacity: .2;
+ }
+
+ #main-sidebar .bottom ul.icons li a:hover {
+   opacity: 1;
+   text-decoration: none;
+ }
+
+#main-sidebar .bottom .icons .text {
+  display: none;
+}
+
+#main-sidebar .bottom .icons .fa {
+  font-size: 1em;
 }
 
 /*
  * Header
  */
+ #home .img-profile {
+    height: 275px;
+    width: 275px;
+}
+
  #home .portfolio-item {
      right: 0;
      margin: 0 0 15px;
@@ -255,13 +272,6 @@ tr .glyphicon {
  /*#portfolio * {
      z-index: 2;
  }*/
-
- @media(min-width:767px) {
-     #home .portfolio-item {
-
-     }
- }
-
 
 /*
 * Skills

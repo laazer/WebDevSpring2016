@@ -1,5 +1,6 @@
 <div class="row navbar sidebar" id="side-bar" ng-controller="SidebarController">
     <div class="col-sm-3 col-md-3 sidebar" id="main-sidebar">
+        <div class="hide-btn"> << </div>
         <div id="logo">
 							<!-- <span class="image profile"><img src="{{me.getRandomImg()}}" alt=""></span> -->
 							<h1 id="title">{{me.name}}</h1>
@@ -11,7 +12,7 @@
 				        ng-class="{'active': $location.url() == '#' + item.ref}">
         				<a href="" ng-click="smoothScroll(item.ref)" class="side-item">
         					<span class="fa {{'fa-' + item.icon}}">
-                    <span class="text">{{item.title}}</span>
+                    <span class="te">{{item.title}}</span>
                   </span>
         				</a>
             </li>
