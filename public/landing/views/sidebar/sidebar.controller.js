@@ -21,5 +21,12 @@
 	    };
 			$scope.barItems = [home, skills, port, about];
 			//$anchorScroll.yOffset = 50;
+
+			$rootScope.isBarHidden = false;
+			$scope.hideBar = function() {
+				$rootScope.isBarHidden = true;
+				$rootScope.setScreenSize();
+			}
+			$rootScope.setScreenSize();
 	}
 })();

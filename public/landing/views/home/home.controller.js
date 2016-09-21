@@ -6,6 +6,16 @@
 
     function homeController ($scope, $rootScope, $location) {
 
+				var barShown = "col-sm-9 col-sm-offset-3 col-md-9 col-lg-9 col-lg-offset-3";
+				var barHidden = "col-sm-12 col-md-12 col-lg-12";
+				$rootScope.setScreenSize = function() {
+					if ($rootScope.isBarHidden) {
+						 $scope.size = barHidden;
+					} else {
+						$scope.size = barShown;
+					}
+				}
+				$scope.size = $rootScope.setScreenSize();
 				var defaultOptions = getOptions({barColor: '#18bc9c'})
 				$scope.skills = [
 						{name: "Java", rank: "95", options:defaultOptions},
