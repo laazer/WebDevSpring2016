@@ -4,18 +4,25 @@
 		.module("JBSite")
 		.controller("HomeController", homeController);
 
-    function homeController ($scope, $rootScope, $location) {
+    function homeController ($scope, $location) {
 
 				var barShown = "col-sm-9 col-sm-offset-3 col-md-9 col-lg-9 col-lg-offset-3";
 				var barHidden = "col-sm-12 col-md-12 col-lg-12";
-				$rootScope.setScreenSize = function() {
-					if ($rootScope.isBarHidden) {
+				$scope.isBarHidden = false;
+				$scope.setScreenSize = function() {
+					if ($scope.isBarHidden) {
 						 $scope.size = barHidden;
 					} else {
 						$scope.size = barShown;
 					}
 				}
-				$scope.size = $rootScope.setScreenSize();
+				$scope.size = barHidden; //assume hidden for mobile;
+				$scope.setScreenSize();
+				$scope.hideButtonPress = function() {
+					$scope.isBarHidden = !$scope.isBarHidden;
+					$scope.setScreenSize();
+				}
+
 				var defaultOptions = getOptions({barColor: '#18bc9c'})
 				$scope.skills = [
 						{name: "Java", rank: "95", options:defaultOptions},

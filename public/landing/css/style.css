@@ -39,6 +39,7 @@ tr .glyphicon {
 /*
  * Side Bar
  */
+#sidebar-hide-btn,
 #main-sidebar {
     background: #333333;
     font-size: 20px;
@@ -57,6 +58,27 @@ tr .glyphicon {
  #main-sidebar a .fa {
    padding-right: 10px;
  }
+
+ /**** Sidebar Hide Button ****/
+ #sidebar-hide-btn {
+   color: rgba(255,255,255,0.5);
+   text-align: center;
+   border-bottom: solid 1px #41484c;
+   z-index: 1001; /* must be greater then sidebar */
+   height: 25px;
+   position: fixed;
+ }
+
+ #sidebar-hide-btn:hover {
+   opacity: 1;
+   background: #fff;
+   color: #2c3e50;
+   cursor: pointer;;
+ }
+
+  #sidebar-hide-btn .sb-h-btn-wrapper {
+    width: 100%;
+  }
 
 /**** Top Sidebar ****/
 #main-sidebar #logo {
@@ -93,21 +115,6 @@ tr .glyphicon {
 #main-sidebar #logo .image img {
   height: 60px;
   width: 60px;
-}
-
-/**** Sidebar Hide Button ****/
-#main-sidebar .hide-btn {
-  color: rgba(255,255,255,0.5);
-  text-align: center;
-  border-bottom: solid 1px #41484c;
-}
-
-#main-sidebar .hide-btn:hover,
-#main-sidebar .hide-btn:hover {
-  opacity: 1;
-  background: #fff;
-  color: #2c3e50;
-  cursor: pointer;;
 }
 
 /**** Sidebar Navs ****/

@@ -4,7 +4,7 @@
 		.module("JBSite")
 		.controller("SidebarController", sideBarController);
 
-    function sideBarController ($scope, $rootScope, SmoothScroll, $location) {
+    function sideBarController ($scope, SmoothScroll, $location) {
 			var home = { ref : "home", icon : "home", title: "My Face" };
 			var port = { ref : "portfolio", icon : "th", title: "Portfolio" };
 			var skills = { ref : "skills", icon : "code", title: "Skills" };
@@ -22,11 +22,5 @@
 			$scope.barItems = [home, skills, port, about];
 			//$anchorScroll.yOffset = 50;
 
-			$rootScope.isBarHidden = false;
-			$scope.hideBar = function() {
-				$rootScope.isBarHidden = true;
-				$rootScope.setScreenSize();
-			}
-			$rootScope.setScreenSize();
 	}
 })();
