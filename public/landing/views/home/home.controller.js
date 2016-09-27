@@ -4,20 +4,31 @@
 		.module("JBSite")
 		.controller("HomeController", homeController);
 
-    function homeController ($scope, $location) {
+    function homeController ($scope, $location, DeviceDetector, SmoothScroll) {
 
-				var barShown = "col-sm-9 col-sm-offset-3 col-md-9 col-lg-9 col-lg-offset-3";
-				var barHidden = "col-sm-12 col-md-12 col-lg-12";
-				$scope.isBarHidden = false;
+				var hiddenFlag = false;
+				var barShown = {
+					body: "col-sm-12 col-md-9 col-lg-9 col-lg-offset-3",
+					bar: "col-sm-12 col-md-3",
+					button: "btn-hide col-xs-12 col-sm-12 col-md-3 col-lg-3",
+				};
+
+				var barHidden = {
+					body: "col-sm-12 col-md-12 col-lg-12",
+					bar: "hidden",
+					button: "btn-show col-xs-12 col-sm-12 col-md-12 col-lg-12"
+				};
+
+				$scope.isBarHidden = DeviceDetector.isSmallDevice();
 				$scope.setScreenSize = function() {
 					if ($scope.isBarHidden) {
 						 $scope.size = barHidden;
 					} else {
 						$scope.size = barShown;
+						if(DeviceDetector.isSmallDevice()) SmoothScroll.scrollTo("side-bar");
 					}
 				}
-				$scope.size = barHidden; //assume hidden for mobile;
-				$scope.setScreenSize();
+				$scope.size = $scope.setScreenSize();
 				$scope.hideButtonPress = function() {
 					$scope.isBarHidden = !$scope.isBarHidden;
 					$scope.setScreenSize();
@@ -67,5 +78,7 @@
 					}
 					return options;
 				}
+
+				return $scope.setScreenSize();
     }
 })();

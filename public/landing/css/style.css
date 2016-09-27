@@ -39,6 +39,7 @@ tr .glyphicon {
 /*
  * Side Bar
  */
+#side-bar,
 #sidebar-hide-btn,
 #main-sidebar {
     background: #333333;
@@ -47,8 +48,9 @@ tr .glyphicon {
     padding: 0px;
  }
 
- .sidebar {
-   display: none;
+.hidden,
+.sm-hide {
+   display: none; /* hack for hiding sidebar on small devices */
  }
 
 #main-sidebar li {
@@ -78,6 +80,19 @@ tr .glyphicon {
 
   #sidebar-hide-btn .sb-h-btn-wrapper {
     width: 100%;
+  }
+
+  #sidebar-hide-btn .btn-content:after {
+    font-family: FontAwesome;
+    content: "\f0c9";
+    display: inline-block;
+  }
+
+  #sidebar-hide-btn.btn-hide .btn-content:after {
+      content: "\f00d";
+  }
+  #sidebar-hide-btn.btn-show .btn-content:after {
+      content: "\f0c9";
   }
 
 /**** Top Sidebar ****/

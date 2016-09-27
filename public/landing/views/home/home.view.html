@@ -1,11 +1,10 @@
-<div id="sidebar-hide-btn" class="col-sm-3 col-md-3" ng-click="hideButtonPress()">
-  <div class="sb-h-btn-wrapper"> << </div>
+<div id="sidebar-hide-btn" ng-class="size.button" ng-click="hideButtonPress()">
+  <div class="sb-h-btn-wrapper"><div class="btn-content"></div></div>
 </div>
-<div ng-include="'views/sidebar/sidebar.view.html'" class="col-sm-3 col-md-3 col-lg-3">
-  <!-- possibly put hide-btn here -->
+<div ng-include="'views/sidebar/sidebar.view.html'" ng-class="size.bar">
 </div>
 <div class="container-fluid">
-    <div class="main" ng-class="size">
+    <div class="main" ng-class="size.body">
       <!-- Header -->
       <header id="home">
           <div class="container">
