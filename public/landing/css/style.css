@@ -6,10 +6,6 @@ body {
   background: rgba(51, 152, 183, 0.54);
 }
 
-.main {
-    padding: 20px;
-}
-
 .main .container {
   width: 100%;
 }
@@ -74,38 +70,39 @@ tr .glyphicon {
  }
 
  /**** Sidebar Hide Button ****/
- #sidebar-hide-btn {
+#sidebar-hide-btn {
    color: rgba(255,255,255,0.5);
    text-align: center;
    border-bottom: solid 1px #41484c;
    z-index: 1001; /* must be greater then sidebar */
    height: 25px;
    position: fixed;
- }
+}
 
- #sidebar-hide-btn:hover {
+#sidebar-hide-btn:hover {
    opacity: 1;
    background: #fff;
    color: #2c3e50;
    cursor: pointer;;
- }
+}
 
-  #sidebar-hide-btn .sb-h-btn-wrapper {
+#sidebar-hide-btn .sb-h-btn-wrapper {
     width: 100%;
-  }
+}
 
-  #sidebar-hide-btn .btn-content:after {
+#sidebar-hide-btn .btn-content:after {
     font-family: FontAwesome;
     content: "\f0c9";
     display: inline-block;
-  }
+}
 
-  #sidebar-hide-btn.btn-hide .btn-content:after {
-      content: "\f00d";
-  }
-  #sidebar-hide-btn.btn-show .btn-content:after {
-      content: "\f0c9";
-  }
+#sidebar-hide-btn.btn-hide .btn-content:after {
+    content: "\f00d";
+}
+
+#sidebar-hide-btn.btn-show .btn-content:after {
+    content: "\f0c9";
+}
 
 /**** Top Sidebar ****/
 #main-sidebar #logo {
@@ -347,11 +344,12 @@ tr .glyphicon {
 
 #skills .chart {
   position: relative;
-  display: inline-block;
   width: 110px;
-  height: 110px;
-  margin: 50px 0px 50px 20px;
+  height: 150px;
   text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 #skills .chart canvas {

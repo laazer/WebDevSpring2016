@@ -1,0 +1,9 @@
+@media (min-width: 768px) {
+  /**
+   * Skills
+   */
+  #skills .chart {
+    display: inline-block;
+    margin: 35px 5% 35px 8%;
+  }
+}
