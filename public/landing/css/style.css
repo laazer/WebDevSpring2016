@@ -3,6 +3,7 @@
 */
 body {
   position: relative;
+  background: rgba(51, 152, 183, 0.54);
 }
 
 .main {
@@ -11,6 +12,12 @@ body {
 
 .main .container {
   width: 100%;
+}
+
+header,
+section {
+  margin: 15px;
+  box-shadow: -10px 5px 15px #888888;
 }
 
 /*
@@ -379,9 +386,14 @@ tr .glyphicon {
 /*
  * Portfolio
  */
+#portfolio {
+  background: #fff;
+}
+
 #portfolio img {
   height: 300px;
   width: 100%;
+  box-shadow: 5px 5px 25px #2e6da4;
 }
 
 /*
