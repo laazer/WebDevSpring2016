@@ -11,7 +11,7 @@
 				$rootScope.me = {
 					name: "Jacob Brandt",
 					slogan: "Software Developer - Noun - Mountain in Training",
-					img: ["./img/me.jpg"],
+					img: ["./img/me3.jpg"],
 					github: "https://github.com/laazer",
 					linkedin: "https://www.linkedin.com/in/brandtjacob",
 					resume: "./assets/resume.pdf",
