@@ -40,6 +40,6 @@
         {
             templateUrl: "views/forms/form-fields.view.html",
 						controller: "FormFieldsController"
-        })
+        });
 		});
 })();

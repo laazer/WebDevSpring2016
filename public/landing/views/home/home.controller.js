@@ -10,7 +10,7 @@
 				var barShown = {
 					body: "col-sm-12 col-md-9 col-lg-9 col-lg-offset-3",
 					bar: "col-sm-12 col-md-3",
-					button: "btn-hide col-xs-12 col-sm-12 col-md-3 col-lg-3",
+					button: "btn-hide col-xs-12 col-sm-12 col-md-3",
 				};
 
 				var barHidden = {
@@ -57,6 +57,10 @@
 						{name:"Scroggle", slogan:"Fun Word Game", img:"./img/scroggle.png", ref:"scroggleModal", src:"https://play.google.com/store/apps/details?id=com.laazer.scroggle"},
 						{name:"Secure Chat", slogan:"Secure Chat Server and Client", img:"./img/secure-chat.png", ref:"chatModal", src:"https://github.com/blakelymadden/netsec_securechat"},
 				];
+
+				$scope.gotToPage = function(href) {
+					 $location.url(href);
+				}
 
 				function getOptions(newOptions) {
 					var options = {

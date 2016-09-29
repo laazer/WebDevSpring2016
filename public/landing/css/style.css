@@ -75,8 +75,9 @@ tr .glyphicon {
    text-align: center;
    border-bottom: solid 1px #41484c;
    z-index: 1001; /* must be greater then sidebar */
-   height: 25px;
+   height: 30px;
    position: fixed;
+   float: left;
 }
 
 #sidebar-hide-btn:hover {

@@ -39,8 +39,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', express.static(__dirname + '/public/landing'));
+app.use('/home', express.static(__dirname + '/public/landing'));
 app.use('/fm', express.static(__dirname + '/public/assignment/client'));
 app.use('/debate', express.static(__dirname + '/public/project/client'));
+
+// app.all('/fm/*', function(req, res, next) {
+//     // Just send the index.html for other files to support HTML5Mode
+//     res.sendFile('/index.html', { root: __dirname + '/public/assignment/client' });
+// });
 
 // Routes
 require('./public/assignment/server/app.js')(app, uuid, mongoose, db);

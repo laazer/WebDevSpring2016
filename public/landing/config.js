@@ -2,7 +2,7 @@
 {
 	angular
 		.module("JBSite")
-		.config(function($routeProvider)
+		.config(function($routeProvider, $locationProvider)
 		{
 			$routeProvider
 				.when("/",
@@ -11,6 +11,14 @@
 					controller: "HomeController",
 					title: "Jacob Brandt"
 				})
-				
+				//add more urls here
+				//.otherwise({redirectTo: "/"});
+
+				// if(window.history && window.history.pushState) {
+				// 	$locationProvider.html5Mode({
+				// 		 enabled: true,
+				// 		 requireBase: false
+				// 	});
+				// }
 		});
 })();

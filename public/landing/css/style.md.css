@@ -42,6 +42,10 @@
       font-size: 1.25em;
     }
 
+    #sidebar-hide-btn {
+        
+    }
+
     #sidebar-hide-btn .btn-content:after {
       content: "\f100";
     }
