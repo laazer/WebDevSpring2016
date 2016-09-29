@@ -56,6 +56,7 @@
 						{name:"Portal++", slogan:"2D Portalish Game", img:"./img/portal.png", ref:"portalModal", src:"https://github.com/laazer/portalpp"},
 						{name:"Scroggle", slogan:"Fun Word Game", img:"./img/scroggle.png", ref:"scroggleModal", src:"https://play.google.com/store/apps/details?id=com.laazer.scroggle"},
 						{name:"Secure Chat", slogan:"Secure Chat Server and Client", img:"./img/secure-chat.png", ref:"chatModal", src:"https://github.com/blakelymadden/netsec_securechat"},
+						{name:"laazer.com", slogan:"The Website That You're Currently Looking At", img:"./img/site.jpg", ref:"siteModal", src:"https://github.com/laazer/laazer_com"},
 				];
 
 				$scope.gotToPage = function(href) {
