@@ -56,6 +56,10 @@ tr .glyphicon {
     padding: 0px;
  }
 
+ #side-bar {
+   padding-top: 30px;
+ }
+
 .hidden,
 .sm-hide {
    display: none; /* hack for hiding sidebar on small devices */
@@ -78,6 +82,7 @@ tr .glyphicon {
    height: 30px;
    position: fixed;
    float: left;
+   margin-left: 15px;
 }
 
 #sidebar-hide-btn:hover {
@@ -85,6 +90,7 @@ tr .glyphicon {
    background: #fff;
    color: #2c3e50;
    cursor: pointer;;
+   box-shadow: -1px 4px 15px rgb(128, 151, 175);
 }
 
 #sidebar-hide-btn .sb-h-btn-wrapper {
@@ -192,6 +198,11 @@ tr .glyphicon {
   color: #2c3e50;
   font-weight: bolder !important;
 }
+
+#main-sidebar #nav li.active,
+#main-sidebar #nav li:hover {
+   box-shadow: -1px 4px 15px rgb(128, 151, 175);
+ }
 
 #main-sidebar #nav li a span:before {
 	position: absolute;

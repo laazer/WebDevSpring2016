@@ -33,6 +33,7 @@
         background-color: #f5f5f5;
         width: inherit;
         margin-left: 0px;
+        box-shadow: 5px 5px 10px #888888;
     }
 
     #main-sidebar #nav li a span {
@@ -44,6 +45,10 @@
     }
 
     #full-sidebar {
+      margin-left: 0px;
+    }
+
+    #sidebar-hide-btn {
       margin-left: 0px;
     }
 
