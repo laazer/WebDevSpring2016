@@ -47,6 +47,7 @@ tr .glyphicon {
 /*
  * Side Bar
  */
+
 #side-bar,
 #sidebar-hide-btn,
 #main-sidebar {
@@ -83,14 +84,6 @@ tr .glyphicon {
    position: fixed;
    float: left;
    margin-left: 15px;
-}
-
-#sidebar-hide-btn:hover {
-   opacity: 1;
-   background: #fff;
-   color: #2c3e50;
-   cursor: pointer;;
-   box-shadow: -1px 4px 15px rgb(128, 151, 175);
 }
 
 #sidebar-hide-btn .sb-h-btn-wrapper {
@@ -150,6 +143,11 @@ tr .glyphicon {
 
 /**** Sidebar Navs ****/
 
+#main-sidebar .nav>li>a:focus, .nav>li>a:hover {
+    text-decoration: none;
+    background-color: inherit;
+}
+
 #main-sidebar #nav li a {
 	display: block;
 	padding: 0.5em 1.25em 0.5em 1.1em;
@@ -190,20 +188,6 @@ tr .glyphicon {
   font-weight: bold;
 }
 
-#main-sidebar #nav li.active,
-#main-sidebar #nav li:hover,
-#main-sidebar #nav li a:active,
-#main-sidebar #nav li a:hover,
-#main-sidebar #nav li a:hover > .fa {
-  color: #2c3e50;
-  font-weight: bolder !important;
-}
-
-#main-sidebar #nav li.active,
-#main-sidebar #nav li:hover {
-   box-shadow: -1px 4px 15px rgb(128, 151, 175);
- }
-
 #main-sidebar #nav li a span:before {
 	position: absolute;
 	left: 0;
@@ -227,7 +211,7 @@ tr .glyphicon {
 #main-sidebar #nav {
   border-bottom-color: #41484c;
   border-style: solid;
-  padding-bottom: 30px;
+  padding-bottom: 100px;
   border-width: thin;
 }
 
@@ -336,12 +320,15 @@ tr .glyphicon {
  }*/
 
 /*
-* Skills
+* Skills / Contact Me
 */
+#contact-me hr.star-primary,
 #skills hr.star-primary {
   border-color: #18bc9c;
 }
 
+#contact-me hr.star-light:after,
+#contact-me hr.star-primary:after,
 #skills hr.star-light:after,
 #skills hr.star-primary:after {
   color: #18bc9c;
@@ -349,11 +336,15 @@ tr .glyphicon {
   border-color: #18bc9c;
 }
 
+#contact-me,
 #skills {
     background: #2c3e50;
     color: #18bc9c;
 }
 
+/*
+* Skills
+*/
 #skills .chart {
   position: relative;
   width: 110px;
@@ -410,6 +401,18 @@ tr .glyphicon {
   width: 100%;
   box-shadow: 5px 5px 25px #2e6da4;
 }
+
+/*
+ * Contact Me
+ */
+ #contact-me label {
+   margin-bottom: 5px;
+   margin-top: 15px;
+ }
+
+ #contact-me textarea {
+   resize: none;
+ }
 
 /*
 * Bootstrap overrrides
