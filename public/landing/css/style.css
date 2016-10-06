@@ -217,8 +217,7 @@ tr .glyphicon {
 
 /**** Bottom sidebar ****/
  #main-sidebar .bottom {
-   position: absolute;
-   bottom: 35px;
+   position: inherit;
    width: 100%;
    text-align: center;
  }
@@ -412,6 +411,10 @@ tr .glyphicon {
 
  #contact-me textarea {
    resize: none;
+ }
+
+ #contact-me .btn {
+   margin-top: 15px;
  }
 
 /*

@@ -67,6 +67,11 @@
     	font-size: .8em;
     }
 
+    #main-sidebar .bottom {
+      position: absolute;
+      bottom: 35px;
+    }
+
     #main-sidebar .bottom .icons .fa {
       font-size: 1.25em;
     }
