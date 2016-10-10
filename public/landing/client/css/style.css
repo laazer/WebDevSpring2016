@@ -216,34 +216,34 @@ tr .glyphicon {
 }
 
 /**** Bottom sidebar ****/
- #main-sidebar .bottom {
+#main-sidebar .bottom {
    position: inherit;
    width: 100%;
    text-align: center;
  }
 
-  #main-sidebar .bottom .icons {
+#main-sidebar .bottom .icons {
     width: 100%;
     left: 0;
     right: 0;
     padding-left: 0;
     padding-right: 10%;
-  }
+}
 
- #main-sidebar .bottom ul.icons li {
+#main-sidebar .bottom ul.icons li {
    display: inline-block;
    margin-right: 10px;
- }
+}
 
- #main-sidebar .bottom ul.icons li a{
+#main-sidebar .bottom ul.icons li a{
    color: #fff;
    opacity: .2;
- }
+}
 
- #main-sidebar .bottom ul.icons li a:hover {
+#main-sidebar .bottom ul.icons li a:hover {
    opacity: 1;
    text-decoration: none;
- }
+}
 
 #main-sidebar .bottom .icons .text {
   display: none;

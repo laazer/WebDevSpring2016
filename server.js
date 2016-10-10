@@ -7,7 +7,16 @@ var LocalStrategy = require('passport-local').Strategy;
 var cookieParser  = require('cookie-parser');
 var session       = require('express-session');
 var mongoose      = require('mongoose');
-var uuid          = require("node-uuid");
+var uuid          = require('node-uuid');
+var mailer        = require('sendmail')({
+                          logger: {
+                            debug: console.log,
+                            info: console.info,
+                            warn: console.warn,
+                            error: console.error
+                          },
+                          silent: false
+                        });
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 var upload = multer();
@@ -38,8 +47,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/', express.static(__dirname + '/public/landing'));
-app.use('/home', express.static(__dirname + '/public/landing'));
+app.use('/', express.static(__dirname + '/public/landing/client'));
+app.use('/home', express.static(__dirname + '/public/landing/client'));
 app.use('/fm', express.static(__dirname + '/public/assignment/client'));
 app.use('/debate', express.static(__dirname + '/public/project/client'));
 
@@ -51,6 +60,7 @@ app.use('/debate', express.static(__dirname + '/public/project/client'));
 // Routes
 require('./public/assignment/server/app.js')(app, uuid, mongoose, db);
 require('./public/project/server/app.js')(app, uuid, mongoose, db);
+require('./public/landing/server/app.js')(app, mailer)
 
 // app.get('/hello', function(req, res){
 //     res.send('hello world');
