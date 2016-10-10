@@ -4,7 +4,7 @@
 		.module("JBSite")
 		.controller("HomeController", homeController);
 
-    function homeController ($scope, $location, DeviceDetector, SmoothScroll) {
+    function homeController ($scope, $location, DeviceDetector, SmoothScroll, Emailer) {
 
 				var hiddenFlag = false;
 				var barShown = {
@@ -82,6 +82,31 @@
 						options[item] = newOptions[item];
 					}
 					return options;
+				}
+
+				$scope.sendEmail = function(contact) {
+					if(!contact.fname) {
+						$scope.contactError = "Full Name field cannot be empty";
+					}
+					if(!contact.email) {
+						$scope.contactError = "Email field cannot be empty";
+					}
+					if(!contact.message) {
+						$scope.contactError = "Message field cannot be empty";
+					}
+					if(contact.message.trim().replace(' ', '').length < 400) {
+						$scope.contactError = "Message is too short";
+					}
+					if(!Emailer.validateEmail(contact.email)) {
+						$scope.contactError = "Email is not formatted correctly";
+					}
+					if(!$scope.contactError) return;
+					else {
+						Emailer.sendEmail(contact.email, contact.fname, contact.message);
+						$scope.mailMessage = "Message Sent!";
+					}
+
+
 				}
 
 				return $scope.setScreenSize();

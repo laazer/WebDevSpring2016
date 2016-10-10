@@ -16,7 +16,7 @@
         return model;
 
         function createFieldForForm(formId, field) {
-            return $http.post("/api/assignment/form/{0}/field", field);
+            return $http.post("/api/assignment/form/{0}/field".format(formId), field);
 				}
 
        function getFieldsForForm(formId) {

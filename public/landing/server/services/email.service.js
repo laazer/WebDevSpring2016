@@ -7,11 +7,12 @@ module.exports = function(app, mailer) {
 
 
     function sendMail(req, res) {
+      var body = req.body;
       mailer({
           from: 'mailer@laazer.com',
           to: 'jabrandt31@gmail.com',
-          subject: 'test sendmail',
-          html: 'Mail of test sendmail ',
+          subject: '[no-reply] Message from' + body.name,
+          html: body.message + '\n From: ' + body.email,
         }, function(err, reply) {
           console.log(err && err.stack);
           console.dir(reply);

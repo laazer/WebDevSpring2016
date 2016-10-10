@@ -25,12 +25,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/laazer/WebDevSpring2016.git"
+    "url": "https://github.com/laazer/laazer_com.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/laazer/WebDevSpring2016/issues"
+    "url": "https://github.com/laazer/laazer_com/issues"
   },
-  "homepage": "https://github.com/laazer/WebDevSpring2016"
+  "homepage": "https://github.com/laazer/laazer_com"
 }
