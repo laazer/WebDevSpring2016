@@ -2,8 +2,8 @@ module.exports = function(app, mailer) {
     var resp = require("./resp.js")();
 
 
-    //app.post("/api/landing/email", sendMail);
-    app.get("/api/landing/email", sendMail);
+    app.post("/api/landing/email", sendMail);
+    //app.get("/api/landing/email", sendMail);
 
 
     function sendMail(req, res) {
