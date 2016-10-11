@@ -18,7 +18,7 @@
 					bar: "hidden",
 					button: "btn-show col-xs-12 col-sm-12 col-md-12 col-lg-12"
 				};
-
+				$scope.contact = {};
 				$scope.isBarHidden = DeviceDetector.isSmallDevice();
 				$scope.setScreenSize = function() {
 					if ($scope.isBarHidden) {
@@ -85,28 +85,32 @@
 				}
 
 				$scope.sendEmail = function(contact) {
-					if(!contact.fname) {
-						$scope.contactError = "Full Name field cannot be empty";
-					}
-					if(!contact.email) {
-						$scope.contactError = "Email field cannot be empty";
-					}
-					if(!contact.message) {
-						$scope.contactError = "Message field cannot be empty";
-					}
-					if(contact.message.trim().replace(' ', '').length < 400) {
-						$scope.contactError = "Message is too short";
-					}
-					if(!Emailer.validateEmail(contact.email)) {
-						$scope.contactError = "Email is not formatted correctly";
-					}
-					if(!$scope.contactError) return;
-					else {
-						Emailer.sendEmail(contact.email, contact.fname, contact.message);
-						$scope.mailMessage = "Message Sent!";
-					}
-
-
+						if(!contact.fname) {
+							$scope.mailError = "Full Name field cannot be empty!";
+							return;
+						}
+						if(!contact.email) {
+							$scope.mailError = "Email field cannot be empty!";
+							return;
+						}
+						if(!Emailer.validateEmail(contact.email)) {
+							$scope.mailError = "Email is not formatted correctly!";
+							return;
+						}
+						if(!contact.message) {
+							$scope.mailError = "Message field cannot be empty!";
+							return;
+						}
+						if(contact.message.trim().replace(' ', '').length < 400) {
+							$scope.mailError = "Message is too short";
+							return;
+						}
+						else {
+							Emailer.sendEmail(contact.email, contact.fname, contact.message);
+							$scope.mailError = null;
+							$scope.mailMessage = "Message Sent!";
+							return;
+						}
 				}
 
 				return $scope.setScreenSize();

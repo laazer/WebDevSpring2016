@@ -101,8 +101,10 @@
                     <hr class="star-primary">
                 </div>
             </div>
-            <div ng-show="mailError" class="alert alert-danger" role="alert">{{mail-error}}</div>
-            <div ng-show="mailMessage" class="alert alert-success" role="alert">{{mail-message}}</div>
+            <div class="col-md-offset-2">
+              <div ng-show="mailError" class="alert alert-danger col-sm-12 col-md-10" role="alert">{{mailError}}</div>
+              <div ng-show="mailMessage" class="alert alert-success col-sm-12 col-md-10" role="alert">{{mailMessage}}</div>
+            </div>
             <form>
               <div class="form-group col-md-offset-2">
                 <label for="contactFullName" class="col-sm-12 control-label">Full Name</label>
@@ -113,17 +115,17 @@
               <div class="form-group col-md-offset-2">
                 <label for="contactEmail" class="col-sm-12 control-label">Email</label>
                 <div class="col-sm-12 col-md-10">
-                  <input type="email" class="form-control" id="contactEmail" placeholder="Email" ng-model="contact.email">
+                  <input type="text" class="form-control" id="contactEmail" placeholder="Email" ng-model="contact.email">
                 </div>
               </div>
               <div class="form-group col-md-offset-2">
                 <label for="contactMsg" class="col-sm-12 control-label">Message</label>
                 <div class="col-sm-12 col-md-10">
-                  <textarea class="form-control" id="contactMsg" rows="6" placeholder="Message" ng-model="contact.name"></textarea>
+                  <textarea class="form-control" id="contactMsg" rows="6" placeholder="Message" ng-model="contact.message"></textarea>
                 </div>
               </div>
               <div class="btn-wrapper form-group col-sm-12 col-md-offset-2">
-                <div class="btn btn-default col-sm-3" ng-onclick="sendEmail(contact)">Send</div>
+                <div class="btn btn-default col-sm-3" ng-click="sendEmail(contact)">Send</div>
               </div>
             </form>
         </div>
