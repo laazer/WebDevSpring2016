@@ -11,7 +11,7 @@ module.exports = function(app, mailer) {
       mailer({
           from: 'mailer@laazer.com',
           to: 'jabrandt31@gmail.com',
-          subject: '[no-reply] Message from' + body.name,
+          subject: '[no-reply] Message from ' + body.name,
           html: body.message + '\n From: ' + body.email,
         }, function(err, reply) {
           console.log(err && err.stack);
