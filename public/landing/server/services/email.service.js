@@ -10,9 +10,9 @@ module.exports = function(app, mailer) {
       var body = req.body;
       mailer({
           from: 'mailer@laazer.com',
-          to: 'jabrandt31@gmail.com',
+          to: 'laazer.dev@gmail.com',
           subject: '[no-reply] Message from ' + body.name,
-          html: body.message + '\n From: ' + body.email,
+          html: body.message + '<br/> From: ' + body.email,
         }, function(err, reply) {
           console.log(err && err.stack);
           console.dir(reply);
