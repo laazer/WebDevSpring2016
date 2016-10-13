@@ -19,14 +19,11 @@
         <div class="bottom">
 					<!-- Social Icons -->
 						<ul class="icons">
-							<li><a href="{{me.linkedin}}" class="fa fa-linkedin solo">
-                <span class="text">LinkedIn</span></a>
-              </li>
-							<li><a href="{{me.github}}" class="fa fa-github solo">
-                <span class="text">Github</span></a>
-              </li>
-							<li><a href="{{me.resume}}" class="fa fa-file-text-o solo">
-                <span class="text">Resume</span></a>
+							<li ng-repeat="item in footerIcons" class="img-circle">
+                <div class="foot-wrapper w-{{item.name.toLowerCase()}}">
+                  <a href="{{item.ref}}" class="fa {{item.icon}} solo"></a>
+                  <div class="text">{{item.name}}</div>
+                </div>
               </li>
 						</ul>
 				</div>

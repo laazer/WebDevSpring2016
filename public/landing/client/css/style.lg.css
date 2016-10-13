@@ -1,41 +1,48 @@
 @media (min-width: 1200px) {
-/*
-* Main Body
-*/
-    .main {
-    }
-/*
-* Sidebar
-*/
-  #main-sidebar #nav li a span {
-    font-size: 1em;
-  }
-
-  #main-sidebar .bottom .icons .fa {
-    font-size: 1.5em;
-  }
-
-  #sidebar-hide-btn {
-    display: none;
-  }
-
-  #side-bar {
-    padding-top: 0px;
-  }
-
-/*
- * About Me
- */
-  #about .br {
-    display: none;
-  }
-
-  #main-sidebar #logo h1 {
+  /*
+  * Main Body
+  */
+      .main {
+      }
+  /*
+  * Sidebar
+  */
+    #main-sidebar #nav li a span {
       font-size: 1em;
-  }
+    }
 
-  #main-sidebar #logo .byline {
+    #main-sidebar .bottom .icons .fa {
+      font-size: 1.5em;
+    }
 
-  }
+    #sidebar-hide-btn {
+      display: none;
+    }
+
+    #side-bar {
+      padding-top: 0px;
+    }
+    /* sidebar footer icons */
+    #side-bar .bottom li:hover .text {
+      display: block;
+      color: #fff;
+      text-transform: none;
+    }
+
+
+  /*
+   * About Me
+   */
+    #about .br {
+      display: none;
+    }
+
+    #main-sidebar #logo h1 {
+        font-size: 1em;
+    }
+
+    #main-sidebar #logo .byline {
+
+    }
 
 }

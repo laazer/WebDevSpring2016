@@ -232,14 +232,15 @@ tr .glyphicon {
 
 #main-sidebar .bottom ul.icons li {
    display: inline-block;
-   margin-right: 10px;
+   margin-right: 25px;
 }
 
-#main-sidebar .bottom ul.icons li a{
+#main-sidebar .bottom ul.icons li a {
    color: #fff;
    opacity: .2;
 }
 
+#main-sidebar .bottom ul.icons li:hover a,
 #main-sidebar .bottom ul.icons li a:hover {
    opacity: 1;
    text-decoration: none;
