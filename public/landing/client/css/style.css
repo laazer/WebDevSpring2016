@@ -395,6 +395,16 @@ tr .glyphicon {
   background: #fff;
 }
 
+#portfolio .p-name {
+  vertical-align: top;
+  height: 100%;
+  text-align: center;
+  margin-top: 25%;
+  font-size: 25px;
+  color: #fff;
+  font-weight: bolder;
+}
+
 #portfolio img {
   height: 300px;
   width: 100%;
