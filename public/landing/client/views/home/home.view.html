@@ -109,23 +109,23 @@
               <div class="form-group col-md-offset-2">
                 <label for="contactFullName" class="col-sm-12 control-label">Full Name</label>
                 <div class="col-sm-12 col-md-10">
-                  <input type="text" class="form-control" id="contactFullName" placeholder="Mega Tron" ng-model="contact.fname">
+                  <input type="text" class="form-control" id="contactFullName" placeholder="Hue Man" ng-model="contact.fname">
                 </div>
               </div>
               <div class="form-group col-md-offset-2">
                 <label for="contactEmail" class="col-sm-12 control-label">Email</label>
                 <div class="col-sm-12 col-md-10">
-                  <input type="text" class="form-control" id="contactEmail" placeholder="Email" ng-model="contact.email">
+                  <input type="text" class="form-control" id="contactEmail" placeholder="name@place.end" ng-model="contact.email">
                 </div>
               </div>
               <div class="form-group col-md-offset-2">
                 <label for="contactMsg" class="col-sm-12 control-label">Message</label>
                 <div class="col-sm-12 col-md-10">
-                  <textarea class="form-control" id="contactMsg" rows="6" placeholder="Message" ng-model="contact.message"></textarea>
+                  <textarea class="form-control" id="contactMsg" rows="6" placeholder="I want to give you free money..." ng-model="contact.message"></textarea>
                 </div>
               </div>
               <div class="btn-wrapper form-group col-sm-12 col-md-offset-2">
-                <div class="btn btn-default col-sm-3" ng-click="sendEmail(contact)">Send</div>
+                <div class="btn btn-default col-sm-3" ng-click="sendEmail(contact)" ng-disabled="mailMesssage">Send</div>
               </div>
             </form>
         </div>

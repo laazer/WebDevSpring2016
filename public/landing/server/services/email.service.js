@@ -12,10 +12,10 @@ module.exports = function(app, mailer) {
           from: 'mailer@laazer.com',
           to: 'laazer.dev@gmail.com',
           subject: '[no-reply] Message from ' + body.name,
-          html: body.message + '<br/> From: ' + body.email,
+          html: body.message + '<br/> <br/> From: ' + body.email,
         }, function(err, reply) {
-          console.log(err && err.stack);
-          console.dir(reply);
+          //console.log(err && err.stack);
+          //console.dir(reply);
       });
     }
 }
