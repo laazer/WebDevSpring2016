@@ -50,10 +50,6 @@
 						{name: "SQL", rank: "55", options:defaultOptions},
 				];
 
-				$scope.skills = $scope.skills.sort(function(a, b) {
-					return a.rank > b.rank;
-				});
-
 				$scope.projects = [
 						{name:"Form Maker", slogan:"Simple Form Maker", img:"./img/forms.png", ref:"formModal", src:"./fm/"},
 						{name:"Debate Forum", slogan:"Simple Debate Forum", img:"./img/gavel.png", ref:"debateModal", src:"./debate/"},
@@ -118,6 +114,13 @@
 						}
 				}
 
-				return $scope.setScreenSize();
+				function load() {
+					$scope.setScreenSize();
+					$scope.skills = $scope.skills.sort(function(a, b) {
+						return b.rank - a.rank;
+					});
+				}
+
+				return load();
     }
 })();

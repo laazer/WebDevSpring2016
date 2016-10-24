@@ -4,8 +4,12 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+ html, body {
+     max-width: 100%;
+     overflow-x: hidden;
+ }
+
 body {
-    overflow-x: hidden;
     font-family:Lato,'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
