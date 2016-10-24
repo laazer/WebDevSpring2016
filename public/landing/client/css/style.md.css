@@ -96,23 +96,20 @@
     }
 
     #sidebar-hide-btn.btn-show {
-        height: 1px;
-        border: solid 1px #41484c;
-        border-radius: 15px;
-        width: 80px;
-        height: 75px;
-        opacity: 0.3;
+        width: 45px;
+        height: 55px;
+        opacity: 1;
         margin-top: 10px;
-        margin-left: 20px;
-        background: #fff;
+        margin-left: 10px;
+        background: inherit;
         color: #2c3e50;
-        box-shadow: 10px 5px 10px #888888
+        border: none;
+        border-radius: 5px;
     }
 
     #sidebar-hide-btn.btn-show:hover {
       color: rgba(255,255,255,0.5);
       background: #333333;
-      opacity: 0.6;
     }
 
     #skills .chart {

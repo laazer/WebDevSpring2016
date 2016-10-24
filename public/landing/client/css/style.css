@@ -227,12 +227,12 @@ tr .glyphicon {
     left: 0;
     right: 0;
     padding-left: 0;
-    padding-right: 10%;
 }
 
 #main-sidebar .bottom ul.icons li {
    display: inline-block;
    margin-right: 25px;
+   cursor: pointer;
 }
 
 #main-sidebar .bottom ul.icons li a {

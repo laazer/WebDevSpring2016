@@ -36,17 +36,22 @@
 
 				var defaultOptions = getOptions({barColor: '#18bc9c'})
 				$scope.skills = [
+						{name: "Versatility", rank: "100", options:defaultOptions},
 						{name: "Java", rank: "95", options:defaultOptions},
 						{name: "Python", rank: "77", options:defaultOptions},
 						{name: "Android SDK", rank: "83", options:defaultOptions},
-						{name: "MEAN Stack", rank: "75", options:defaultOptions},
+						{name: "MEAN Stack", rank: "70", options:defaultOptions},
 						{name: "Git", rank: "75", options:defaultOptions},
 						{name: "Scala", rank: "70", options:defaultOptions},
 						{name: "C#", rank: "70", options:defaultOptions},
 						{name: "Racket", rank: "55", options:defaultOptions},
+						{name: "Angular JS", rank: "75", options:defaultOptions},
+						{name: "MongoDB", rank: "55", options:defaultOptions},
+						{name: "SQL", rank: "55", options:defaultOptions},
 				];
+
 				$scope.skills = $scope.skills.sort(function(a, b) {
-					return a.rank < b.rank;
+					return a.rank > b.rank;
 				});
 
 				$scope.projects = [
