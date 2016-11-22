@@ -86,6 +86,11 @@
 					return options;
 				}
 
+				$scope.activeProject = null;
+				$scope.setActiveProject = function(project) {
+					$scope.activeProject = project;
+				}
+
 				$scope.sendEmail = function(contact) {
 						if(!contact.fname) {
 							$scope.mailError = "Full Name field cannot be empty!";

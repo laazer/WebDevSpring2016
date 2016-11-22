@@ -58,7 +58,7 @@
               </div>
               <div class="">
                   <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 portfolio-item" ng-repeat="p in projects">
-                      <a href="" data-target="#{{p.ref}}" class="portfolio-link" data-toggle="modal">
+                      <a href="" data-target="#projectModal" class="portfolio-link" data-toggle="modal" ng-click="setActiveProject(p)">
                           <div class="caption">
                               <div class="p-name">{{p.name}}</div>
                               <div class="caption-content">
@@ -137,7 +137,7 @@
     </div>
 </div>
 <!-- Modals -->
-<div ng-repeat="p in projects" class="portfolio-modal modal fade" id="{{p.ref}}" role="dialog" aria-hidden="true">
+<div class="portfolio-modal modal fade" id="projectModal" role="dialog" aria-hidden="true">
     <div class="modal-content">
         <div class="close-modal" data-dismiss="modal">
             <div class="lr">
@@ -149,12 +149,12 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
                     <div class="modal-body">
-                        <h2>{{p.name}}</h2>
+                        <h2>{{activeProject.name}}</h2>
                         <hr class="star-primary">
-                        <img src="{{p.img}}" class="img-responsive img-centered" alt="">
-                        <p>{{p.slogan}}</p>
+                        <img src="{{activeProject.img}}" class="img-responsive img-centered" alt="">
+                        <p>{{activeProject.slogan}}</p>
                         <!-- <button ng-click="goToPage(p.src)" type="button" class="btn btn-default"><a href="{{p.src}}">Go To Project</i></a></button> -->
-                        <a href="{{p.src}}" class="btn btn-default">Go To Project</i></a>
+                        <a href="{{activeProject.src}}" class="btn btn-default">Go To Project</i></a>
                         <!-- <button ng-click="goToPage(p.src)" type="button" class="btn btn-default">Go To Project</i></button> -->
                         <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
                     </div>
