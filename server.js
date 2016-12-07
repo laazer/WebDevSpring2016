@@ -52,6 +52,10 @@ app.use('/home', express.static(__dirname + '/public/landing/client'));
 app.use('/fm', express.static(__dirname + '/public/assignment/client'));
 app.use('/debate', express.static(__dirname + '/public/project/client'));
 
+app.use('/tmp', function(req, res, next) {
+  res.redirect(301, 'https://docs.google.com/presentation/d/1mLCZYmerONLqmlcuxKPkFuPz0hrzXO5pHntzIbQwnFg/edit?usp=sharing');
+});
+
 // app.all('/fm/*', function(req, res, next) {
 //     // Just send the index.html for other files to support HTML5Mode
 //     res.sendFile('/index.html', { root: __dirname + '/public/assignment/client' });
